@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <hr>
+
+
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p>Date de création : {{ post.dateCreated|date('d/m/Y') }}</p>
+
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
