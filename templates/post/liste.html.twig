@@ -3,7 +3,10 @@
 {% block body %}
     {% for category in postCategories %}
         <h1>{{ category.title }}</h1>
+        {{ dump(category) }}
     {% endfor %}
+
+
 
     <hr>
 

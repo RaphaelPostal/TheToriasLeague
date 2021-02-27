@@ -7,4 +7,16 @@
     <h1>{{ post.title }}</h1>
     <p>{{ post.content }}</p>
     <p>Date de création : {{ post.dateCreated|date('d/m/Y') }}</p>
+
+    <h1>Liste des posts de la catégorie "Super"</h1>
+
+    {% for category in postCategories %}
+        <h1>{{ category.title }}</h1>
+        <ul>
+            {% for post in category.posts %}
+                <li>{{ post.title }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
 {% endblock %}

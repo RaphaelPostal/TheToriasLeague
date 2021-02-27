@@ -37,6 +37,12 @@ class Post
      */
     private $enable;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=PostCategory::class, inversedBy="posts")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $category;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +92,18 @@ class Post
     public function setEnable(bool $enable): self
     {
         $this->enable = $enable;
+
+        return $this;
+    }
+
+    public function getCategory(): ?PostCategory
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?PostCategory $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
