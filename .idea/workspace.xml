@@ -20,18 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/TheToriasLeague.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TheToriasLeague.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Post.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/PostCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/PostCategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/post/liste.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/post/liste.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Card.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Card.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Game.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Game.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Round.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Round.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -155,7 +148,9 @@
       <workItem from="1614004195026" duration="7959000" />
       <workItem from="1614242996519" duration="34000" />
       <workItem from="1614344968140" duration="7194000" />
-      <workItem from="1614420604730" duration="264000" />
+      <workItem from="1614420604730" duration="509000" />
+      <workItem from="1614704602546" duration="624000" />
+      <workItem from="1614767111477" duration="2383000" />
     </task>
     <servers />
   </component>
@@ -179,13 +174,13 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="318" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354031100" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1614243027788">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1614704630015">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1614243027788" />
-    <state x="477" y="264" key="NewPhpFileDialog" timestamp="1614354160832">
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1614704630015" />
+    <state x="307" y="369" key="NewPhpFileDialog" timestamp="1614769331801">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="477" y="264" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354160832" />
+    <state x="307" y="369" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1614769331801" />
   </component>
 </project>

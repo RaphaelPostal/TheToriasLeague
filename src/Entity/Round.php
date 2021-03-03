@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\RoundRepository;
+use App\Repository\SetRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +76,11 @@ class Round
      * @ORM\Column(type="array")
      */
     private $user2_hand_cards = [];
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $pioche = [];
 
     public function getId(): ?int
     {
@@ -222,6 +227,18 @@ class Round
     public function setUser2HandCards(array $user2_hand_cards): self
     {
         $this->user2_hand_cards = $user2_hand_cards;
+
+        return $this;
+    }
+
+    public function getPioche(): ?array
+    {
+        return $this->pioche;
+    }
+
+    public function setPioche(array $pioche): self
+    {
+        $this->pioche = $pioche;
 
         return $this;
     }
