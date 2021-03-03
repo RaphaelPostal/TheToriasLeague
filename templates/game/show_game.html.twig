@@ -6,7 +6,7 @@
         <div class="col-8">
             Cartes de l'adversaire
             {% for card in set.user2HandCards %}
-                <img src="{{ asset('cartes/'~cards[card].picture) }}">{{ cards[card].number }}
+                <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">{{ cards[card].number }}
             {% endfor %}
         </div>
         <div class="col-4">
@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-8">
             {% for card in set.user1HandCards %}
-                <img src="{{ asset('cartes/'~cards[card].picture) }}">{{ cards[card].number }}
+                <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">{{ cards[card].number }}
             {% endfor %}
         </div>
         <div class="col-4">
