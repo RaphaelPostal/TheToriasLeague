@@ -3,26 +3,26 @@
 {% block title %}Hello GameController!{% endblock %}
 
 {% block body %}
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        Bonjour {{ app.user.fisrtName }}. <a href="{{ path('app_logout') }}">Me déconnecter</a>
+    {% else %}
+        <a href="{{ path('app_login') }}">Me connecter</a>
+    {% endif %}
 <form action="{{ path('create_game') }}" method="post">
     <div>
-        <label for="user1">Joueur 1</label>
-        <select name="user1" id="user1">
-            <option value="">Choisir le joueur 1</option>
-            {% for user in users %}
+        Moi
+    </div>
+    <div>
+        <label for="user2">Contre :</label>
+        <select name="user2" id="user2">
+            <option value="">Choisir le joueur 2</option>
+            {% for user in users|filter(user => user.id != app.user.id) %}
             <option value="{{ user.id }}">{{ user.display }}</option>
             {% endfor %}
         </select>
     </div>
 
-    <div>
-        <label for="user2">Joueur 2</label>
-        <select name="user2" id="user2">
-            <option value="">Choisir le joueur 2</option>
-            {% for user in users %}
-            <option value="{{ user.id }}">{{ user.display }}</option>
-            {% endfor %}
-        </select>
-    </div>
 
     <button type="submit">Commencer la partie</button>
 

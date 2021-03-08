@@ -12,6 +12,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @Route("/jeu")
+ */
 class GameController extends AbstractController
 {
     /**
@@ -36,7 +39,7 @@ class GameController extends AbstractController
         UserRepository $userRepository,
         CardRepository $cardRepository
     ): Response {
-        $user1 = $userRepository->find($request->request->get('user1'));
+        $user1 = $this->getUser();
         $user2 = $userRepository->find($request->request->get('user2'));
 
         if ($user1 !== $user2) {
