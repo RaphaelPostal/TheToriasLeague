@@ -50,10 +50,10 @@ class GameController extends AbstractController
 
             $entityManager->persist($game);
 
-            $set = new Round();
-            $set->setGame($game);
-            $set->setCreated(new \DateTime('now'));
-            $set->setSetNumber(1);
+            $round = new Round();
+            $round->setGame($game);
+            $round->setCreated(new \DateTime('now'));
+            $round->setSetNumber(1);
 
             $cards = $cardRepository->findAll();
             $tCards = [];
@@ -62,7 +62,7 @@ class GameController extends AbstractController
             }
             shuffle($tCards);
             $carte = array_pop($tCards);
-            $set->setRemovedCard($carte->getId());
+            $round->setRemovedCard($carte->getId());
 
             $tMainJ1 = [];
             $tMainJ2 = [];
@@ -73,8 +73,8 @@ class GameController extends AbstractController
                 $carte = array_pop($tCards);
                 $tMainJ2[] = $carte->getId();
             }
-            $set->setUser1HandCards($tMainJ1);
-            $set->setUser2HandCards($tMainJ2);
+            $round->setUser1HandCards($tMainJ1);
+            $round->setUser2HandCards($tMainJ2);
 
             $tPioche = [];
 
@@ -82,22 +82,22 @@ class GameController extends AbstractController
                 $carte = array_pop($tCards);
                 $tPioche[] = $carte->getId();
             }
-            $set->setPioche($tPioche);
-            $set->setUser1Action([
+            $round->setPioche($tPioche);
+            $round->setUser1Action([
                 'SECRET' => false,
                 'DEPOT' => false,
                 'OFFRE' => false,
                 'ECHANGE' => false
             ]);
 
-            $set->setUser2Action([
+            $round->setUser2Action([
                 'SECRET' => false,
                 'DEPOT' => false,
                 'OFFRE' => false,
                 'ECHANGE' => false
             ]);
 
-            $set->setBoard([
+            $round->setBoard([
                 'EMPL1' => ['N'],
                 'EMPL2' => ['N'],
                 'EMPL3' => ['N'],
@@ -106,7 +106,7 @@ class GameController extends AbstractController
                 'EMPL6' => ['N'],
                 'EMPL7' => ['N']
             ]);
-            $entityManager->persist($set);
+            $entityManager->persist($round);
             $entityManager->flush();
 
             return $this->redirectToRoute('show_game', [
@@ -132,7 +132,7 @@ class GameController extends AbstractController
 
         return $this->render('game/show_game.html.twig', [
             'game' => $game,
-            'set' => $game->getRounds()[0],
+            'round' => $game->getRounds()[0],
             'cards' => $tCards
         ]);
     }
