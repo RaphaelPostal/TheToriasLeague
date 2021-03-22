@@ -21,12 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/cartes/maillet_des_enfers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/PostCategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/PostCategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/game/show_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/show_game.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +157,12 @@
       <workItem from="1615367531428" duration="24000" />
       <workItem from="1615475476139" duration="3407000" />
       <workItem from="1615532783306" duration="3782000" />
-      <workItem from="1615573158815" duration="748000" />
+      <workItem from="1615573158815" duration="908000" />
+      <workItem from="1615710985514" duration="1208000" />
+      <workItem from="1615925728792" duration="79000" />
+      <workItem from="1616146377111" duration="1252000" />
+      <workItem from="1616403302195" duration="54000" />
+      <workItem from="1616403820745" duration="612000" />
     </task>
     <servers />
   </component>
@@ -187,10 +186,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="318" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1280.680@0.0.1280.680" timestamp="1614354031100" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1615367553215">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1616403354323">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1615367553215" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616403354323" />
     <state x="307" y="369" key="NewPhpFileDialog" timestamp="1614769331801">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
