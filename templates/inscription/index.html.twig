@@ -1,0 +1,7 @@
+<form method="post" action="{{ path('valide_inscription') }}" >
+    <input type="text" name="prenom">
+    <input type="submit" value="go">
+</form>
+{% if erreur  %}
+    <p>{{ erreur }}</p>
+{% endif %}
