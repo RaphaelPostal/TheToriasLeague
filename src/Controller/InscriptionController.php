@@ -40,7 +40,7 @@ class InscriptionController extends AbstractController
             $new_user->setBirthday(new \DateTime());
             $new_user->setEmail($_POST['prenom'].'@gmail.com');
             $new_user->setPassword(password_hash('1234', PASSWORD_ARGON2I));
-            $new_user->setRoles(["ROLE_USER"]);
+            $new_user->setRoles(["ROLE_JOUEUR"]);
 
             $entityManager->persist($new_user);
             $entityManager->flush();
