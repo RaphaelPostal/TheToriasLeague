@@ -1,0 +1,44 @@
+<div class="row">
+    <div class="col-8">
+
+        {% for card in round.user2HandCards %}
+            <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">
+        {% endfor %}
+    </div>
+    <div class="col-4">
+        Actions adversaire
+    </div>
+</div>
+<div class="row">
+    Plateau adversaire
+</div>
+<div class="row">
+    Cartes mercenaires
+</div>
+<div class="row">
+    {% for i in 1..7 %}
+        <span style="border: solid 1px #1b1e21">{{ i }}</span>
+    {% endfor %}
+</div>
+<div class="row">
+    <div class="col-8">
+        {% for card in round.user1HandCards %}
+            <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">
+
+            <input type="radio" name="carte_secret" value="{{ card }}"
+                   style="display: none"
+                   class="choixSecret">
+            </span>
+        {% endfor %}
+    </div>
+    <div class="col-4">
+
+        Mes Actions
+        <button id="secret">Secret</button>
+        <button  id="depot">Depot</button>
+        <button  id="offre">Offre</button>
+        <button  id="echange">Echange</button><br>
+        <button id="valider" style="display: none">Valider action</button>
+
+    </div>
+</div>

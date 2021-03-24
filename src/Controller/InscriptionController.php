@@ -25,10 +25,10 @@ class InscriptionController extends AbstractController
     }
 
     /**
-     * @Route("/valide", name="valide_inscription")
+     * @Route("/verify", name="verify_inscription")
      */
 
-    public function valideInscription(EntityManagerInterface $entityManager, UserRepository $userRepository) : Response
+    public function verifyInscription(EntityManagerInterface $entityManager, UserRepository $userRepository) : Response
     {
         //test si email dejà pris
         $existe = $userRepository->findOneby(["email"=>$_POST['prenom'].'@gmail.com']);
@@ -51,6 +51,7 @@ class InscriptionController extends AbstractController
 
             ]);
         }else{
+
             return $this->render('inscription/index.html.twig', [
                 'erreur'=>'Déjà inscrit !'
 

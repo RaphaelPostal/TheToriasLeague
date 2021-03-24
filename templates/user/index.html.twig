@@ -8,4 +8,5 @@
     <h2><a href="{{ path('new_game') }}">Lancer une partie !</a></h2>
     <a href="{{ path('default') }}">Retour à l'accueil</a>
     <a href="{{ path('app_logout') }}">Déconnexion</a>
+    {{ dump(app.user.email) }}
 {% endblock %}
