@@ -28,7 +28,7 @@ class Round
     private $ended;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="sets")
+     * @ORM\ManyToOne(targetEntity=Game::class, inversedBy="rounds")
      */
     private $game;
 

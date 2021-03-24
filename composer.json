@@ -21,6 +21,7 @@
         "symfony/form": "5.2.*",
         "symfony/framework-bundle": "5.2.*",
         "symfony/mailer": "5.2.*",
+        "symfony/monolog-bundle": "^3.6",
         "symfony/proxy-manager-bridge": "5.2.*",
         "symfony/security-bundle": "5.2.*",
         "symfony/twig-bundle": "5.2.*",
@@ -75,8 +76,7 @@
     },
     "require-dev": {
         "symfony/debug-bundle": "^5.2",
-        "symfony/maker-bundle": "^1.29",
-        "symfony/monolog-bundle": "^3.0",
+        "symfony/maker-bundle": "^1.30",
         "symfony/stopwatch": "^5.2",
         "symfony/var-dumper": "^5.2",
         "symfony/web-profiler-bundle": "^5.2"
