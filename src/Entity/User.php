@@ -67,6 +67,16 @@ class User implements UserInterface
      */
     private $winners;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $elo;
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -284,5 +294,29 @@ class User implements UserInterface
     public function display()
     {
         return $this->firstname.' '.$this->lastname;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getElo(): ?int
+    {
+        return $this->elo;
+    }
+
+    public function setElo(int $elo): self
+    {
+        $this->elo = $elo;
+
+        return $this;
     }
 }

@@ -23,7 +23,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/mail", name="send_mail")
      */
-    public function sendMail(MailerInterface $mailer)
+    public function sendMail(MailerInterface $mailer): Response
     {
         $email = (new TemplatedEmail())
             ->to('raphael.postal08@gmail.com')
@@ -36,5 +36,7 @@ class DefaultController extends AbstractController
             ]);
 
         $mailer->send($email);
+
+        return $this->render('mail/confirmation.html.twig');
     }
 }

@@ -1,3 +1,6 @@
-<h1>Merci de votre inscription {{ prenom }}</h1>
+<h1>Merci de votre inscription, {{ new_user.firstname }} !</h1>
+<h2>Parcourez la contrée de Toria sous le pseudonyme de {{ new_user.pseudo }} !</h2>
 <a href="{{ path('app_login') }}">Allez vous connecter !</a>
 <a href="{{ path('default') }}">Retour à l'accueil</a>
+
+

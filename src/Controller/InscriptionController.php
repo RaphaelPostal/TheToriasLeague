@@ -31,22 +31,23 @@ class InscriptionController extends AbstractController
     public function verifyInscription(EntityManagerInterface $entityManager, UserRepository $userRepository) : Response
     {
         //test si email dejà pris
-        $existe = $userRepository->findOneby(["email"=>$_POST['prenom'].'@gmail.com']);
+        $existe = $userRepository->findOneby(["email"=>$_POST['email']]);
         if(!$existe){
 
             $new_user = new User();
             $new_user->setFirstName($_POST['prenom']);
-            $new_user->setLastName('haha');
-            $new_user->setBirthday(new \DateTime());
-            $new_user->setEmail($_POST['prenom'].'@gmail.com');
-            $new_user->setPassword(password_hash('1234', PASSWORD_ARGON2I));
+            $new_user->setLastName($_POST['nom']);
+            $new_user->setBirthday(new \DateTime($_POST['birthday']));
+            $new_user->setEmail($_POST['email']);
+            $new_user->setPseudo($_POST['pseudo']);
+            $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
             $new_user->setRoles(["ROLE_JOUEUR"]);
+            $new_user->setElo(1000);
 
             $entityManager->persist($new_user);
             $entityManager->flush();
             return $this->render('inscription/valide.html.twig', [
-                'prenom' => $_POST['prenom'],
-                'mot' => $new_user->getPassword()
+                'new_user'=>$new_user,
 
 
             ]);
