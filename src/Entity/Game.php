@@ -148,4 +148,32 @@ class Game
 
         return $this;
     }
+
+    /*Fonctions supplémentaires pour le crud*/
+
+    public function getUser1Id(){
+        return $this->getUser1()->getId();
+    }
+
+    public function getUser2Id(){
+        return $this->getUser2()->getId();
+    }
+
+    public function getUser1Pseudo(){
+        return $this->getUser1()->getPseudo();
+    }
+
+    public function getUser2Pseudo(){
+        return $this->getUser2()->getPseudo();
+    }
+
+    public function getWinnerPseudo(){
+        if($this->getWinner() != null){
+            return $this->getWinner()->getPseudo();
+        }else{
+            return 'Pas de gagnant';
+        }
+
+    }
+
 }
