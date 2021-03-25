@@ -21,11 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/DefaultController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DefaultController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/default/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/default/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/inscription/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/inscription/valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/valide.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +144,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Controller" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SymfonyS4" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -185,7 +187,7 @@
       <workItem from="1616502874804" duration="17121000" />
       <workItem from="1616569348280" duration="11273000" />
       <workItem from="1616599336089" duration="10952000" />
-      <workItem from="1616664592613" duration="4642000" />
+      <workItem from="1616664592613" duration="14135000" />
     </task>
     <servers />
   </component>
@@ -217,10 +219,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1616434867655" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1616485266174">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1616678983856">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616485266174" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1616678983856" />
     <state x="307" y="369" key="NewPhpFileDialog" timestamp="1616495742369">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

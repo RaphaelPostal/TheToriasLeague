@@ -10,13 +10,7 @@
 
     <div class="example-wrapper">
         <h1>Bienvenue !</h1>
-        <a href="{{ path('inscription') }}">Inscription</a>
-        {% if app.user == false %}
-        <a href="{{ path('app_login') }}">Connexion</a>
-        {% endif %}
-        {% if app.user %}
-        <a href="{{ path('user_profil') }}">Profil</a>
-        {% endif %}
+
 
     </div>
 {% endblock %}

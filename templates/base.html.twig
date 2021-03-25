@@ -6,18 +6,55 @@
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
         {% endblock %}
         <script
                 src="https://code.jquery.com/jquery-3.6.0.min.js"
                 integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
                 crossorigin="anonymous"></script>
         {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
+
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark navigation">
+        <a class="navbar-brand" href="{{ path('default') }}"><span class="oi oi-pulse"></span>The Toria's League</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="menuResponsive">
+            <ul class="navbar-nav">
+                {#  {{ dump(app.request.attributes.get('_route')) }} #}
+                <li><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></li>
+                {% if app.user == false %}
+                    <li><a class="nav-link" href="{{ path('app_login') }}">Connexion</a></li>
+                {% endif %}
+                {% if app.user %}
+                    <li><a class="nav-link" href="{{ path('user_profil') }}">Profil</a></li>
+                    <li><a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                {% endif %}
+
+
+
+
+
+
+            </ul>
+
+        </div>
+    </nav>
+    <br><br>
+        {% block body %}
+
+
+    {% endblock %}
     </body>
 </html>
