@@ -38,7 +38,7 @@ class InscriptionController extends AbstractController
             //on verifie que le captcha est valide donc si recaptcha-response contient qqchose
             if(empty($_POST['recaptcha-response'])){
 
-                header('Location: ../../templates/inscription/index.html.twig');
+                return $this->render('inscription/index.html.twig');
             }else{
 
                 //on prépare l'url
