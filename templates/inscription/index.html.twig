@@ -1,6 +1,20 @@
 
 {% extends 'base.html.twig' %}
+{% block javascripts %}
 
+    <script src="https://www.google.com/recaptcha/api.js?render=6LdZBJAaAAAAAAWlTDjSs4ZlfPLw7mQf0MYK_U1x"></script>
+    <script type="text/javascript">
+        grecaptcha.ready(function(){
+            grecaptcha.execute('6LdZBJAaAAAAAAWlTDjSs4ZlfPLw7mQf0MYK_U1x', {action: 'homepage'}).then(function(token){
+
+                document.getElementById("recaptchaResponse").value = token
+
+            });
+        });
+    </script>
+
+
+{% endblock %}
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
@@ -14,6 +28,7 @@
         Date de naissance <input type="date" name="birthday" required><br><br>
         Mot de passe <input type="password" name="mdp" required><br><br>
         <input type="submit" value="S'inscrire">
+        <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
     </form>
     {% if erreur  %}
         <p>{{ erreur }}</p>
