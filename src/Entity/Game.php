@@ -156,7 +156,12 @@ class Game
     }
 
     public function getUser2Id(){
-        return $this->getUser2()->getId();
+        if($this->getUser2()){
+            return $this->getUser2()->getId();
+        }else{
+            return '//Pas de joueur 2';
+        }
+
     }
 
     public function getUser1Pseudo(){
@@ -164,7 +169,12 @@ class Game
     }
 
     public function getUser2Pseudo(){
-        return $this->getUser2()->getPseudo();
+        if($this->getUser2()){
+            return $this->getUser2()->getPseudo();
+        }else{
+            return '//Pas de joueur 2';
+        }
+
     }
 
     public function getWinnerPseudo(){
