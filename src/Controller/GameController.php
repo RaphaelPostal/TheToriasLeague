@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\Round;
 use App\Repository\CardRepository;
+use App\Repository\GameRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -151,6 +152,25 @@ class GameController extends AbstractController
         }
 
         return $this->json( false);
+    }
+
+    /**
+     * @Route("/set-tour-game/{game}", name="set_tour")
+     */
+    public function setTour(
+        EntityManagerInterface $entityManager,
+        Game $game
+    ): Response {
+        if($game->getQuiJoue()==1){
+            $quiJoue = 2;
+        }else{
+            $quiJoue = 1;
+        }
+
+        $game->setQuiJoue($quiJoue);
+        $entityManager->persist($game);
+        $entityManager->flush();
+        return $this->json(true);
     }
 
     /**

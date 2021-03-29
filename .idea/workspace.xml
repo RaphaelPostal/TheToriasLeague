@@ -22,7 +22,6 @@
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Round.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Round.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/game/show_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/show_game.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,7 +186,7 @@
       <workItem from="1616664592613" duration="21945000" />
       <workItem from="1616776415887" duration="3664000" />
       <workItem from="1616997889234" duration="5466000" />
-      <workItem from="1617019153770" duration="6213000" />
+      <workItem from="1617019153770" duration="9100000" />
     </task>
     <servers />
   </component>

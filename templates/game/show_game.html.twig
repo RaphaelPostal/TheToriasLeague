@@ -24,6 +24,19 @@
         })
         $(document).on('click', '#finDeTour', function() {
             //mettre à jour game en changeant quiJoue
+            //TEST
+            const quiJoue = 1
+            $.ajax({
+                url: "{{ path('set_tour', {game: game.id}) }}",
+                data: quiJoue,
+                method: 'POST',
+                success: function(data) {
+                    console.log('le tour à changé');
+                },
+                error: function(){
+                }
+            })
+            //FIN TEST
 
             //Bloquer le plateau (overlay, ...)
             //Relancer le timer...
@@ -39,12 +52,14 @@
                     console.log(data)
                     if (data == false) {
                         $('#message').html('Tour de votre adversaire')
+                        $('#finDeTour').hide()
                         //rafraichir le plateau pour voir ce que mon adversaire fait
                     } else {
                         $('#message').html('C\'est mon tour...')
                         //mettre à jour le plateau, dès que je récupère true
                         clearInterval(boucle)
                         console.log('ça tourne plus')
+                        $('#finDeTour').show()
                         //a partir de là, si c'est plus à notre tour, ça s'actualise pas donc RELANCER L'INTERVAL avec le
                         //bouton fin du tour
                     }
