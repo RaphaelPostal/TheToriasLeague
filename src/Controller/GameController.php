@@ -111,6 +111,7 @@ class GameController extends AbstractController
 
             return $this->redirectToRoute('show_game', [
                 'game' => $game->getId()
+
             ]);
         } else {
             return $this->redirectToRoute('new_game');
@@ -121,12 +122,18 @@ class GameController extends AbstractController
      * @Route("/show-game/{game}", name="show_game")
      */
     public function showGame(
-        Game $game
+        Game $game,
+        Round $round
     ): Response {
+        if ($this->getUser()->getId() === $game->getUser1()->getId() || $this->getUser()->getId() === $game->getUser2()->getId()){
+            return $this->render('game/show_game.html.twig', [
+                'game' => $game,
+                'round' => $round
+            ]);
+        }else{
+            return $this->redirectToRoute('user_profil');
+        }
 
-        return $this->render('game/show_game.html.twig', [
-            'game' => $game
-        ]);
     }
 
     /**
@@ -176,6 +183,7 @@ class GameController extends AbstractController
             $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
         } else {
             //redirection... je ne suis pas l'un des deux joueurs
+
         }
 
         return $this->render('game/plateau_game.html.twig', [
@@ -214,7 +222,7 @@ class GameController extends AbstractController
                 if ($joueur === 1) {
                     $actions = $round->getUser1Action(); //un tableau...
                     $actions['SECRET'] = [$carte]; //je sauvegarde la carte cachée dans mes actions
-                    $round->setUser1Action($actions); //je mets à jour le tableau
+                    $round->setUser1Action($actions); //je mets à jour le tableau dans bdd
                     $main = $round->getUser1HandCards();
                     $indexCarte = array_search($carte, $main); //je récupère l'index de la carte a supprimer dans ma main
                     unset($main[$indexCarte]); //je supprime la carte de ma main

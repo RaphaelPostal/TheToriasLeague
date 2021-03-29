@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\SetRepository;
+use App\Repository\RoundRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SetRepository::class)
+ * @ORM\Entity(repositoryClass=RoundRepository::class)
  */
 class Round
 {
