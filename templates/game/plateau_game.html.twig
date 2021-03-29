@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-8">
 
-        {% for card in round.user2HandCards %}
+        {% for card in adversaire.handCards %}
             <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">
         {% endfor %}
     </div>
@@ -22,7 +22,7 @@
 </div>
 <div class="row">
     <div class="col-8">
-        {% for card in round.user1HandCards %}
+        {% for card in moi.handCards %}
             <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">
 
             <input type="radio" name="carte_secret" value="{{ card }}"

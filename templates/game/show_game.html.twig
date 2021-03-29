@@ -3,10 +3,11 @@
 {% block body %}
 
     <div id="plateau">
-        {{ include('game/plateau_game.html.twig') }}
+        {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
     </div>
 
-
+    <div id="message">...</div>
+    <button id="finDeTour">Fin de tour</button>
 
 {% endblock %}
 
@@ -16,6 +17,33 @@
 
 {% block javascripts %}
     <script>
+
+        let boucle
+        $(document).ready(function(){
+            boucle = setInterval(refreshGame, 3000);
+        })
+        $(document).on('click', '#finDeTour', function() {
+            //mettre à jour game en changeant quiJoue
+            //Bloquer le plateau (overlay, ...)
+            //Relancer le timer...
+        })
+        function refreshGame() {
+            $.ajax({
+                url: "{{ path('get_tour', {game: game.id}) }}",
+                success: function(data) {
+                    console.log(data)
+                    if (data == false) {
+                        $('#message').html('Tour de votre adversaire')
+                    } else {
+                        $('#message').html('C\'est mon tour...')
+                        //mettre à jour le plateau, dès que je récupère true
+                        clearInterval(boucle)
+                    }
+                },
+                error: function(){
+                }
+            })
+        }
         let action
         $(document).on('click', '#secret', function(){
             console.log('secret')

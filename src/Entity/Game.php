@@ -49,6 +49,11 @@ class Game
      */
     private $rounds;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $quiJoue = 1;
+
     public function __construct()
     {
         $this->rounds = new ArrayCollection();
@@ -184,6 +189,18 @@ class Game
             return 'Pas de gagnant';
         }
 
+    }
+
+    public function getQuiJoue(): ?int
+    {
+        return $this->quiJoue;
+    }
+
+    public function setQuiJoue(int $quiJoue): self
+    {
+        $this->quiJoue = $quiJoue;
+
+        return $this;
     }
 
 }

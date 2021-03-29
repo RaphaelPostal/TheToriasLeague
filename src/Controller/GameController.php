@@ -121,25 +121,30 @@ class GameController extends AbstractController
      * @Route("/show-game/{game}", name="show_game")
      */
     public function showGame(
-        CardRepository $cardRepository,
         Game $game
     ): Response {
-        //empecher un random de rejoindre la partie
-        //var_dump($this->getUser()->getUsername());
-
-        $cards = $cardRepository->findAll();
-        $tCards = [];
-        foreach ($cards as $card) {
-            $tCards[$card->getId()] = $card;
-        }
 
         return $this->render('game/show_game.html.twig', [
-            'game' => $game,
-            'round' => $game->getRounds()[0],
-            'cards' => $tCards
+            'game' => $game
         ]);
     }
 
+    /**
+     * @Route("/get-tout-game/{game}", name="get_tour")
+     */
+    public function getTour(
+        Game $game
+    ): Response {
+        if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
+            return $this->json(true);
+        }
+
+        if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
+            return $this->json(true);
+        }
+
+        return $this->json( false);
+    }
 
     /**
      * @param Game $game
@@ -152,10 +157,33 @@ class GameController extends AbstractController
         foreach ($cards as $card) {
             $tCards[$card->getId()] = $card;
         }
+
+        if ($this->getUser()->getId() === $game->getUser1()->getId()) {
+            $moi['handCards'] = $game->getRounds()[0]->getUser1HandCards();
+            $moi['actions'] = $game->getRounds()[0]->getUser1Action();
+            $moi['board'] = $game->getRounds()[0]->getUser1BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[0]->getUser2HandCards();
+            $adversaire['actions'] = $game->getRounds()[0]->getUser2Action();
+            $adversaire['board'] = $game->getRounds()[0]->getUser2BoardCards();
+
+        } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
+
+            $moi['handCards'] = $game->getRounds()[0]->getUser2HandCards();
+            $moi['actions'] = $game->getRounds()[0]->getUser2Action();
+            $moi['board'] = $game->getRounds()[0]->getUser2BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[0]->getUser1HandCards();
+            $adversaire['actions'] = $game->getRounds()[0]->getUser1Action();
+            $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
+        } else {
+            //redirection... je ne suis pas l'un des deux joueurs
+        }
+
         return $this->render('game/plateau_game.html.twig', [
             'game' => $game,
-            'round' => $game->getRounds()[0],
-            'cards' => $tCards
+            'set' => $game->getRounds()[0],
+            'cards' => $tCards,
+            'moi' => $moi,
+            'adversaire' => $adversaire
         ]);
     }
 
@@ -191,6 +219,14 @@ class GameController extends AbstractController
                     $indexCarte = array_search($carte, $main); //je récupère l'index de la carte a supprimer dans ma main
                     unset($main[$indexCarte]); //je supprime la carte de ma main
                     $round->setUser1HandCards($main);
+                }elseif ($joueur === 2){
+                    $actions = $round->getUser2Action(); //un tableau...
+                    $actions['SECRET'] = [$carte]; //je sauvegarde la carte cachée dans mes actions
+                    $round->setUser2Action($actions); //je mets à jour le tableau
+                    $main = $round->getUser2HandCards();
+                    $indexCarte = array_search($carte, $main); //je récupère l'index de la carte a supprimer dans ma main
+                    unset($main[$indexCarte]); //je supprime la carte de ma main
+                    $round->setUser2HandCards($main);
                 }
                 break;
         }
