@@ -203,7 +203,7 @@ class GameController extends AbstractController
             $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
         } else {
             //redirection... je ne suis pas l'un des deux joueurs
-
+            return $this->redirectToRoute('user_profil');
         }
 
         return $this->render('game/plateau_game.html.twig', [

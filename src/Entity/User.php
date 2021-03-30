@@ -77,6 +77,11 @@ class User implements UserInterface
      */
     private $elo;
 
+    /**
+     * @ORM\Column(type="string", length=400)
+     */
+    private $photo;
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -316,6 +321,18 @@ class User implements UserInterface
     public function setElo(int $elo): self
     {
         $this->elo = $elo;
+
+        return $this;
+    }
+
+    public function getPhoto(): ?string
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(string $photo): self
+    {
+        $this->photo = $photo;
 
         return $this;
     }

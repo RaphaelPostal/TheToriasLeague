@@ -19,7 +19,7 @@
 
 {% block body %}
 
-    <form method="post" action="{{ path('verify_inscription') }}" style="margin-left: 5%" >
+    <form method="post" action="{{ path('verify_inscription') }}" style="margin-left: 5%" enctype="multipart/form-data">
         <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
         Prénom <input type="text" name="prenom" required><br><br>
         Nom <input type="text" name="nom" required><br><br>

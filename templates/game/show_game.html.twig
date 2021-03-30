@@ -8,6 +8,7 @@
 
     <div id="message">...</div>
     <button id="finDeTour">Fin de tour</button>
+    <!--<button id="valider-echange">Valider échange</button>-->
 
 {% endblock %}
 
@@ -25,10 +26,9 @@
         $(document).on('click', '#finDeTour', function() {
             //mettre à jour game en changeant quiJoue
             //TEST
-            const quiJoue = 1
+
             $.ajax({
                 url: "{{ path('set_tour', {game: game.id}) }}",
-                data: quiJoue,
                 method: 'POST',
                 success: function(data) {
                     console.log('le tour à changé');
@@ -36,12 +36,31 @@
                 error: function(){
                 }
             })
+
+
             //FIN TEST
 
             //Bloquer le plateau (overlay, ...)
             //Relancer le timer...
            boucle = setInterval(refreshGame, 3000);
         })
+
+        /*$(document).on('click', '#valider-echange', function() {
+            //mettre à jour game en changeant quiJoue
+            //TEST
+
+            $.ajax({
+                url: "{#  {{ path('set_tour', {game: game.id}) }}#}",
+                method: 'POST',
+                success: function(data) {
+                    console.log('le tour à changé pour echange');
+                },
+                error: function(){
+                }
+            })
+
+            boucle = setInterval(refreshGame, 3000);
+        })*/
 
 
         function refreshGame() {
@@ -57,11 +76,11 @@
                     } else {
                         $('#message').html('C\'est mon tour...')
                         //mettre à jour le plateau, dès que je récupère true
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         clearInterval(boucle)
                         console.log('ça tourne plus')
                         $('#finDeTour').show()
-                        //a partir de là, si c'est plus à notre tour, ça s'actualise pas donc RELANCER L'INTERVAL avec le
-                        //bouton fin du tour
+
                     }
                 },
                 error: function(){

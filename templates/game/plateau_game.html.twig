@@ -9,16 +9,16 @@
         Actions adversaire
     </div>
 </div>
+
+
 <div class="row">
-    Plateau adversaire
-</div>
-<div class="row">
-    Cartes mercenaires
-</div>
-<div class="row">
-    {% for i in 1..7 %}
-        <span style="border: solid 1px #1b1e21">{{ i }}</span>
-    {% endfor %}
+    <img src="{{ asset('img/cartes/krulmo.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/ganormo.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/rasdar.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/arcadia.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/astralia.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/tharuk.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
+    <img src="{{ asset('img/cartes/sofia.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
 </div>
 <div class="row">
     <div class="col-8">
@@ -28,7 +28,7 @@
             <input type="radio" name="carte_secret" value="{{ card }}"
                    style="display: none"
                    class="choixSecret">
-            </span>
+
         {% endfor %}
     </div>
     <div class="col-4">

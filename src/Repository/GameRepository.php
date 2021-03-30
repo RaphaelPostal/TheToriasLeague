@@ -19,6 +19,19 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
+
+
+    public function findEmptyGames()
+    {
+        return $this->createQueryBuilder('game')
+            ->where('game.user2 IS NULL')
+            ->orderBy('game.id', 'ASC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */

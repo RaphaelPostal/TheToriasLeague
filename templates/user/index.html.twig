@@ -5,7 +5,19 @@
 {% block body %}
     <h1>Bonjour {{ user.firstName }}</h1>
     Vous trouverez ici vos informations personnelles et l'historique de vos parties.
-    <h2><a href="{{ path('new_game') }}">Lancer une partie !</a></h2>
+    <!-- affichage des parties en attente-->
+
+    {{ dump(empty_games) }}
+
+
+        {% for game in empty_games|filter(game => game.user1.elo == 0) %}
+            <span>Une game vide créée par </span><br>
+        {% endfor %}
+
+
+
+    <h2><a href="{{ path('new_game') }}">Créer une partie !</a></h2>
+    <h2><a href="">Profil et statistiques</a></h2>
 
 
 {% endblock %}
