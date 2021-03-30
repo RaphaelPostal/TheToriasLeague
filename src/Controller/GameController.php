@@ -137,6 +137,30 @@ class GameController extends AbstractController
 
     }
 
+
+
+    /**
+     * @Route("/join-game/{game}", name="join_game")
+     */
+    public function joinGame(
+        EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
+        Game $game
+    ): Response {
+            $user2 = $this->getUser();
+            $game -> setUser2($user2);
+        $entityManager->persist($user2);
+        $entityManager->flush();
+        return $this->redirectToRoute('show_game', [
+            'game' => $game->getId()
+
+        ]);
+
+
+    }
+
+
+
     /**
      * @Route("/get-tout-game/{game}", name="get_tour")
      */

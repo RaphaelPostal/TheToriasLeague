@@ -11,7 +11,7 @@
 
 
         {% for game in empty_games|filter(game => game.user1.elo == 0) %}
-            <span>Une game vide créée par </span><br>
+            <span>Une game vide créée par {{ game.user1.pseudo }} </span><a href="{{ path('join_game', {game : game.id}) }}">Rejoindre</a><br>
         {% endfor %}
 
 
