@@ -6,11 +6,10 @@
     <h1>Bonjour {{ user.firstName }}</h1>
     Vous trouverez ici vos informations personnelles et l'historique de vos parties.
     <!-- affichage des parties en attente-->
+    
 
-    {{ dump(empty_games) }}
 
-
-        {% for game in empty_games|filter(game => game.user1.elo == 0) %}
+        {% for game in empty_games|filter(game => game.user1.elo == 1000) %}
             <span>Une game vide créée par {{ game.user1.pseudo }} </span><a href="{{ path('join_game', {game : game.id}) }}">Rejoindre</a><br>
         {% endfor %}
 
