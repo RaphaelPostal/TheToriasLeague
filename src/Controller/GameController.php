@@ -147,14 +147,19 @@ class GameController extends AbstractController
         UserRepository $userRepository,
         Game $game
     ): Response {
+        if($this->getUser()->getId() == $game->getUser1()->getId()){
+            return $this->redirectToRoute('user_profil');
+        }else{
             $user2 = $this->getUser();
             $game -> setUser2($user2);
-        $entityManager->persist($user2);
-        $entityManager->flush();
-        return $this->redirectToRoute('show_game', [
-            'game' => $game->getId()
+            $entityManager->persist($user2);
+            $entityManager->flush();
+            return $this->redirectToRoute('show_game', [
+                'game' => $game->getId()
 
-        ]);
+            ]);
+        }
+
 
 
     }
