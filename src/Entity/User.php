@@ -87,6 +87,11 @@ class User implements UserInterface
      */
     private $inscription;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $derniere_connexion;
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -350,6 +355,18 @@ class User implements UserInterface
     public function setInscription(?\DateTimeInterface $inscription): self
     {
         $this->inscription = $inscription;
+
+        return $this;
+    }
+
+    public function getDerniereConnexion(): ?\DateTimeInterface
+    {
+        return $this->derniere_connexion;
+    }
+
+    public function setDerniereConnexion(?\DateTimeInterface $derniere_connexion): self
+    {
+        $this->derniere_connexion = $derniere_connexion;
 
         return $this;
     }

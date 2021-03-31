@@ -55,5 +55,18 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/deconnexion", name="deconnexion")
+     */
+    public function deconnexion(EntityManagerInterface $entityManager, UserRepository $userRepository): Response
+    {
+        $user = $this->getUser();
+        $user -> setDerniereConnexion(new \DateTime());
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_logout');
+    }
+
 
 }
