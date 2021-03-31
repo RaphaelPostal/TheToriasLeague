@@ -45,6 +45,8 @@ class InscriptionController extends AbstractController
                                     $new_user->setRoles(["ROLE_JOUEUR"]);
                                     $new_user->setElo(1000);
                                     $new_user->setPhoto($_POST['photo'].'.png');
+                                    $new_user->setInscription(new \DateTime());
+
 
                                     $entityManager->persist($new_user);
                                     $entityManager->flush();

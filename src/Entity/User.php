@@ -82,6 +82,11 @@ class User implements UserInterface
      */
     private $photo;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $inscription;
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -333,6 +338,18 @@ class User implements UserInterface
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getInscription(): ?\DateTimeInterface
+    {
+        return $this->inscription;
+    }
+
+    public function setInscription(?\DateTimeInterface $inscription): self
+    {
+        $this->inscription = $inscription;
 
         return $this;
     }
