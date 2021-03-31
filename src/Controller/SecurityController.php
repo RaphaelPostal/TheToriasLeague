@@ -2,17 +2,19 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+
 
 class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
@@ -23,7 +25,13 @@ class SecurityController extends AbstractController
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        $targetPath = $request->getSession()->get('_security.main.target_path');
+        if($targetPath == 'http://127.0.0.1/TheToriasLeague/public/admin' || $targetPath == 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/admin'){
+            return $this->render('security/admin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        }else{
+            return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        }
+
     }
 
     /**

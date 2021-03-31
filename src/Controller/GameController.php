@@ -231,7 +231,7 @@ class GameController extends AbstractController
             $adversaire['actions'] = $game->getRounds()[0]->getUser1Action();
             $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
         } else {
-            //redirection... je ne suis pas l'un des deux joueurs
+            //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
         }
 

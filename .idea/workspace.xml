@@ -22,7 +22,8 @@
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/SecurityController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/SecurityController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,18 +140,19 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SymfonyS4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/security" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\TheToriasLeague\templates\security" />
+      <recent name="C:\wamp64\www\TheToriasLeague\src\Controller" />
+      <recent name="C:\wamp64\www\TheToriasLeague\src\Security" />
+      <recent name="C:\wamp64\www\TheToriasLeague\src\Controller\Admin" />
+      <recent name="C:\wamp64\www\TheToriasLeague\public\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\TheToriasLeague\public\img\cartes" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\TheToriasLeague\src\Controller\Admin" />
-      <recent name="C:\wamp64\www\TheToriasLeague\src\Controller" />
-      <recent name="C:\wamp64\www\TheToriasLeague\public\img" />
-      <recent name="C:\wamp64\www\TheToriasLeague\templates\post" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -187,7 +189,8 @@
       <workItem from="1616776415887" duration="3664000" />
       <workItem from="1616997889234" duration="5466000" />
       <workItem from="1617019153770" duration="12252000" />
-      <workItem from="1617099472271" duration="18615000" />
+      <workItem from="1617099472271" duration="27912000" />
+      <workItem from="1617184015848" duration="691000" />
     </task>
     <servers />
   </component>
@@ -231,10 +234,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1617118080110" />
-    <state x="297" y="151" key="run.anything.popup" timestamp="1617108282534">
+    <state x="297" y="151" key="run.anything.popup" timestamp="1617132140303">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1617108282534" />
+    <state x="297" y="151" key="run.anything.popup/0.0.1280.680@0.0.1280.680" timestamp="1617132140303" />
     <state x="303" y="1" width="672" height="678" key="search.everywhere.popup" timestamp="1616519921627">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
