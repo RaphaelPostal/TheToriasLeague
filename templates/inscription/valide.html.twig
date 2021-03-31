@@ -8,6 +8,7 @@
 {% block body %}
     <h1>Merci de votre inscription, {{ new_user.firstname }} !</h1>
     <h2>Parcourez la contrée de Toria sous le pseudonyme de {{ new_user.pseudo }} !</h2>
+    votre photo : {{ new_user.photo }}
     <a href="{{ path('app_login') }}">Allez vous connecter !</a>
 
 

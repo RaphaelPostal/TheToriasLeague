@@ -22,6 +22,10 @@
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inscription/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inscription/valide.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/valide.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +35,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -138,19 +149,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/security" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/user" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\TheToriasLeague\public\img\cartes" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\TheToriasLeague\templates\user" />
       <recent name="C:\wamp64\www\TheToriasLeague\templates\security" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Controller" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Security" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Controller\Admin" />
-      <recent name="C:\wamp64\www\TheToriasLeague\public\img" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\TheToriasLeague\public\img\cartes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -189,7 +201,8 @@
       <workItem from="1617019153770" duration="12252000" />
       <workItem from="1617099472271" duration="27912000" />
       <workItem from="1617184015848" duration="2566000" />
-      <workItem from="1617194174670" duration="89000" />
+      <workItem from="1617194174670" duration="1572000" />
+      <workItem from="1617200367964" duration="6506000" />
     </task>
     <servers />
   </component>
@@ -229,6 +242,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="307" y="369" key="NewPhpFileDialog/0.0.1280.680@0.0.1280.680" timestamp="1616495742369" />
+    <state width="498" height="446" key="SwitcherDM" timestamp="1617202714800">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="498" height="446" key="SwitcherDM/0.0.1280.680@0.0.1280.680" timestamp="1617202714800" />
     <state x="458" y="255" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1617118080110">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

@@ -42,5 +42,18 @@ class UserController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/stats", name="profil_et_stats")
+     */
+    public function profilEtStats(): Response
+    {
+
+
+        return $this->render('user/profil_et_stats.html.twig', [
+            'user' => $this->getUser(),
+
+        ]);
+    }
+
 
 }
