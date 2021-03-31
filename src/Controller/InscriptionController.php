@@ -85,6 +85,7 @@ class InscriptionController extends AbstractController
                                     $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
                                     $new_user->setRoles(["ROLE_JOUEUR"]);
                                     $new_user->setElo(1000);
+                                    $new_user->setPhoto('avatar.png');
 
                                     $entityManager->persist($new_user);
                                     $entityManager->flush();
