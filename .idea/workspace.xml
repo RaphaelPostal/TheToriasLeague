@@ -21,10 +21,11 @@
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/GameController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/GameController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Round.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Round.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/profil_et_stats.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/profil_et_stats.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +149,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/user" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SymfonyS4" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
@@ -201,7 +202,8 @@
       <workItem from="1617099472271" duration="27912000" />
       <workItem from="1617184015848" duration="2566000" />
       <workItem from="1617194174670" duration="1572000" />
-      <workItem from="1617200367964" duration="11871000" />
+      <workItem from="1617200367964" duration="13274000" />
+      <workItem from="1617278404019" duration="3830000" />
     </task>
     <servers />
   </component>
@@ -233,10 +235,10 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1616434867655" />
-    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1617120276866">
+    <state x="421" y="96" key="FileChooserDialogImpl" timestamp="1617279685275">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
-    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617120276866" />
+    <state x="421" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1617279685275" />
     <state x="307" y="369" key="NewPhpFileDialog" timestamp="1616495742369">
       <screen x="0" y="0" width="1280" height="680" />
     </state>

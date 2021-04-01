@@ -65,7 +65,7 @@ class Round
     /**
      * @ORM\Column(type="integer")
      */
-    private $set_number;
+    private $round_number;
 
     /**
      * @ORM\Column(type="array")
@@ -195,14 +195,14 @@ class Round
         return $this;
     }
 
-    public function getSetNumber(): ?int
+    public function getRoundNumber(): ?int
     {
-        return $this->set_number;
+        return $this->round_number;
     }
 
-    public function setSetNumber(int $set_number): self
+    public function setRoundNumber(int $round_number): self
     {
-        $this->set_number = $set_number;
+        $this->round_number = $round_number;
 
         return $this;
     }

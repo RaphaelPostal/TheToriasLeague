@@ -90,7 +90,7 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $derniere_connexion;
+    private $derniereConnexion;
 
     public function __construct()
     {
@@ -361,12 +361,13 @@ class User implements UserInterface
 
     public function getDerniereConnexion(): ?\DateTimeInterface
     {
-        return $this->derniere_connexion;
+        return $this->derniereConnexion;
     }
 
-    public function setDerniereConnexion(?\DateTimeInterface $derniere_connexion): self
+
+    public function setDerniereConnexion(?\DateTimeInterface $derniereConnexion): self
     {
-        $this->derniere_connexion = $derniere_connexion;
+        $this->derniereConnexion = $derniereConnexion;
 
         return $this;
     }

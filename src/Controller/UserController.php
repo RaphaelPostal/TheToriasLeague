@@ -47,10 +47,12 @@ class UserController extends AbstractController
      */
     public function profilEtStats(): Response
     {
-
+        $parties = $this->getUser()->getGames1();
 
         return $this->render('user/profil_et_stats.html.twig', [
             'user' => $this->getUser(),
+            'parties' => $parties
+
 
         ]);
     }

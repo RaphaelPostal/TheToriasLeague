@@ -6,6 +6,21 @@
     <h1>Informations personnelles et statistiques</h1>
     Vous trouverez ici vos informations personnelles et l'historique de vos parties. <br><br>
     <!-- affichage des parties en attente-->
+    <div class="row">
+
+        <div class="col-6">
+            <p>Nombre de parties jouées : {{ dump(parties) }}</p>
+        </div>
+        <div class="col-6">
+            <p>Nom : {{ user.lastname }}</p>
+            <p>Prénom : {{ user.firstname }}</p>
+            <p>Pseudo : {{ user.pseudo }}</p>
+            <p><img src="{{ asset('img/cartes/'~user.photo) }}" alt="avatar" style="width: 100px"></p>
+            <p>Inscription : {{ user.inscription|format_datetime('short', 'none', locale='fr') }}</p>
+            <p>Dernière connexion : {{ user.derniereConnexion|format_datetime('short', locale='fr') }}</p>
+            <p>Classement elo : {{ user.elo }}</p>
+        </div>
+    </div>
 
 
 
