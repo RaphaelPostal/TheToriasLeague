@@ -17,7 +17,7 @@
         </div>
         <div class="row">
             {% for game in current_games %}
-                <div style="background-color: lightgray; margin: 20px">Crée le {{ game.created|format_datetime('short', locale='fr') }}<br>
+                <div style="background-color: lightgray; margin: 20px">Créée le {{ game.created|format_datetime('short', locale='fr') }}<br>
                     <a href="{{ path('show_game', {game : game.id}) }}">Reprendre</a>
                 </div>
 

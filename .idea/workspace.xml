@@ -21,7 +21,9 @@
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/InscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/InscriptionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/inscription/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/inscription/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/profil_et_stats.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/profil_et_stats.html.twig" afterDir="false" />
     </list>
@@ -147,20 +149,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SymfonyS4" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates/user" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\TheToriasLeague\public\img\cartes" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\TheToriasLeague\templates\user" />
       <recent name="C:\wamp64\www\TheToriasLeague\templates\security" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Controller" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Security" />
       <recent name="C:\wamp64\www\TheToriasLeague\src\Controller\Admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\TheToriasLeague\public\img\cartes" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -201,7 +203,7 @@
       <workItem from="1617184015848" duration="2566000" />
       <workItem from="1617194174670" duration="1572000" />
       <workItem from="1617200367964" duration="13274000" />
-      <workItem from="1617278404019" duration="22141000" />
+      <workItem from="1617278404019" duration="27547000" />
     </task>
     <servers />
   </component>

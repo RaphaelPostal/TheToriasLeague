@@ -112,6 +112,47 @@ class UserController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route ("/modifier", name="modifier")
+     */
+
+    public function modifier():Response{
+        $user = $this->getUser();
+
+        return $this->render('user/modifier_profil.html.twig',[
+            'user'=>$user
+        ]);
+
+    }
+
+    /**
+     * @Route ("/valide-modifications", name="valide_modifs")
+     */
+
+    public function valideModifs(EntityManagerInterface $entityManager):Response{
+
+        $user = $this->getUser();
+
+        $user->setFirstname($_POST['prenom']);
+        $user->setLastname($_POST['nom']);
+        $user->setPseudo($_POST['pseudo']);
+        if(isset($_POST['photo'])){
+            $user->setPhoto($_POST['photo'].'.png');
+        }
+        if(isset($_POST['mdp'])){
+            $user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
+        }
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('profil_et_stats');
+
+
+
+    }
+
     /**
      * @Route("/deconnexion", name="deconnexion")
      */

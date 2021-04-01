@@ -26,7 +26,7 @@
             <p>Inscription : {{ user.inscription|format_datetime('short', 'none', locale='fr') }}</p>
             <p>Dernière connexion : {{ user.derniereConnexion|format_datetime('short', locale='fr') }}</p>
             <p>Classement elo : {{ user.elo }}</p>
-
+            <a href="{{ path('modifier') }}">Modifier</a>
         </div>
     </div>
     {% for partie in parties %}

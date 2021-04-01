@@ -44,7 +44,12 @@ class InscriptionController extends AbstractController
                                     $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
                                     $new_user->setRoles(["ROLE_JOUEUR"]);
                                     $new_user->setElo(1000);
-                                    $new_user->setPhoto($_POST['photo'].'.png');
+                                    if(isset($_POST['photo'])){
+                                        $new_user->setPhoto($_POST['photo'].'.png');
+                                    }else{
+                                        $new_user->setPhoto('tharuk.png');
+                                    }
+
                                     $new_user->setInscription(new \DateTime());
 
 
