@@ -4,14 +4,25 @@
 
 {% block body %}
     <h1>Bonjour {{ user.firstName }}</h1>
+    <h3>Vos parties en cours</h3>
 
     <!-- affichage des parties en attente-->
 
-
+        <div class="row">
         {% for game in empty_games|filter(game => game.user1.elo == 1000) %}
-            <span>Une game vide créée par {{ game.user1.pseudo }} </span><a href="{{ path('join_game', {game : game.id}) }}">Rejoindre</a><br>
+            {% if game.user1.id != user.id%}
+            <span>Partie créée par {{ game.user1.pseudo }} </span><a href="{{ path('join_game', {game : game.id}) }}">&nbsp;Rejoindre</a><br>
+            {% endif %}
         {% endfor %}
+        </div>
+        <div class="row">
+            {% for game in current_games %}
+                <div style="background-color: lightgray; margin: 20px">Crée le {{ game.created|format_datetime('short', locale='fr') }}<br>
+                    <a href="{{ path('show_game', {game : game.id}) }}">Reprendre</a>
+                </div>
 
+            {% endfor %}
+        </div>
 
 
     <h2><a href="{{ path('new_game') }}">Créer une partie !</a></h2>

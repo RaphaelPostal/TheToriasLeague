@@ -24,21 +24,30 @@ class UserController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, GameRepository $gameRepository): Response
     {
-        /*
-        $em = $this->getDoctrine()->getManager(); //on appelle Doctrine
-        $query = $em->createQuery( //creation de la requête
-            'SELECT g
-    FROM App\Entity\Game g
-    WHERE g.user2 IS NULL
-    '
-        );
+        $games1 = $this->getUser()->getGames1()->getIterator();
+        $games2 = $this->getUser()->getGames2()->getIterator();
+        $current_games = [];
+        foreach ($games1 as $game){
+            if($game->getEnded() == null){
+                array_push($current_games, $game);
+            }
 
-        $empty_games = $query->getResult();
-        */
+        }
+
+        foreach ($games2 as $game){
+            if($game->getEnded() == null){
+                array_push($current_games, $game);
+            }
+
+        }
+
+
+
         $empty_games = $gameRepository->findEmptyGames();
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
             'empty_games' => $empty_games,
+            'current_games' => $current_games
         ]);
     }
 

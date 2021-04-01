@@ -30,10 +30,18 @@
         </div>
     </div>
     {% for partie in parties %}
-        <div style="background-color: gray">
-            <span>{{ user.pseudo }}</span>
-            <span>{{ partie.id }}</span>
-        </div>
+        <div style="background-color: lightgray" class="row">
+            &nbsp;&nbsp;&nbsp;&nbsp;Contre&nbsp;
+            {%  if user.pseudo == partie.user1.pseudo %}
+                <span>{{ partie.user2.pseudo }}&nbsp;|&nbsp;</span>
+                <span>{{ partie.user2.elo }} elo</span>
+                {% else %}
+                <span>{{ partie.user1.pseudo }}&nbsp;|&nbsp;</span>
+                    <span>{{ partie.user1.elo }} elo</span>
+
+            {% endif %}
+            <span>&nbsp;|&nbsp;le {{ partie.ended|format_datetime('short', 'none', locale='fr') }}</span>
+        </div><br>
     {% endfor %}
 
 
