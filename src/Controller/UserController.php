@@ -45,13 +45,47 @@ class UserController extends AbstractController
     /**
      * @Route("/stats", name="profil_et_stats")
      */
-    public function profilEtStats(): Response
+    public function profilEtStats(EntityManagerInterface $entityManager, GameRepository $gameRepository): Response
     {
-        $parties = $this->getUser()->getGames1();
+        $parties1 = $this->getUser()->getGames1()->getIterator();
+        $parties2 = $this->getUser()->getGames2()->getIterator();
+        $parties = [];
+        foreach ($parties1 as $value){
+
+            array_push($parties, $value);
+        }
+        foreach ($parties2 as $value){
+            array_push($parties, $value);
+        }
+
+
+
+
+
+    /*calcul adversaires rencontrés*/
+        $adversaires = [];
+        foreach($parties as $partie){
+
+            if($partie->getUser1()->getId() != $this->getUser()->getId()){
+                if(array_search($partie->getUser1()->getPseudo(), $adversaires)==null){
+                    array_push($adversaires, $partie->getUser1()->getPseudo());
+                }
+
+            }elseif($partie->getUser2()->getId() != $this->getUser()->getId()){
+                if(array_search($partie->getUser2()->getPseudo(), $adversaires)==null){
+                    array_push($adversaires, $partie->getUser2()->getPseudo());
+                }
+
+            }
+        }
+
+
 
         return $this->render('user/profil_et_stats.html.twig', [
             'user' => $this->getUser(),
-            'parties' => $parties
+            'parties' => $parties,
+            'adversaires'=>array_flip($adversaires)
+
 
 
         ]);
