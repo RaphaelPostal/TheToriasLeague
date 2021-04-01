@@ -47,16 +47,25 @@ class UserController extends AbstractController
      */
     public function profilEtStats(EntityManagerInterface $entityManager, GameRepository $gameRepository): Response
     {
-        $parties1 = $this->getUser()->getGames1()->getIterator();
-        $parties2 = $this->getUser()->getGames2()->getIterator();
-        $parties = [];
-        foreach ($parties1 as $value){
+        //$parties1 = $this->getUser()->getGames1()->getIterator();
+        //$parties2 = $this->getUser()->getGames2()->getIterator();
 
-            array_push($parties, $value);
-        }
-        foreach ($parties2 as $value){
-            array_push($parties, $value);
-        }
+
+
+        $em = $this->getDoctrine()->getManager(); //on appelle Doctrine
+        $query = $em->createQuery( //creation de la requête
+            'SELECT g
+    FROM App\Entity\Game g
+    JOIN g.user2 u2
+    JOIN g.user1 u1
+    WHERE u2.id = :id
+    AND g.ended IS NOT NULL
+    OR u1.id = :id
+    AND g.ended IS NOT NULL
+    '
+        )->setParameter('id', $this->getUser()->getId());
+
+        $parties = $query->getResult();
 
 
 
@@ -71,10 +80,13 @@ class UserController extends AbstractController
                     array_push($adversaires, $partie->getUser1()->getPseudo());
                 }
 
-            }elseif($partie->getUser2()->getId() != $this->getUser()->getId()){
-                if(array_search($partie->getUser2()->getPseudo(), $adversaires)==null){
-                    array_push($adversaires, $partie->getUser2()->getPseudo());
+            }elseif($partie->getUser2()!=null){
+                if($partie->getUser2()->getId() != $this->getUser()->getId()){
+                    if(array_search($partie->getUser2()->getPseudo(), $adversaires)==null){
+                        array_push($adversaires, $partie->getUser2()->getPseudo());
                 }
+
+            }
 
             }
         }
@@ -83,8 +95,8 @@ class UserController extends AbstractController
 
         return $this->render('user/profil_et_stats.html.twig', [
             'user' => $this->getUser(),
-            'parties' => $parties,
-            'adversaires'=>array_flip($adversaires)
+            'parties' => array_reverse($parties),
+            'adversaires'=>$adversaires
 
 
 
