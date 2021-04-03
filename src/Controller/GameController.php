@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\Round;
+use App\Entity\User;
 use App\Repository\CardRepository;
 use App\Repository\GameRepository;
 use App\Repository\UserRepository;
@@ -41,12 +42,18 @@ class GameController extends AbstractController
         CardRepository $cardRepository
     ): Response {
         $user1 = $this->getUser();
+
         $user2 = $userRepository->find($request->request->get('user2'));
+
+        //les 2 joueurs n'ont pas pioché
+        $user1->setDejaPioche(0);
+        $user2->setDejaPioche(0);
 
         if ($user1 !== $user2) {
             $game = new Game();
             $game->setUser1($user1);
             $game->setUser2($user2);
+            $entityManager->persist($user1, $user2);
             $game->setCreated(new \DateTime('now'));
 
             $entityManager->persist($game);
@@ -187,11 +194,12 @@ class GameController extends AbstractController
      */
     public function pioche(
         EntityManagerInterface $entityManager,
-        Request $request, Game $game, CardRepository $cardRepository){
+        Request $request, Game $game, CardRepository $cardRepository):Response{
 
 
 
         $user = $this->getUser();
+
         $round = $game->getRounds()[0]; //a gérer selon le round en cours
 
         if ($game->getUser1()->getId() === $user->getId())
@@ -205,33 +213,46 @@ class GameController extends AbstractController
 
             $pioche = $round->getPioche();
         var_dump($pioche);
-                if ($joueur === 1) {
+        //tester s'il a déjà pioché
+        if($user->getDejaPioche()==0){
+
+            if ($joueur === 1) {
 
 
-                    $main = $round->getUser1HandCards();
+                $main = $round->getUser1HandCards();
 
 
-                    $id_carte_tiree= array_pop($pioche);
+                $id_carte_tiree= array_pop($pioche);
 
-                    $carte_tiree = $cardRepository->find($id_carte_tiree);
-                    $main[]= $carte_tiree->getId();
-                    $round->setUser1HandCards($main);
-                    $round->setPioche($pioche);
-                }elseif ($joueur === 2){
-                    $main = $round->getUser2HandCards();
+                $carte_tiree = $cardRepository->find($id_carte_tiree);
+                $main[]= $carte_tiree->getId();
+                $round->setUser1HandCards($main);
+                $round->setPioche($pioche);
+            }elseif ($joueur === 2){
 
-                    $carte_tiree= array_pop($pioche);
-                    $main[]= $carte_tiree->getId();
-                    $round->setUser2HandCards($main);
-                    $round->setPioche($pioche);
-                }
+                $main = $round->getUser2HandCards();
+                $id_carte_tiree= array_pop($pioche);
 
+                $carte_tiree = $cardRepository->find($id_carte_tiree);
+                $main[]= $carte_tiree->getId();
+                $round->setUser2HandCards($main);
+                $round->setPioche($pioche);
 
-        $entityManager->persist($round);
-        $entityManager->flush();
-        $data=["your_turn"=>true];
+            }
 
-        return $this->json($data);
+            $user->setDejaPioche(1);
+            $entityManager->persist($round, $user);
+            $entityManager->flush();
+            $data=["your_turn"=>true];
+
+            return $this->json($data);
+        }else{
+            return $this->redirectToRoute('show_game', [
+                'game' => $game->getId()
+
+            ]);
+        }
+
     }
 
 
@@ -317,13 +338,22 @@ class GameController extends AbstractController
      * @Route("/get-tout-game/{game}", name="get_tour")
      */
     public function getTour(
-        Game $game
+        Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager
     ): Response {
         if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
+            $user = $this->getUser();
+
+            /*$user->setDejaPioche(0);
+            $entityManager->persist($user);
+            $entityManager->flush();*/
             return $this->json(true);
         }
 
         if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
+            /*$user = $this->getUser();
+            $user->setDejaPioche(0);
+            $entityManager->persist($user);
+            $entityManager->flush();*/
             return $this->json(true);
         }
 
@@ -339,8 +369,15 @@ class GameController extends AbstractController
     ): Response {
         if($game->getQuiJoue()==1){
             $quiJoue = 2;
+            $user2 = $game->getUser2();
+            $user2->setDejaPioche(0);
+            $entityManager->persist($user2);
+
         }else{
             $quiJoue = 1;
+            $user1 = $game->getUser1();
+            $user1->setDejaPioche(0);
+            $entityManager->persist($user1);
         }
 
         $game->setQuiJoue($quiJoue);

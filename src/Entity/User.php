@@ -92,6 +92,11 @@ class User implements UserInterface
      */
     private $derniereConnexion;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dejaPioche;
+
     public function __construct()
     {
         $this->games1 = new ArrayCollection();
@@ -368,6 +373,18 @@ class User implements UserInterface
     public function setDerniereConnexion(?\DateTimeInterface $derniereConnexion): self
     {
         $this->derniereConnexion = $derniereConnexion;
+
+        return $this;
+    }
+
+    public function getDejaPioche(): ?int
+    {
+        return $this->dejaPioche;
+    }
+
+    public function setDejaPioche(?int $dejaPioche): self
+    {
+        $this->dejaPioche = $dejaPioche;
 
         return $this;
     }
