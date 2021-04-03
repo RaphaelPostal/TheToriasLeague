@@ -75,6 +75,13 @@
                         //rafraichir le plateau pour voir ce que mon adversaire fait
                     } else {
                         $('#message').html('C\'est mon tour...')
+                        //Piocher une carte
+
+                        $.ajax({
+                            url: "{{ path('pioche', {game: game.id}) }}"
+                        })
+
+
                         //mettre à jour le plateau, dès que je récupère true
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         clearInterval(boucle)
@@ -85,8 +92,14 @@
                 },
                 error: function(){
                 }
-            })
+            });
+
+
         }
+
+
+        /*LES 4 ACTIONS*/
+
         let action
         $(document).on('click', '#secret', function(){
             console.log('secret')

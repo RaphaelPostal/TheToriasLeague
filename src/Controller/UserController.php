@@ -77,9 +77,6 @@ class UserController extends AbstractController
         $parties = $query->getResult();
 
 
-
-
-
     /*calcul adversaires rencontrés*/
         $adversaires = [];
         foreach($parties as $partie){
@@ -140,7 +137,7 @@ class UserController extends AbstractController
         if(isset($_POST['photo'])){
             $user->setPhoto($_POST['photo'].'.png');
         }
-        if(isset($_POST['mdp'])&&$_POST['mdp']!=''){
+        if(isset($_POST['mdp']) && $_POST['mdp']!=''){
             $user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
         }
 
