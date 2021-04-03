@@ -280,6 +280,7 @@ class GameController extends AbstractController
         switch ($action) {
             case 'secret':
                 $carte = $request->request->get('carte');
+
                 if ($joueur === 1) {
                     $actions = $round->getUser1Action(); //un tableau...
                     $actions['SECRET'] = [$carte]; //je sauvegarde la carte cachée dans mes actions
@@ -298,6 +299,38 @@ class GameController extends AbstractController
                     $round->setUser2HandCards($main);
                 }
                 break;
+
+
+            case 'depot':
+                $carte1 = $request->request->get('carte1');
+                $carte2 = $request->request->get('carte2');
+                if ($joueur === 1) {
+                    $actions = $round->getUser1Action(); //un tableau...
+                    $actions['DEPOT'] = [$carte1]; //je sauvegarde les cartes jetées dans mes actions
+                    $actions['DEPOT']=[$carte2];
+                    $round->setUser1Action($actions); //je mets à jour le tableau dans bdd
+                    $main = $round->getUser1HandCards();
+                    $indexCarte1 = array_search($carte1, $main);
+                    $indexCarte2 = array_search($carte2, $main);
+                    unset($main[$indexCarte1]); //je supprime la carte de ma main
+                    unset($main[$indexCarte2]);
+                    $round->setUser1HandCards($main);
+                }elseif ($joueur === 2){
+
+                    $actions = $round->getUser2Action(); //un tableau...
+                    $actions['DEPOT'] = [$carte1]; //je sauvegarde les cartes jetées dans mes actions
+                    $actions['DEPOT']=[$carte2];
+                    $round->setUser2Action($actions); //je mets à jour le tableau dans bdd
+                    $main = $round->getUser2HandCards();
+                    $indexCarte1 = array_search($carte1, $main);
+                    $indexCarte2 = array_search($carte2, $main);
+                    unset($main[$indexCarte1]); //je supprime la carte de ma main
+                    unset($main[$indexCarte2]);
+                    $round->setUser2HandCards($main);
+
+                }
+                break;
+
         }
 
         $entityManager->flush();

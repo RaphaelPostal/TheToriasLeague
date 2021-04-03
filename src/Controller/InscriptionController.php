@@ -64,7 +64,6 @@ class InscriptionController extends AbstractController
                                     return $this->render('inscription/index.html.twig', [
                                         'erreur'=>'Cet utilisateur est déjà inscrit !'
 
-
                                     ]);
                                 }
 

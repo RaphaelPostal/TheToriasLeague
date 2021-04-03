@@ -29,6 +29,10 @@
                    style="display: none"
                    class="choixSecret">
 
+            <input type="checkbox" name="carte_depot_{{ card }}" value="{{ card }}"
+                   style="display: none"
+                   class="choixDepot">
+
         {% endfor %}
     </div>
     <div class="col-4">
@@ -39,6 +43,8 @@
         <button  id="offre">Offre</button>
         <button  id="echange">Echange</button><br>
         <button id="valider" style="display: none">Valider action</button>
+
+
 
     </div>
 </div>

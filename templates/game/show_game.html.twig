@@ -7,6 +7,7 @@
     </div>
 
     <div id="message">...</div>
+
     <button id="finDeTour">Fin de tour</button>
     <!--<button id="valider-echange">Valider échange</button>-->
 
@@ -79,6 +80,7 @@
 
                         $.ajax({
                             url: "{{ path('pioche', {game: game.id}) }}"
+
                         })
 
 
@@ -105,8 +107,43 @@
             console.log('secret')
             action = 'secret' //mémorise l'action en cours
             $('.choixSecret').show()
+
+        })
+
+        $(document).on('click', 'input[type="radio"]', function(){
             $('#valider').show()
         })
+
+        var click_depot = 0
+        var num1= 0
+        var num2 = 0
+        $(document).on('click', 'input[type="checkbox"]', function (){
+            click_depot++;
+            if(click_depot == 1){
+                num1 = $('input[type="checkbox"]:checked').val()
+                console.log(num1)
+            }
+            console.log(num1)
+            if(click_depot == 2){
+               num2 = $('input[type="checkbox"]:checked').val()
+                console.log(num1)
+                console.log(num2)
+                $('#valider').show()
+            }
+
+            if(click_depot == 3){
+                $('input[type="checkbox"]').checked=true
+            }
+
+        })
+
+        $(document).on('click', '#depot', function(){
+            console.log('depot')
+            action = 'depot' //mémorise l'action en cours
+            $('.choixDepot').show()
+
+        })
+
         $(document).on('click', '#valider', function(){
             switch (action) {
                 case 'secret':
@@ -115,7 +152,12 @@
                         carte: $('input[name="carte_secret"]:checked').val()
                     }
                     break;
-                case 'depot':
+                case 'depot': donneesAction = {
+
+                    action: 'depot',
+                    carte1: $('input[name="carte_depot_'+num1+'"]:checked').val(),
+                    carte2: $('input[name="carte_depot_'+num2+'"]:checked').val()
+                }
                     break;
                 case 'offre':
                     break;
@@ -127,7 +169,9 @@
                 data: donneesAction,
                 method: 'POST',
                 success: function(data) {
+
                     if (data == true) {
+                        console.log(donneesAction)
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                     }
                 },
