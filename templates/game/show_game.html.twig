@@ -118,22 +118,34 @@
         var num1= 0
         var num2 = 0
         $(document).on('click', 'input[type="checkbox"]', function (){
-            click_depot++;
-            if(click_depot == 1){
-                num1 = $('input[type="checkbox"]:checked').val()
+            if($(this).is(':checked')){
+                click_depot++;
+
+                console.log('nb de click: '+click_depot)
+
+                if(click_depot == 1){
+                    num1 = $(this).val()
+                    console.log('numero 1 : '+num1)
+                }
                 console.log(num1)
-            }
-            console.log(num1)
-            if(click_depot == 2){
-               num2 = $('input[type="checkbox"]:checked').val()
-                console.log(num1)
-                console.log(num2)
-                $('#valider').show()
+                if(click_depot == 2){
+                    num2 = $(this).val()
+                    console.log('numero 2 : '+num2)
+                    console.log('carte 1: '+num1)
+                    console.log('carte 2: '+num2)
+                    $('#valider').show()
+                }
+            }else{
+                click_depot--;
+                console.log('nb de click: '+click_depot)
             }
 
-            if(click_depot == 3){
-                $('input[type="checkbox"]').checked=true
+
+            if(click_depot!=2){
+                $('#valider').hide();
             }
+
+
 
         })
 
