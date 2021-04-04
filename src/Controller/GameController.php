@@ -96,16 +96,16 @@ class GameController extends AbstractController
             $round->setPioche($tPioche);
             $round->setUser1Action([
                 'SECRET' => false,
-                'DEPOT' => false,
-                'OFFRE' => false,
-                'ECHANGE' => false
+                'DEPOT' => [],
+                'OFFRE' => [],
+                'ECHANGE' => []
             ]);
 
             $round->setUser2Action([
                 'SECRET' => false,
-                'DEPOT' => false,
-                'OFFRE' => false,
-                'ECHANGE' => false
+                'DEPOT' => [],
+                'OFFRE' => [],
+                'ECHANGE' => []
             ]);
 
             $round->setBoard([
@@ -137,6 +137,7 @@ class GameController extends AbstractController
         Round $round
     ): Response {
         if ($this->getUser()->getId() === $game->getUser1()->getId() || $this->getUser()->getId() === $game->getUser2()->getId()){
+
             return $this->render('game/show_game.html.twig', [
                 'game' => $game,
                 'round' => $round
@@ -309,8 +310,9 @@ class GameController extends AbstractController
                 $carte2 = $request->request->get('carte2');
                 if ($joueur === 1) {
                     $actions = $round->getUser1Action(); //un tableau...
-                    $actions['DEPOT'] = [$carte1]; //je sauvegarde les cartes jetées dans mes actions
-                    $actions['DEPOT']=[$carte2];
+                    array_push($actions['DEPOT'], $carte1);
+                    array_push($actions['DEPOT'], $carte2);
+
                     $round->setUser1Action($actions); //je mets à jour le tableau dans bdd
                     $main = $round->getUser1HandCards();
                     $indexCarte1 = array_search($carte1, $main);
@@ -321,8 +323,8 @@ class GameController extends AbstractController
                 }elseif ($joueur === 2){
 
                     $actions = $round->getUser2Action(); //un tableau...
-                    $actions['DEPOT'] = [$carte1]; //je sauvegarde les cartes jetées dans mes actions
-                    $actions['DEPOT']=[$carte2];
+                    array_push($actions['DEPOT'], $carte1);
+                    array_push($actions['DEPOT'], $carte2);
                     $round->setUser2Action($actions); //je mets à jour le tableau dans bdd
                     $main = $round->getUser2HandCards();
                     $indexCarte1 = array_search($carte1, $main);
