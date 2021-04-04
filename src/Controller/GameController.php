@@ -47,7 +47,10 @@ class GameController extends AbstractController
 
         //les 2 joueurs n'ont pas pioché
         $user1->setDejaPioche(0);
-        $user2->setDejaPioche(0);
+        if($user2 != null){
+            $user2->setDejaPioche(0);
+        }
+
 
         if ($user1 !== $user2) {
             $game = new Game();
@@ -352,6 +355,7 @@ class GameController extends AbstractController
             return $this->redirectToRoute('user_profil');
         }else{
             $user2 = $this->getUser();
+            $user2->setDejaPioche(0);
             $game -> setUser2($user2);
             $entityManager->persist($user2);
             $entityManager->flush();

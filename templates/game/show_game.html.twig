@@ -102,11 +102,21 @@
 
         /*LES 4 ACTIONS*/
 
+        /*SECRET*/
         let action
         $(document).on('click', '#secret', function(){
             console.log('secret')
             action = 'secret' //mémorise l'action en cours
             $('.choixSecret').show()
+
+        })
+        /*FIN SECRET*/
+
+        //DEPOT
+        $(document).on('click', '#depot', function(){
+            console.log('depot')
+            action = 'depot' //mémorise l'action en cours
+            $('.choixDepot').show()
 
         })
 
@@ -133,7 +143,7 @@
                     console.log('numero 2 : '+num2)
                     console.log('carte 1: '+num1)
                     console.log('carte 2: '+num2)
-                    $('#valider').show()
+
                 }
             }else{
                 if(click_depot==2){
@@ -153,21 +163,24 @@
 
             }
 
-
             if(click_depot!=2){
                 $('#valider').hide();
+            }else{
+                $('#valider').show();
             }
 
+        })
+        //FIN DEPOT
 
+        //OFFRE
+        $(document).on('click', '#offre', function(){
+            console.log('offre')
+            action = 'offre'
+            $('.choixOffre').show()
 
         })
 
-        $(document).on('click', '#depot', function(){
-            console.log('depot')
-            action = 'depot' //mémorise l'action en cours
-            $('.choixDepot').show()
-
-        })
+        //FIN OFFRE
 
         $(document).on('click', '#valider', function(){
             switch (action) {
