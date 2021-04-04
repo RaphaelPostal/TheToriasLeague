@@ -185,7 +185,7 @@ class GameController extends AbstractController
 
         return $this->render('game/plateau_game.html.twig', [
             'game' => $game,
-            'set' => $game->getRounds()[0],
+            'round' => $game->getRounds()[0],
             'cards' => $tCards,
             'moi' => $moi,
             'adversaire' => $adversaire
@@ -343,6 +343,7 @@ class GameController extends AbstractController
                 $carte3 = $request->request->get('carte3');
 
                 if ($joueur === 1) {
+                    $round->setUser1ActionEnCours('OFFRE');
                     $actions = $round->getUser1Action(); //un tableau...
                     array_push($actions['OFFRE'], $carte1);
                     array_push($actions['OFFRE'], $carte2);
@@ -360,6 +361,7 @@ class GameController extends AbstractController
 
                 }elseif ($joueur === 2){
 
+                    $round->setUser2ActionEnCours('OFFRE');
                     $actions = $round->getUser2Action(); //un tableau...
                     array_push($actions['OFFRE'], $carte1);
                     array_push($actions['OFFRE'], $carte2);
@@ -448,18 +450,29 @@ class GameController extends AbstractController
      */
     public function setTour(
         EntityManagerInterface $entityManager,
-        Game $game
+        Game $game,
+        Round $round
     ): Response {
+
         if($game->getQuiJoue()==1){
             $quiJoue = 2;
+
             $user2 = $game->getUser2();
-            $user2->setDejaPioche(0);
+            //SI J'AI VALIDE L'OFFRE, L'ADVERSAIRE PEUX JOUER MAIS PAS PIOCHER
+            if($round->getUser1ActionEnCours() != 'OFFRE'){
+                $user2->setDejaPioche(0);
+            }
+
             $entityManager->persist($user2);
 
         }else{
             $quiJoue = 1;
             $user1 = $game->getUser1();
-            $user1->setDejaPioche(0);
+            //SI J'AI VALIDE L'OFFRE, L'ADVERSAIRE PEUX JOUER MAIS PAS PIOCHER
+            if($round->getUser2ActionEnCours() != 'OFFRE'){
+                $user1->setDejaPioche(0);
+            }
+
             $entityManager->persist($user1);
         }
 

@@ -82,6 +82,16 @@ class Round
      */
     private $pioche = [];
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $user1_action_en_cours;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $user2_action_en_cours;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -239,6 +249,30 @@ class Round
     public function setPioche(array $pioche): self
     {
         $this->pioche = $pioche;
+
+        return $this;
+    }
+
+    public function getUser1ActionEnCours(): ?string
+    {
+        return $this->user1_action_en_cours;
+    }
+
+    public function setUser1ActionEnCours(?string $user1_action_en_cours): self
+    {
+        $this->user1_action_en_cours = $user1_action_en_cours;
+
+        return $this;
+    }
+
+    public function getUser2ActionEnCours(): ?string
+    {
+        return $this->user2_action_en_cours;
+    }
+
+    public function setUser2ActionEnCours(?string $user2_action_en_cours): self
+    {
+        $this->user2_action_en_cours = $user2_action_en_cours;
 
         return $this;
     }
