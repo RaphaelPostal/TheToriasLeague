@@ -9,6 +9,7 @@
     <div id="message">...</div>
     {{ dump(round) }}
 
+
     <button id="finDeTour">Fin de tour</button>
     <!--<button id="valider-echange">Valider échange</button>-->
 
@@ -38,7 +39,6 @@
                 error: function(){
                 }
             })
-
 
             //FIN TEST
 
@@ -262,14 +262,14 @@
             }
 
             if(click_offre!=3){
-                $('#valider').hide();
+                $('#valider-offre').hide();
                 $('.choixOffre').show()
             }else{
 
                 $('.choixOffre').hide()
                 $('.choixOffre:checked').show()
 
-                $('#valider').show();
+                $('#valider-offre').show();
             }
 
         })
@@ -295,8 +295,7 @@
                     carte2: $('input[name="carte_depot_'+num2+'"]:checked').val()
                 }
                     break;
-                case 'offre':
-                    break;
+
                 case 'echange':
                     break;
             }
@@ -315,6 +314,47 @@
                 }
             })
         })
+
+
+            $(document).on('click', '#valider-offre', function() {
+                donneesAction = {
+
+                    action: 'offre',
+                    carte1: $('input[name="carte_offre_'+numO_1+'"]:checked').val(),
+                    carte2: $('input[name="carte_offre_'+numO_2+'"]:checked').val(),
+                    carte3: $('input[name="carte_offre_'+numO_3+'"]:checked').val()
+                }
+
+                $.ajax({
+                    url: "{{ path('action_game', {game: game.id}) }}",
+                    data: donneesAction,
+                    method: 'POST',
+                    success: function(data) {
+                        //on refresh le plateau
+                        if (data == true) {
+                            console.log(donneesAction)
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        }
+                        //et on change le tour
+                        $.ajax({
+                            url: "  {{ path('set_tour', {game: game.id}) }}",
+                            method: 'POST',
+                            success: function(data) {
+                                console.log('le tour à changé pour echange');
+                            },
+                            error: function(){
+                            }
+                        })
+
+                        boucle = setInterval(refreshGame, 3000);
+                    },
+                    error: function(){
+                    }
+                })
+
+
+        })
+
     </script>
 {% endblock %}
 
