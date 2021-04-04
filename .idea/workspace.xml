@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="448fb089-bc9d-413a-ac2c-624415d5ed4a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/plateau_game.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/game/show_game.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/game/show_game.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -203,7 +202,7 @@
       <workItem from="1617278404019" duration="28002000" />
       <workItem from="1617351169745" duration="2511000" />
       <workItem from="1617452553708" duration="23808000" />
-      <workItem from="1617527821523" duration="1475000" />
+      <workItem from="1617527821523" duration="3148000" />
     </task>
     <servers />
   </component>
