@@ -111,6 +111,10 @@
             $('.choixSecret').show()
 
         })
+
+        $(document).on('click', 'input[type="radio"]', function(){
+            $('#valider').show()
+        })
         /*FIN SECRET*/
 
         //DEPOT
@@ -121,14 +125,12 @@
 
         })
 
-        $(document).on('click', 'input[type="radio"]', function(){
-            $('#valider').show()
-        })
+
 
         var click_depot = 0
         var num1= 0
         var num2 = 0
-        $(document).on('click', 'input[type="checkbox"]', function (){
+        $(document).on('click', '.choixDepot', function (){
             if($(this).is(':checked')){
                 click_depot++;
 
@@ -147,12 +149,14 @@
 
                 }
             }else{
+                //On décoche une case
                 if(click_depot==2){
                     if($(this).val()==num2){
                         num2=0
 
                     }else{
                         num1=num2
+                        num2=0
                     }
 
 
@@ -166,8 +170,11 @@
 
             if(click_depot!=2){
                 $('#valider').hide();
+                $('.choixDepot').show()
             }else{
                 $('#valider').show();
+                $('.choixDepot').hide()
+                $('.choixDepot:checked').show()
             }
 
         })
@@ -181,7 +188,97 @@
 
         })
 
+        var click_offre = 0
+        var numO_1= 0
+        var numO_2 = 0
+        var numO_3 = 0
+
+        $(document).on('click', '.choixOffre', function (){
+            if($(this).is(':checked')){
+                click_offre++;
+
+                console.log('nb de click: '+click_offre)
+
+                if(click_offre == 1){
+                    numO_1 = $(this).val()
+                    console.log('numero 1 : '+numO_1)
+                }
+                console.log(numO_1)
+                if(click_offre == 2){
+                    numO_2 = $(this).val()
+                    console.log('numero 2 : '+numO_2)
+                    console.log('carte 1: '+numO_1)
+                    console.log('carte 2: '+numO_2)
+
+                }
+
+                if(click_offre == 3){
+                    numO_3 = $(this).val()
+                    console.log('numero 3 : '+numO_3)
+                    console.log('carte 1: '+numO_1)
+                    console.log('carte 2: '+numO_2)
+                    console.log('carte 3: '+numO_3)
+
+                }
+            }else{
+                //Gérer quand on déselectionne un carte
+
+                if(click_offre==3){
+                    if($(this).val()==numO_3){
+                        numO_3=0
+
+                    }else if($(this).val()==numO_2){
+                        numO_2=numO_3
+                        numO_3=0
+                    }else{
+                        numO_1=numO_2
+                        numO_2=numO_3
+                        numO_3 = 0
+                    }
+
+
+                    console.log('nouveau numero 1: '+numO_1)
+                    console.log('nouveau numero 2: '+numO_2)
+                    console.log('nouveau numero 3: '+numO_3)
+                }
+
+                if(click_offre==2){
+                    if($(this).val()==numO_2){
+                        numO_2=0
+
+                    }else{
+                        numO_1=numO_2
+                        numO_2=0
+                    }
+
+
+                    console.log('nouveau numero 1: '+numO_1)
+
+                }
+                click_offre--;
+                console.log('nb de click: '+click_offre)
+
+
+            }
+
+            if(click_offre!=3){
+                $('#valider').hide();
+                $('.choixOffre').show()
+            }else{
+
+                $('.choixOffre').hide()
+                $('.choixOffre:checked').show()
+
+                $('#valider').show();
+            }
+
+        })
+
         //FIN OFFRE
+
+
+
+
 
         $(document).on('click', '#valider', function(){
             switch (action) {
