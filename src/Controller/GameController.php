@@ -367,6 +367,7 @@ class GameController extends AbstractController
 
                 if ($joueur === 1) {
                     $round->setUser1ActionEnCours('OFFRE');
+                    $game->getUser2()->setDejaPioche(1);
                     $actions = $round->getUser1Action(); //un tableau...
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte1);
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte2);
@@ -385,6 +386,7 @@ class GameController extends AbstractController
                 }elseif ($joueur === 2){
 
                     $round->setUser2ActionEnCours('OFFRE');
+                    $game->getUser1()->setDejaPioche(1);
                     $actions = $round->getUser2Action(); //un tableau...
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte1);
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte2);
