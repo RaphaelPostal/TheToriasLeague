@@ -113,7 +113,7 @@
 
         })
 
-        $(document).on('click', 'input[type="radio"]', function(){
+        $(document).on('click', '.choixSecret', function(){
             $('#valider').show()
         })
         /*FIN SECRET*/
@@ -181,7 +181,7 @@
         })
         //FIN DEPOT
 
-        //OFFRE
+        //OFFRE COTÉ MOI
         $(document).on('click', '#offre', function(){
             console.log('offre')
             action = 'offre'
@@ -275,12 +275,19 @@
 
         })
 
-        //FIN OFFRE
+        //FIN OFFRE COTÉ MOI
+
+        //OFFRE COTE ADVERSAIRE
+        $(document).on('click', '.choixAdvOffre', function(){
+            $('#choisir').show()
+        })
+
+        //FIN OFFRE COTE ADVERSAIRE
 
 
 
 
-
+        //VALIDATION DES ACTIONS
         $(document).on('click', '#valider', function(){
             switch (action) {
                 case 'secret':
@@ -369,6 +376,36 @@
                     error: function(){
                     }
                 })
+
+
+        })
+
+        //CHOIX POUR OFFRE ET ECHANGE
+
+
+        $(document).on('click', '#choisir', function() {
+            //placer sur plateau moi carte choisie et ajax plateau adv 2 cartes restantes
+
+            donneesAction = {
+                action: 'offre_adv',
+                carteChoisie : $('input[name="choix_adv_offre"]:checked').val(),
+            }
+
+            $.ajax({
+                url: "{{ path('action_game', {game: game.id}) }}",
+                data: donneesAction,
+                method: 'POST',
+                success: function(data) {
+                    //on refresh le plateau
+                    if (data == true) {
+                        console.log(donneesAction)
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                    }
+                    //CHANGER LE TOUR ????
+                },
+                error: function(){
+                }
+            })
 
 
         })
