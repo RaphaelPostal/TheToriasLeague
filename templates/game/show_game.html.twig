@@ -10,7 +10,7 @@
     {{ dump(round) }}
 
 
-    <button id="finDeTour">Fin de tour</button>
+    <!--<button id="finDeTour">Fin de tour</button>-->
     <!--<button id="valider-echange">Valider échange</button>-->
 
 {% endblock %}
@@ -64,7 +64,7 @@
             boucle = setInterval(refreshGame, 3000);
         })*/
 
-
+        //refresh game sert à surveiller toutes les 3 sec si couplé avec un set interval si c'est mon tour ou pas
         function refreshGame() {
             console.log('ça tourne')
             $.ajax({
@@ -75,6 +75,7 @@
                         $('#message').html('Tour de votre adversaire')
                         $('#finDeTour').hide()
                         //rafraichir le plateau pour voir ce que mon adversaire fait
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                     } else {
                         $('#message').html('C\'est mon tour...')
                         //Piocher une carte
@@ -85,7 +86,7 @@
                         })
 
 
-                        //mettre à jour le plateau, dès que je récupère true
+                        //pour être sur, mettre à jour le plateau, dès que je récupère true
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         clearInterval(boucle)
                         console.log('ça tourne plus')
@@ -313,6 +314,22 @@
                 error: function(){
                 }
             })
+
+            setTimeout(function (){
+                //on change de tour 1,5 sec arpès avoir fini l\'action
+                $.ajax({
+                    url: "{{ path('set_tour', {game: game.id}) }}",
+                    method: 'POST',
+                    success: function(data) {
+                        console.log('le tour à changé');
+                    },
+                    error: function(){
+                    }
+                })
+
+                boucle = setInterval(refreshGame, 3000);
+
+            }, 1500)
         })
 
 
