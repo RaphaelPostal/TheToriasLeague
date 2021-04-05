@@ -240,7 +240,7 @@ class GameController extends AbstractController
 
             $pioche = $round->getPioche();
         var_dump($pioche);
-        //tester s'il a déjà pioché
+        //tester s'il a pas déjà pioché
         if($user->getDejaPioche()==0){
 
             if ($joueur === 1) {
@@ -465,7 +465,7 @@ class GameController extends AbstractController
 
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
-
+                    
 
 
                 }elseif ($joueur === 2){
@@ -521,6 +521,8 @@ class GameController extends AbstractController
                     }elseif($carteChoisie == 17 || $carteChoisie == 18 || $carteChoisie == 19 || $carteChoisie == 20 || $carteChoisie == 21){
                         array_push($user2BoardCards['SOFIA'], $carteChoisie);
                     }
+
+
 
                     $round->setUser1BoardCards($user1BoardCards); //les 2 cartes restantes
                     $round->setUser2BoardCards($user2BoardCards); //la carte choisie
