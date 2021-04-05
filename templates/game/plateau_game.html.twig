@@ -12,13 +12,34 @@
 
 
 <div class="row">
-    <img src="{{ asset('img/cartes/krulmo.png') }}" style="width: 150px; margin: 10px" alt="krulmo">
-    <img src="{{ asset('img/cartes/ganormo.png') }}" style="width: 150px; margin: 10px" alt="ganormo">
-    <img src="{{ asset('img/cartes/rasdar.png') }}" style="width: 150px; margin: 10px" alt="rasdar">
-    <img src="{{ asset('img/cartes/arcadia.png') }}" style="width: 150px; margin: 10px" alt="arcadia">
-    <img src="{{ asset('img/cartes/astralia.png') }}" style="width: 150px; margin: 10px" alt="astralia">
-    <img src="{{ asset('img/cartes/tharuk.png') }}" style="width: 150px; margin: 10px" alt="tharuk">
-    <img src="{{ asset('img/cartes/sofia.png') }}" style="width: 150px; margin: 10px" alt="sofia">
+    <img src="{{ asset('img/cartes/krulmo.png') }}" style="width: 150px; margin: 10px" alt="krulmo"><br>
+    {% for carte in moi.board.KRULMO %}
+        <span>Krulmo</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/ganormo.png') }}" style="width: 150px; margin: 10px" alt="ganormo"><br>
+    {% for carte in moi.board.GANORMO %}
+        <span>Ganormo</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/rasdar.png') }}" style="width: 150px; margin: 10px" alt="rasdar"><br>
+    {% for carte in moi.board.RASDAR %}
+        <span>Rasdar</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/arcadia.png') }}" style="width: 150px; margin: 10px" alt="arcadia"><br>
+    {% for carte in moi.board.ARCADIA %}
+        <span>Arcadia</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/astralia.png') }}" style="width: 150px; margin: 10px" alt="astralia"><br>
+    {% for carte in moi.board.ASTRALIA %}
+        <span>Astralia</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/tharuk.png') }}" style="width: 150px; margin: 10px" alt="tharuk"><br>
+    {% for carte in moi.board.THARUK %}
+        <span>Tharuk</span>
+    {% endfor %}
+    <img src="{{ asset('img/cartes/sofia.png') }}" style="width: 150px; margin: 10px" alt="sofia"><br>
+    {% for carte in moi.board.SOFIA %}
+        <span>Sofia</span>
+    {% endfor %}
 </div>
 <div class="row">
     <div class="col-8">

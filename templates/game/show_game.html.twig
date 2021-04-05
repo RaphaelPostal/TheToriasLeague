@@ -88,6 +88,9 @@
 
                         //pour être sur, mettre à jour le plateau, dès que je récupère true
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+
                         clearInterval(boucle)
                         console.log('ça tourne plus')
                         $('#finDeTour').show()
@@ -399,11 +402,15 @@
                     //on refresh le plateau
                     if (data == true) {
                         console.log(donneesAction)
+
+                        //on pioche pour être BIEN SUR d'avoir une nouvelle carte ???
+
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+
                         refreshGame();
 
                     }
-                    //CHANGER LE TOUR ????
+
                 },
                 error: function(){
                 }
