@@ -1,50 +1,187 @@
-<div class="row">
-    <div class="col-8">
+
+    <div id="deck-nord">
 
         {% for card in adversaire.handCards %}
-            <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">
+            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">
         {% endfor %}
+
     </div>
-    <div class="col-4">
-        Actions adversaire
+
+    <div id="actions-nord">
+        <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
+        <img class="action_nord" src="{{ asset('img/actions/depot_rouge.png') }}">
+        <img class="action_nord" src="{{ asset('img/actions/offre_rouge.png') }}">
+        <img class="action_nord" src="{{ asset('img/actions/echange_rouge.png') }}">
     </div>
-</div>
+
+    <div id="nbs-cartes-nord">
+        <div class="nb-carte-nord" id="nb1">
+            <div class="indics">
+                {% for carte in adversaire.board.KRULMO %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb2">
+            <div class="indics">
+                {% for carte in adversaire.board.GANORMO %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb3">
+            <div class="indics">
+                {% for carte in adversaire.board.RASDAR %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb4">
+            <div class="indics">
+                {% for carte in adversaire.board.ARCADIA %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb5">
+            <div class="indics">
+                {% for carte in adversaire.board.ASTRALIA %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb6">
+            <div class="indics">
+                {% for carte in adversaire.board.THARUK %}
+                    <div class="indic"></div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="nb-carte-nord" id="nb7">
+            <div class="indics">
+                {% for carte in adversaire.board.SOFIA %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="cartes-persos">
+        <div id="emp1" class="emp">
+            <img class="pion" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/krulmo.png') }}">
+        </div>
 
 
-<div class="row">
-    <img src="{{ asset('img/cartes/krulmo.png') }}" style="width: 150px; margin: 10px" alt="krulmo"><br>
-    {% for carte in moi.board.KRULMO %}
-        <span>Krulmo</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/ganormo.png') }}" style="width: 150px; margin: 10px" alt="ganormo"><br>
-    {% for carte in moi.board.GANORMO %}
-        <span>Ganormo</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/rasdar.png') }}" style="width: 150px; margin: 10px" alt="rasdar"><br>
-    {% for carte in moi.board.RASDAR %}
-        <span>Rasdar</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/arcadia.png') }}" style="width: 150px; margin: 10px" alt="arcadia"><br>
-    {% for carte in moi.board.ARCADIA %}
-        <span>Arcadia</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/astralia.png') }}" style="width: 150px; margin: 10px" alt="astralia"><br>
-    {% for carte in moi.board.ASTRALIA %}
-        <span>Astralia</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/tharuk.png') }}" style="width: 150px; margin: 10px" alt="tharuk"><br>
-    {% for carte in moi.board.THARUK %}
-        <span>Tharuk</span>
-    {% endfor %}
-    <img src="{{ asset('img/cartes/sofia.png') }}" style="width: 150px; margin: 10px" alt="sofia"><br>
-    {% for carte in moi.board.SOFIA %}
-        <span>Sofia</span>
-    {% endfor %}
-</div>
-<div class="row">
-    <div class="col-8">
+        <div id="emp2" class="emp">
+            <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/ganormo.png') }}">
+        </div>
+
+
+        <div id="emp3" class="emp">
+            <img class="pion" id="pion3" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/rasdar.png') }}">
+        </div>
+
+
+        <div id="emp4" class="emp">
+            <img class="pion" id="pion4" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/arcadia.png') }}">
+        </div>
+
+
+        <div id="emp5" class="emp">
+            <img class="pion" id="pion5" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/astralia.png') }}">
+        </div>
+
+
+        <div id="emp6" class="emp">
+            <img class="pion" id="pion6" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/tharuk.png') }}">
+        </div>
+
+
+        <div id="emp7" class="emp">
+            <img class="pion" id="pion7" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            <img class="carte-perso" src="{{ asset('img/cartes/sofia.png') }}">
+        </div>
+
+
+    </div>
+
+
+    <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}"></div>
+
+    <div id="nbs-cartes-sud">
+        <div class="nb-carte-sud" id="nb1">
+            <div class="indics">
+                {% for carte in moi.board.KRULMO %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb2">
+            <div class="indics">
+                {% for carte in moi.board.GANORMO %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb3">
+            <div class="indics">
+            {% for carte in moi.board.RASDAR%}
+                <div class="indic"></div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb4">
+            <div class="indics">
+            {% for carte in moi.board.ARCADIA %}
+                <div class="indic"></div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb5">
+            <div class="indics">
+                {% for carte in moi.board.ASTRALIA %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb6">
+            <div class="indics">
+                {% for carte in moi.board.THARUK %}
+                    <div class="indic"></div>
+                {% endfor %}
+
+            </div>
+        </div>
+        <div class="nb-carte-sud" id="nb7">
+            <div class="indics">
+                {% for carte in moi.board.SOFIA %}
+                    <div class="indic"></div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <div id="actions-sud">
+        <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
+        <img id="depot" class="action_sud" src="{{ asset('img/actions/depot_bleu.png') }}">
+        <img id="offre" class="action_sud" src="{{ asset('img/actions/offre_bleu.png') }}">
+        <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
+        <button id="valider" style="display: none">Valider action</button>
+        <button id="valider-offre" style="display: none">Faire l'offre</button>
+    </div>
+
+    <div id="deck-sud">
+
         {% for card in moi.handCards %}
-            <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 100px">{{ card }}
+            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">
 
             <input type="radio" name="carte_secret" value="{{ card }}"
                    style="display: none"
@@ -60,15 +197,6 @@
 
         {% endfor %}
     </div>
-    <div class="col-4">
-
-        Mes Actions
-        <button id="secret">Secret</button>
-        <button  id="depot">Depot</button>
-        <button  id="offre">Offre</button>
-        <button  id="echange">Echange</button><br>
-        <button id="valider" style="display: none">Valider action</button>
-        <button id="valider-offre" style="display: none">Faire l'offre</button>
 
 
 
@@ -85,5 +213,3 @@
 
 
 
-    </div>
-</div>

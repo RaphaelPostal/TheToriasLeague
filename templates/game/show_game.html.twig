@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    <link rel="stylesheet" href="{{ asset('css/plateau.css') }}">
     <div id="plateau">
         {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
     </div>
 
     <div id="message">...</div>
-    {{ dump(round) }}
+    
 
 
     <!--<button id="finDeTour">Fin de tour</button>-->
@@ -16,7 +16,7 @@
 {% endblock %}
 
 {% block title %}
-
+Jeu
 {% endblock %}
 
 {% block javascripts %}

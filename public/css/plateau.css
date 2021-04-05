@@ -1,0 +1,219 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+
+/*PLATEAU DE JEU*/
+#plateau{
+
+    height: calc(90vw/2);
+    width: 95%;
+    margin:auto;
+    display: grid;
+    grid-template-rows: 3fr 1fr 3fr 1fr 3fr ;
+    grid-template-columns: 5fr 1fr;
+
+}
+
+#deck-nord{
+    padding-left: 30px;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(7, 1fr);
+
+
+
+}
+
+
+
+#deck-sud{
+    padding-left: 30px;
+    grid-row: 5/6;
+    grid-column: 1/2;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(7, 1fr);
+
+
+}
+
+#actions-nord{
+
+    grid-row: 1/2;
+    grid-column: 2/3;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8%;
+    padding: 5px;
+}
+
+#actions-sud{
+
+    grid-row: 5/6;
+    grid-column: 2/3;
+
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8%;
+    padding: 5px;
+
+}
+
+.action_sud, .action_nord{
+    width: 100%;
+    border-radius: 5%;
+}
+
+
+
+#cartes-persos{
+
+
+    grid-row: 3/4;
+    grid-column: 1/2;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 1%;
+
+
+}
+.emp{
+    position: relative;
+}
+.pion{
+    width: 2.7vw;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+
+}
+
+#pion2, #pion4, #pion5{
+    top: 3%;
+}
+
+#pion1, #pion6, #pion7{
+    top: 77%;
+
+}
+
+.nb-cartes-sud{
+    grid-row: 4/5;
+}
+
+
+#pioche{
+
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+
+.carte-pioche{
+    width: 53%;
+    margin-left: 25%;
+    margin-top: 10%;
+    border-radius: 3px;
+}
+
+.carte-objet{
+    width: 75%;
+    border-radius: 3px;
+
+}
+
+.carte-perso{
+    width: 100%;
+    border-radius: 2%;
+}
+
+#nbs-cartes-nord{
+    grid-column: 1/2;
+    grid-row:2/3;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 1%;
+
+}
+
+#nbs-cartes-sud{
+    grid-column: 1/2;
+    grid-row:4/5;
+
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 1%;
+}
+
+.indics{
+    /*display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(5,1fr);
+    grid-auto-flow: column;
+    grid-column-gap: 9%;
+    */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+
+
+
+}
+
+.indic{
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: gold;
+    height: 1.6vw;
+    min-width: 11%;
+    border-radius: 10%;
+}
+
+.nb-carte-nord .indic{
+    margin-top: 12%;
+
+}
+
+.nb-carte-sud .indic{
+    margin-top: 4%;
+}
+
+#nb1 .indic{
+    background-color: #2E3228;
+}
+
+#nb2 .indic{
+    background-color: #961503;
+}
+
+#nb3 .indic{
+    background-color: #DB7619;
+}
+
+#nb4 .indic{
+    background-color: #F0D410;
+}
+
+#nb5 .indic{
+    background-color: #A0D74F;
+}
+
+#nb6 .indic{
+    background-color: #4675BD;
+}
+
+#nb7 .indic{
+    background-color: #F43784;
+}
