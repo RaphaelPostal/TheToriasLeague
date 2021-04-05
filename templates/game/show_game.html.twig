@@ -400,6 +400,8 @@
                     if (data == true) {
                         console.log(donneesAction)
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        refreshGame();
+
                     }
                     //CHANGER LE TOUR ????
                 },

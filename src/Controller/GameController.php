@@ -466,6 +466,7 @@ class GameController extends AbstractController
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
                     $round->setUser2ActionEnCours(null);
+                    $game->getUser1()->setDejaPioche(0);
 
 
                 }elseif ($joueur === 2){
@@ -527,6 +528,7 @@ class GameController extends AbstractController
                     $round->setUser1BoardCards($user1BoardCards); //les 2 cartes restantes
                     $round->setUser2BoardCards($user2BoardCards); //la carte choisie
                     $round->setUser1ActionEnCours(null);
+                    $game->getUser2()->setDejaPioche(0);
 
 
                 }
