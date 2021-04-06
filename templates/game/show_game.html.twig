@@ -296,7 +296,7 @@
         //FIN OFFRE COTÉ MOI
 
         //OFFRE COTE ADVERSAIRE
-        $(document).on('click', '#popup-choix-offre img', function(){
+        $(document).on('click', '#popup-choix-offre input', function(){
             $('#choisir').show()
         })
 
@@ -434,30 +434,7 @@
 
         })
 
-    //AMELIORATION UI
 
-    //UI POPUP OFFRE
-    $(document).on('click', '#popup-choix-offre img:nth-of-type(1)', function(){
-
-        $('#popup-choix-offre img').css('transform', 'scale(1)')
-        $(this).css('transform', 'scale(1.1)')
-        document.getElementById('offre1').checked=true;
-    })
-
-    $(document).on('click', '#popup-choix-offre img:nth-of-type(2)', function(){
-
-        $('#popup-choix-offre img').css('transform', 'scale(1)')
-        $(this).css('transform', 'scale(1.1)')
-        document.getElementById('offre2').checked=true;
-    })
-
-    $(document).on('click', '#popup-choix-offre img:nth-of-type(3)', function(){
-
-        $('#popup-choix-offre img').css('transform', 'scale(1)')
-        $(this).css('transform', 'scale(1.1)')
-        document.getElementById('offre3').checked=true;
-    })
-    //FIN AMELIORATION UI
 
     </script>
 {% endblock %}

@@ -6,7 +6,7 @@ body{
 }
 
 #conteneur{
-
+background-color: gray;
 
 }
 /*PLATEAU DE JEU*/
@@ -192,11 +192,11 @@ body{
 }
 
 .nb-carte-sud .indic{
-    margin-top: 4%;
+    margin-top: 7%;
 }
 
 #nb1 .indic{
-    background-color: #2E3228;
+    background-color: lightgray;
 }
 
 #nb2 .indic{
@@ -233,9 +233,7 @@ body{
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-#popup-choix-offre input{
-    display: none;
-}
+
 
 #emplacementSud1{
     grid-column: 1/2;
@@ -258,4 +256,45 @@ body{
 #emplacementSud7{
     grid-column: 7/8;
 }
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+}
 
+input[type=radio] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+}
+
+#deck-sud input[type=checkbox]{
+    border: 3px solid #f7f7f7;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+#deck-sud input[type=checkbox]:checked{
+
+    background-color: #f7f7f7;
+
+}
+
+input[type=radio]{
+    border: 3px solid #f7f7f7;
+    border-radius: 50%;
+    padding: 5px;
+}
+
+input[type=radio]:checked{
+
+    background-color: #f7f7f7;
+
+}
+
+#overlay-actions{
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    height: 100%;
+}
