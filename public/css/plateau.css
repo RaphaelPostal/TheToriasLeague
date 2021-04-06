@@ -217,3 +217,11 @@ body{
 #nb7 .indic{
     background-color: #F43784;
 }
+
+#popup-choix-offre{
+    position: absolute;
+    top: 250px;
+    left: 35%;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+}

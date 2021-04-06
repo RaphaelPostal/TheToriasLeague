@@ -200,16 +200,20 @@
     </div>
 
 
+        {% if adversaire.actions.OFFRE.CartesChoisiesMoi != [] %}
+            {% if adversaire.actions.OFFRE.CartesChoisiesAdversaire == [] %}
+                <div id="popup-choix-offre">
+                {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
+                    <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">{{ card }}
+                    <input type="radio" name="choix_adv_offre" value="{{ card }}"
+                           class="choixAdvOffre">
 
-        {% if adversaire.actions.OFFRE.CartesChoisiesAdversaire == [] %}
-        {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
-            <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 60px">{{ card }}
-            <input type="radio" name="choix_adv_offre" value="{{ card }}"
-                   class="choixAdvOffre">
-
-        {% endfor %}
+                {% endfor %}
+                    <button id="choisir" style="display: none">Choisir cette carte</button>
+                </div>
+            {% endif %}
         {% endif %}
-        <button id="choisir" style="display: none">Choisir cette carte</button>
+
 
 
 
