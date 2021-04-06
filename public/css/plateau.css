@@ -1,9 +1,14 @@
 body{
     margin: 0;
     padding: 0;
+
+
 }
 
+#conteneur{
 
+
+}
 /*PLATEAU DE JEU*/
 #plateau{
 
@@ -219,9 +224,19 @@ body{
 }
 
 #popup-choix-offre{
-    position: absolute;
-    top: 250px;
-    left: 35%;
+    border-radius: 10px;
+    border: 8px solid gold;
+    position: fixed;
+    top: 30vh;
+    left: 30vw;
     padding: 50px;
     background-color: rgba(0, 0, 0, 0.8);
+}
+
+#popup-choix-offre input{
+    display: none;
+}
+
+#deck-sud input[type="radio"]{
+    display: none;
 }

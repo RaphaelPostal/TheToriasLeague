@@ -186,15 +186,15 @@
 
             <input type="radio" name="carte_secret" value="{{ card }}"
                    style="display: none"
-                   class="choixSecret">
+                   class="choixSecret" id="secret{{ loop.index }}">
 
             <input type="checkbox" name="carte_depot_{{ card }}" value="{{ card }}"
                    style="display: none"
-                   class="choixDepot">
+                   class="choixDepot" id="depot{{ loop.index }}">
 
             <input type="checkbox" name="carte_offre_{{ card }}" value="{{ card }}"
                    style="display: none"
-                   class="choixOffre">
+                   class="choixOffre" id="offre{{ loop.index }}">
 
         {% endfor %}
     </div>
@@ -203,12 +203,14 @@
         {% if adversaire.actions.OFFRE.CartesChoisiesMoi != [] %}
             {% if adversaire.actions.OFFRE.CartesChoisiesAdversaire == [] %}
                 <div id="popup-choix-offre">
+                    <h4 style="color:gold">Offre : choisissez une carte</h4>
+
                 {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
                     <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">{{ card }}
                     <input type="radio" name="choix_adv_offre" value="{{ card }}"
-                           class="choixAdvOffre">
+                           class="choixAdvOffre" id="offre{{ loop.index }}">
 
-                {% endfor %}
+                {% endfor %}<br><br>
                     <button id="choisir" style="display: none">Choisir cette carte</button>
                 </div>
             {% endif %}
