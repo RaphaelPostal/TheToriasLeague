@@ -237,6 +237,25 @@ body{
     display: none;
 }
 
-#deck-sud input[type="radio"]{
-    display: none;
+#emplacementSud1{
+    grid-column: 1/2;
 }
+#emplacementSud2{
+    grid-column: 2/3;
+}
+#emplacementSud3{
+    grid-column: 3/4;
+}
+#emplacementSud4{
+    grid-column: 4/5;
+}
+#emplacementSud5{
+    grid-column: 5/6;
+}
+#emplacementSud6{
+    grid-column: 6/7;
+}
+#emplacementSud7{
+    grid-column: 7/8;
+}
+

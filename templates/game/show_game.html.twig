@@ -127,11 +127,8 @@
 
         })
 
-        $(document).on('click', '#deck-sud img', function(){
-            if(action=='secret'){
-                $('#valider').show()
-            }
-
+        $(document).on('click', '.choixSecret', function(){
+            $('#valider').show()
         })
         /*FIN SECRET*/
 
@@ -438,124 +435,6 @@
         })
 
     //AMELIORATION UI
-
-    //UI CARTES MAINS
-    $(document).on('click', '#deck-sud img:nth-of-type(1)', function(){
-
-
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret1').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot1').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre1').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange1').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-
-    $(document).on('click', '#deck-sud img:nth-of-type(2)', function(){
-
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret2').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot2').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre2').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange2').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-    $(document).on('click', '#deck-sud img:nth-of-type(3)', function(){
-
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret3').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot3').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre3').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange3').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-    $(document).on('click', '#deck-sud img:nth-of-type(4)', function(){
-
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret4').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot4').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre4').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange4').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-    $(document).on('click', '#deck-sud img:nth-of-type(5)', function(){
-
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret5').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot5').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre5').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange5').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-    $(document).on('click', '#deck-sud img:nth-of-type(6)', function(){
-
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret6').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot6').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre6').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange6').checked=true;
-        }
-        $(this).css('transform', 'scale(1.1)')
-
-    })
-    $(document).on('click', '#deck-sud img:nth-of-type(7)', function(){
-        $(this).css('transform', 'scale(1.1)')
-        //UI SECRET
-        if(action == 'secret'){
-            $('#deck-sud img').css('transform', 'scale(1)')
-            document.getElementById('secret7').checked=true;
-        }else if(action=='depot'){
-            document.getElementById('depot7').checked=true;
-        }else if(action=='offre'){
-            document.getElementById('offre7').checked=true;
-        }else if(action='echange'){
-            document.getElementById('echange7').checked=true;
-        }
-
-    })
-    //FIN UI CARTES MAINS
-
-
-
 
     //UI POPUP OFFRE
     $(document).on('click', '#popup-choix-offre img:nth-of-type(1)', function(){
