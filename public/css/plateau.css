@@ -224,6 +224,14 @@ background-color: gray;
     background-color: #F43784;
 }
 
+.overlay-big{
+    position: absolute;
+
+    width: 100vw;
+    height: 100vh;
+
+}
+
 #popup-choix-offre{
     border-radius: 10px;
     border: 8px solid gold;
