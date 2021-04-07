@@ -123,13 +123,35 @@
 
         /*LES 4 ACTIONS*/
 
-        /*SECRET*/
+
         let action
         var selection_secret = false
+        var selection_depot = false
+        var selection_offre = false
+        var selection_echange = false
 
+    /*SECRET*/
         $(document).on('click', '#secret', function(){
+
             console.log('secret')
             action = 'secret' //mémorise l'action en cours
+
+            $('.action_sud').css('transform', 'scale(1)')
+
+             selection_depot = false
+             selection_offre = false
+             selection_echange = false
+            if(selection_secret == false){
+
+                $(this).css('transform', 'scale(1.1)')
+                $('#mon-action').html('SECRET')
+
+            }else{
+                $(this).css('transform', 'scale(1)')
+                $('#mon-action').html('')
+            }
+            selection_secret = !selection_secret
+
             $('.choixSecret').toggle()
             $('.choixDepot').hide()
             $('.choixOffre').hide()
@@ -146,6 +168,21 @@
         $(document).on('click', '#depot', function(){
             console.log('depot')
             action = 'depot' //mémorise l'action en cours
+            $('.action_sud').css('transform', 'scale(1)')
+            selection_secret = false
+            selection_offre = false
+            selection_echange = false
+
+            if(selection_depot == false){
+
+                $(this).css('transform', 'scale(1.1)')
+                $('#mon-action').html('DÉPÔT')
+
+            }else{
+                $(this).css('transform', 'scale(1)')
+                $('#mon-action').html('')
+            }
+            selection_depot= !selection_depot
             $('.choixDepot').toggle()
             $('.choixSecret').hide()
             $('.choixOffre').hide()
@@ -211,6 +248,21 @@
         $(document).on('click', '#offre', function(){
             console.log('offre')
             action = 'offre'
+            $('.action_sud').css('transform', 'scale(1)')
+            selection_secret = false
+            selection_depot = false
+            selection_echange = false
+
+            if(selection_offre == false){
+
+                $(this).css('transform', 'scale(1.1)')
+                $('#mon-action').html('OFFRE')
+
+            }else{
+                $(this).css('transform', 'scale(1)')
+                $('#mon-action').html('')
+            }
+            selection_offre = !selection_offre
             $('.choixOffre').toggle()
             $('.choixSecret').hide()
             $('.choixDepot').hide()
