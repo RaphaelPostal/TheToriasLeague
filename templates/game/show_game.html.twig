@@ -79,11 +79,15 @@
                     console.log(data)
                     if (data == false) {
                         $('#message').html('Tour de votre adversaire')
-                        $('#finDeTour').hide()
+
+
                         //rafraichir le plateau pour voir ce que mon adversaire fait
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#overlay-actions').show()
                     } else {
                         $('#message').html('C\'est mon tour...')
+
+
                         //Piocher une carte
 
                         $.ajax({
@@ -94,11 +98,17 @@
 
                         //pour être sur, mettre à jour le plateau, dès que je récupère true
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        setTimeout(function (){
+                            $('#overlay-actions').hide()
+                            $('#overlay-actions').css('display', 'none')
+                        },1000)
+
+                        /*$('#plateau').load({#"{{ path('refresh_plateau_game', {game:game.id}) }}"#})
+                        $('#plateau').load({#"{{ path('refresh_plateau_game', {game:game.id}) }}"  #})*/
 
                         clearInterval(boucle)
                         console.log('ça tourne plus')
+
                         $('#finDeTour').show()
 
                     }
