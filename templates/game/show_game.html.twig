@@ -412,41 +412,42 @@
             }
             console.log(numE_1)
             if(click_echange == 2){
-                if(numE_1!=0){
-                    numE_2 = $(this).val()
-                }else{
+                if(numE_1==0){
                     numE_1 = $(this).val()
+                }else if(numE_2==0){
+                    numE_2 = $(this).val()
+                }else if(numE_3==0){
+                    numE_3 = $(this).val()
+                }else{
+                    numE_4 = $(this).val()
                 }
 
             }
 
             if(click_echange == 3){
-                if(numE_3!=0 && numE_1!=0){
-                    numE_2=$(this).val()
-                }else if(numE_3!=0 && numE_2!=0){
+                if(numE_1==0){
                     numE_1 = $(this).val()
-                }else if(numE_1!=0 && numE_4!=0){
-                    numE_2=$(this).val()
-                }else{
-                    numE_3=$(this).val()
-                }
-                
-            }
-
-            if(click_echange == 4){
-                if(numE_4!=0){
-                    if(numE_3!=0 && numE_2!=0){
-                        numE_1=$(this).val()
-                    }else if(numE_3!=0 && numE_1!=0){
-                        numE_2=$(this).val()
-                    }else if(numE_2!=0 && numE_1!=0){
-                        numE_2=$(this).val()
-                    }
-
+                }else if(numE_2==0){
+                    numE_2 = $(this).val()
+                }else if(numE_3==0){
+                    numE_3 = $(this).val()
                 }else{
                     numE_4 = $(this).val()
                 }
 
+            }
+
+            if(click_echange == 4){
+
+                if(numE_1==0){
+                    numE_1 = $(this).val()
+                }else if(numE_2==0){
+                    numE_2 = $(this).val()
+                }else if(numE_3==0){
+                    numE_3 = $(this).val()
+                }else{
+                    numE_4 = $(this).val()
+                }
 
 
             }
