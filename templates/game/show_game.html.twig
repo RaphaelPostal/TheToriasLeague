@@ -26,7 +26,6 @@
 {% block javascripts %}
     <script>
 
-
     //PARTIE JOUABLILITE
         let boucle
         $(document).ready(function(){
@@ -95,16 +94,14 @@
 
                         })
 
-
                         //pour être sur, mettre à jour le plateau, dès que je récupère true
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         setTimeout(function (){
                             $('#overlay-actions').hide()
 
                         },1000)
-
-                        /*$('#plateau').load({#"{{ path('refresh_plateau_game', {game:game.id}) }}"#})
-                        $('#plateau').load({#"{{ path('refresh_plateau_game', {game:game.id}) }}"  #})*/
 
                         clearInterval(boucle)
                         console.log('ça tourne plus')
@@ -155,6 +152,7 @@
             $('.choixSecret').toggle()
             $('.choixDepot').hide()
             $('.choixOffre').hide()
+            $('.choixEchange').hide()
 
 
         })
@@ -186,6 +184,7 @@
             $('.choixDepot').toggle()
             $('.choixSecret').hide()
             $('.choixOffre').hide()
+            $('.choixEchange').hide()
 
         })
 
@@ -266,6 +265,7 @@
             $('.choixOffre').toggle()
             $('.choixSecret').hide()
             $('.choixDepot').hide()
+            $('.choixEchange').hide()
 
         })
 
@@ -363,6 +363,166 @@
         })
 
         //FIN OFFRE COTE ADVERSAIRE
+
+
+
+
+    //ECHANGE COTE MOI
+    $(document).on('click', '#echange', function(){
+        console.log('echange')
+        action = 'echange'
+        $('.action_sud').css('transform', 'scale(1)')
+        selection_secret = false
+        selection_depot = false
+        selection_offre = false
+
+        if(selection_echange == false){
+
+            $(this).css('transform', 'scale(1.1)')
+            $('#mon-action').html('ÉCHANGE')
+
+        }else{
+            $(this).css('transform', 'scale(1)')
+            $('#mon-action').html('')
+        }
+        selection_echange = !selection_echange
+        $('.choixEchange').toggle()
+        $('.choixSecret').hide()
+        $('.choixDepot').hide()
+        $('.choixOffre').hide()
+
+    })
+
+
+    var click_echange = 0
+    var numE_1= 0
+    var numE_2 = 0
+    var numE_3 = 0
+    var numE_4 = 0
+
+    $(document).on('click', '.choixEchange', function (){
+        if($(this).is(':checked')){
+            click_echange++;
+
+            console.log('nb de click: '+click_echange)
+
+            if(click_echange == 1){
+                numE_1 = $(this).val()
+
+            }
+            console.log(numE_1)
+            if(click_echange == 2){
+                if(numE_1!=0){
+                    numE_2 = $(this).val()
+                }else{
+                    numE_1 = $(this).val()
+                }
+
+            }
+
+            if(click_echange == 3){
+                if(numE_3!=0 && numE_1!=0){
+                    numE_2=$(this).val()
+                }else if(numE_3!=0 && numE_2!=0){
+                    numE_1 = $(this).val()
+                }else if(numE_1!=0 && numE_4!=0){
+                    numE_2=$(this).val()
+                }else{
+                    numE_3=$(this).val()
+                }
+                
+            }
+
+            if(click_echange == 4){
+                if(numE_4!=0){
+                    if(numE_3!=0 && numE_2!=0){
+                        numE_1=$(this).val()
+                    }else if(numE_3!=0 && numE_1!=0){
+                        numE_2=$(this).val()
+                    }else if(numE_2!=0 && numE_1!=0){
+                        numE_2=$(this).val()
+                    }
+
+                }else{
+                    numE_4 = $(this).val()
+                }
+
+
+
+            }
+        }else{
+            //Gérer quand on déselectionne un carte
+
+            if(click_echange==2){
+                if($(this).val()==numE_3){
+                    numE_3=0
+                }else if($(this).val()==numE_2){
+                    numE_2=0
+
+                }else{
+                    numE_1=numE_2
+                    numE_2=0
+                }
+
+
+
+            }
+
+            if(click_echange==3){
+                if($(this).val()==numE_3){
+                    numE_3=0
+
+                }else if($(this).val()==numE_2){
+                    numE_2=0
+                }else if($(this).val()==numE_1){
+                    numE_1=numE_2
+                    numE_2=0
+
+                }
+
+
+
+            }
+
+            if(click_echange==4){
+                if($(this).val()==numE_4){
+                    numE_4=0
+
+                }else if($(this).val()==numE_3){
+                    numE_3=numE_4
+                    numE_4=0
+                }else if($(this).val()==numE_2){
+                    numE_2=0
+                }else if($(this).val()==numE_1){
+                    numE_1=numE_2
+                    numE_2=0
+                }
+
+            }
+
+            click_echange--;
+            console.log('nb de click: '+click_echange)
+
+
+        }
+        console.log('carte 1: '+numE_1)
+        console.log('carte 2: '+numE_2)
+        console.log('carte 3: '+numE_3)
+        console.log('carte 4: '+numE_4)
+
+        if(click_echange!=4){
+            $('#valider-echange').hide();
+            $('.choixEchange').show()
+        }else{
+
+            $('.choixEchange').hide()
+            $('.choixEchange:checked').show()
+
+            $('#valider-echange').show();
+        }
+
+    })
+        //FIN ECHANGE COTE MOI
 
 
 

@@ -192,6 +192,7 @@
             <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
             <button id="valider" style="display: none">Valider action</button>
             <button id="valider-offre" style="display: none">Faire l'offre</button>
+        <button id="valider-echange" style="display: none">Faire l'échange</button>
 
 
 
@@ -207,7 +208,7 @@
 
         {% for card in moi.handCards %}
             <div id="emplacementSud{{ loop.index }}">
-            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">
+            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">{{ card }}
 
                 <input type="radio" name="carte_secret" value="{{ card }}"
                        style="display: none"
@@ -220,6 +221,10 @@
                 <input type="checkbox" name="carte_offre_{{ card }}" value="{{ card }}"
                        style="display: none"
                        class="choixOffre" id="offre{{ loop.index }}">
+
+                <input type="checkbox" name="carte_echange_{{ card }}" value="{{ card }}"
+                       style="display: none"
+                       class="choixEchange" id="echange{{ loop.index }}">
             </div>
         {% endfor %}
     </div>
