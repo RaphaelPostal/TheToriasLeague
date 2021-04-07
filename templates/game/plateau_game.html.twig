@@ -171,10 +171,23 @@
 
 
     <div id="actions-sud">
-
+            {% if moi.actions.SECRET == false %}
             <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
+                {% else %}
+                    <img id="secret-disable" class="action_sud" src="{{ asset('img/actions/secret_nb.png') }}">
+            {% endif %}
+
+        {% if moi.actions.DEPOT == false %}
             <img id="depot" class="action_sud" src="{{ asset('img/actions/depot_bleu.png') }}">
+            {% else %}
+                <img id="depot-disable" class="action_sud" src="{{ asset('img/actions/depot_nb.png') }}">
+        {% endif %}
+
+        {% if moi.actions.OFFRE.CartesChoisiesMoi == [] %}
             <img id="offre" class="action_sud" src="{{ asset('img/actions/offre_bleu.png') }}">
+            {% else %}
+                <img id="offre-disable" class="action_sud" src="{{ asset('img/actions/offre_nb.png') }}">
+        {% endif %}
             <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
             <button id="valider" style="display: none">Valider action</button>
             <button id="valider-offre" style="display: none">Faire l'offre</button>
