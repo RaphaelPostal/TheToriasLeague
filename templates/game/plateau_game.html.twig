@@ -1,10 +1,4 @@
 
-{% if app.session.get('pioche') ==0 %}
-    <script type="text/javascript">
-        $('img').css('transform', 'scale(1.2)')
-    </script>
-{% endif %}
-<h1>{{ app.session.get('pioche') }}</h1>
     <div id="actions-nord">
         <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
         <img class="action_nord" src="{{ asset('img/actions/depot_rouge.png') }}">

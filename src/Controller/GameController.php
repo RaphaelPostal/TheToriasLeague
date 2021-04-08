@@ -241,7 +241,6 @@ class GameController extends AbstractController
             $pioche = $round->getPioche();
         var_dump($pioche);
         //tester s'il a pas déjà pioché
-        $session = $this->get('session');
         if($user->getDejaPioche()==0){
 
             if ($joueur === 1) {
@@ -268,8 +267,6 @@ class GameController extends AbstractController
 
             }
 
-            $session->set('pioche', '0');
-
             $user->setDejaPioche(1);
             $entityManager->persist($round, $user);
             $entityManager->flush();
@@ -277,8 +274,6 @@ class GameController extends AbstractController
 
             return $this->json($data);
         }else{
-
-            $session->set('pioche', '1');
             return $this->redirectToRoute('show_game', [
                 'game' => $game->getId()
 
