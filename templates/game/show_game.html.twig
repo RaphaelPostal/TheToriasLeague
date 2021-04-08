@@ -78,19 +78,14 @@
                         setTimeout(function(){
                             $.ajax({
                                 url: "{{ path('pioche', {game: game.id}) }}",
-                                success: function(){
-                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                                    setTimeout(function(){
-                                        $('#overlay-actions').hide()
-                                    },1000)
-
-                                },
-
                             })
 
-
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            setTimeout(function(){
+                                $('#overlay-actions').hide()
+                            },1800)
 
                         },1500)
 
