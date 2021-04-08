@@ -52,22 +52,7 @@
            boucle = setInterval(refreshGame, 3000);
         })
 
-        /*$(document).on('click', '#valider-echange', function() {
-            //mettre à jour game en changeant quiJoue
-            //TEST
 
-            $.ajax({
-                url: "{#  {{ path('set_tour', {game: game.id}) }}#}",
-                method: 'POST',
-                success: function(data) {
-                    console.log('le tour à changé pour echange');
-                },
-                error: function(){
-                }
-            })
-
-            boucle = setInterval(refreshGame, 3000);
-        })*/
 
         //refresh game sert à surveiller toutes les 3 sec si couplé avec un set interval si c'est mon tour ou pas
         function refreshGame() {
@@ -90,7 +75,7 @@
                         //Piocher une carte
 
                         $.ajax({
-                            url: "{{ path('pioche', {game: game.id}) }}"
+                            url: "{{ path('pioche', {game: game.id}) }}",
 
                         })
 
@@ -101,7 +86,7 @@
                         setTimeout(function (){
                             $('#overlay-actions').hide()
 
-                        },1000)
+                        },1500)
 
                         clearInterval(boucle)
                         console.log('ça tourne plus')
