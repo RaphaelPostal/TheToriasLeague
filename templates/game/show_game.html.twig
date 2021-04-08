@@ -75,20 +75,29 @@
 
 
                         //Piocher une carte
+                        setTimeout(function(){
+                            $.ajax({
+                                url: "{{ path('pioche', {game: game.id}) }}",
+                                success: function(){
+                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                                    setTimeout(function(){
+                                        $('#overlay-actions').hide()
+                                    },1000)
 
-                        $.ajax({
-                            url: "{{ path('pioche', {game: game.id}) }}",
+                                },
 
-                        })
+                            })
 
-                        //pour être sur, mettre à jour le plateau, dès que je récupère true
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        setTimeout(function (){
-                            $('#overlay-actions').hide()
+
 
                         },1500)
+
+
+                        //pour être sur, mettre à jour le plateau, dès que je récupère true
+
+
 
                         clearInterval(boucle)
                         console.log('ça tourne plus')
@@ -219,10 +228,10 @@
             }
 
             if(click_depot!=2){
-                $('#valider').hide();
+                $('#valider-depot').hide();
                 $('.choixDepot').show()
             }else{
-                $('#valider').show();
+                $('#valider-depot').show();
                 $('.choixDepot').hide()
                 $('.choixDepot:checked').show()
             }
@@ -539,6 +548,7 @@
 
 
         //VALIDATION DES ACTIONS
+        //VALIDATION SECRET
         $(document).on('click', '#valider', function(){
             switch (action) {
                 case 'secret':
@@ -588,7 +598,53 @@
             }, 1500)
         })
 
+    //VALIDATION DEPOT
+    $(document).on('click', '#valider-depot', function(){
 
+            donneesAction = {
+
+                action: 'depot',
+                carte1: $('input[name="carte_depot_'+num1+'"]:checked').val(),
+                carte2: $('input[name="carte_depot_'+num2+'"]:checked').val()
+            }
+
+
+
+        $.ajax({
+            url: "{{ path('action_game', {game: game.id}) }}",
+            data: donneesAction,
+            method: 'POST',
+            success: function(data) {
+
+                if (data == true) {
+                    console.log(donneesAction)
+                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                }
+            },
+            error: function(){
+            }
+        })
+
+        setTimeout(function (){
+            //on change de tour 1,5 sec arpès avoir fini l\'action
+            $.ajax({
+                url: "{{ path('set_tour', {game: game.id}) }}",
+                method: 'POST',
+                success: function(data) {
+                    console.log('le tour à changé');
+                },
+                error: function(){
+                }
+            })
+
+            boucle = setInterval(refreshGame, 3000);
+
+        }, 1500)
+    })
+
+
+
+            //VALIDATION OFFRE
             $(document).on('click', '#valider-offre', function() {
                 click_offre = 0;
                 donneesAction = {
@@ -609,27 +665,29 @@
                             console.log(donneesAction)
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         }
-                        //et on change le tour
-                        $.ajax({
-                            url: "  {{ path('set_tour', {game: game.id}) }}",
-                            method: 'POST',
-                            success: function(data) {
-                                console.log('le tour à changé pour offre');
-                            },
-                            error: function(){
-                            }
-                        })
-
-                        boucle = setInterval(refreshGame, 3000);
                     },
                     error: function(){
                     }
                 })
+                setTimeout(function(){
+                    $.ajax({
+                        url: "  {{ path('set_tour', {game: game.id}) }}",
+                        method: 'POST',
+                        success: function(data) {
+                            console.log('le tour à changé pour offre');
+                        },
+                        error: function(){
+                        }
+                    })
+                    boucle = setInterval(refreshGame, 3000);
+                }, 1500)
+
+
 
 
         })
 
-
+    //VALIDATION ECHANGE
     $(document).on('click', '#valider-echange', function() {
         click_echange = 0;
         donneesAction = {
@@ -652,22 +710,26 @@
                     console.log(donneesAction)
                     $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                 }
-                //et on change le tour
-                $.ajax({
-                    url: "  {{ path('set_tour', {game: game.id}) }}",
-                    method: 'POST',
-                    success: function(data) {
-                        console.log('le tour à changé pour echange');
-                    },
-                    error: function(){
-                    }
-                })
 
-                boucle = setInterval(refreshGame, 3000);
             },
             error: function(){
             }
         })
+
+        setTimeout(function(){
+            //et on change le tour après 1,5 sec
+            $.ajax({
+                url: "  {{ path('set_tour', {game: game.id}) }}",
+                method: 'POST',
+                success: function(data) {
+                    console.log('le tour à changé pour echange');
+                },
+                error: function(){
+                }
+            })
+
+            boucle = setInterval(refreshGame, 3000);
+        }, 1500)
 
 
     })
