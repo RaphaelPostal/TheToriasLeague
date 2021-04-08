@@ -784,22 +784,27 @@ class GameController extends AbstractController
     public function getTour(
         Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager
     ): Response {
-        if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
-            $user = $this->getUser();
+        if($game->getUser2() != null){
+            if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
+                $user = $this->getUser();
 
-            /*$user->setDejaPioche(0);
-            $entityManager->persist($user);
-            $entityManager->flush();*/
-            return $this->json(true);
+                /*$user->setDejaPioche(0);
+                $entityManager->persist($user);
+                $entityManager->flush();*/
+                return $this->json(true);
+            }
+
+            if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
+                /*$user = $this->getUser();
+                $user->setDejaPioche(0);
+                $entityManager->persist($user);
+                $entityManager->flush();*/
+                return $this->json(true);
+            }
+        }else{
+            return $this->json('Pas adversaire');
         }
 
-        if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
-            /*$user = $this->getUser();
-            $user->setDejaPioche(0);
-            $entityManager->persist($user);
-            $entityManager->flush();*/
-            return $this->json(true);
-        }
 
         return $this->json( false);
     }

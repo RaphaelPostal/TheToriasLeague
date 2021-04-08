@@ -9,13 +9,13 @@
         Nom : <input name="nom" type="text" value="{{ user.lastname }}"><br>
         Prénom : <input name="prenom" type="text" value="{{ user.firstname }}"><br>
         Pseudo : <input name="pseudo" type="text" value="{{ user.pseudo }}"><br>
-        Avatar : <img src="{{ asset('img/cartes/'~user.photo) }}" style="width: 50px" alt="votre photo"><br>
+        Avatar : <img src="{{ asset('img/avatars/'~user.photo) }}" style="width: 50px" alt="votre photo"><br>
         <span id="lien-avatars" style="cursor: pointer; font-weight: bold">Avatars</span>
         <div id="avatars">
-            <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/cartes/tharuk.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="sophia" id="sofia"><img id="img-sofia" src="{{ asset('img/cartes/sofia.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="ganormo" id="ganormo"><img id="img-ganormo" src="{{ asset('img/cartes/ganormo.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/cartes/astralia.png') }}" alt="" style="width: 40px"><br><br>
+            <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="" style="width: 40px">
+            <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="" style="width: 40px">
+            <input type="radio" name="photo" value="ganormo" id="ganormo"><img id="img-ganormo" src="{{ asset('img/avatars/ganormo.png') }}" alt="" style="width: 40px">
+            <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/avatars/astralia.png') }}" alt="" style="width: 40px"><br><br>
             <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
         </div>
         <br>

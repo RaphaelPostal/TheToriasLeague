@@ -240,7 +240,7 @@
         {% if adversaire.actions.OFFRE.CartesChoisiesMoi != [] %}
             {% if adversaire.actions.OFFRE.CartesChoisiesAdversaire == [] %}
                 <div class="overlay-big">
-                    <div id="popup-choix-offre">
+                    <div id="popup-choix-offre" style="display: none">
                         <h4 style="color:gold">Offre : choisissez une carte</h4>
 
                     {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
@@ -258,7 +258,7 @@
     {% if adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1 != [] or adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2 != [] %}
         {% if adversaire.actions.ECHANGE.CartesChoisiesAdversaire == [] %}
             <div class="overlay-big">
-                <div id="popup-choix-echange">
+                <div id="popup-choix-echange" style="display: none">
                     <h4 style="color:gold">Echange : choisissez une paire</h4>
 
                     <!-- PAIRE 1-->

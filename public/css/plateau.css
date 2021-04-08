@@ -331,6 +331,20 @@ input[type=radio]:checked{
     animation-duration: 0.3s;
 }
 
+#overlay-wait{
+    height: 120vh;
+    width: 100vw;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 3000;
+}
+
+#overlay-wait h3{
+    color: gold;
+    text-align: center;
+    margin-top: 100px;
+}
+
 @keyframes pop {
     0%{
         transform: scale(1.5);

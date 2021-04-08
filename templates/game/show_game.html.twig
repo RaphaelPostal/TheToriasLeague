@@ -5,7 +5,9 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/plateau.css') }}">
 
-
+    <div id="overlay-wait" style="display: none">
+        <h3>En attente d'un adversaire</h3>
+    </div>
     <div id="message">...</div>
         <div id="conteneur">
         <div id="plateau">
@@ -28,32 +30,12 @@
 {% block javascripts %}
     <script>
 
+
     //PARTIE JOUABLILITE
         let boucle
         $(document).ready(function(){
             boucle = setInterval(refreshGame, 3000);
         })
-        $(document).on('click', '#finDeTour', function() {
-            //mettre à jour game en changeant quiJoue
-            //TEST
-
-            $.ajax({
-                url: "{{ path('set_tour', {game: game.id}) }}",
-                method: 'POST',
-                success: function(data) {
-                    console.log('le tour à changé');
-                },
-                error: function(){
-                }
-            })
-
-            //FIN TEST
-
-            //Bloquer le plateau (overlay, ...)
-            //Relancer le timer...
-           boucle = setInterval(refreshGame, 3000);
-        })
-
 
 
         //refresh game sert à surveiller toutes les 3 sec si couplé avec un set interval si c'est mon tour ou pas
@@ -64,13 +46,18 @@
                 success: function(data) {
                     console.log(data)
                     if (data == false) {
+                        $('#overlay-wait').hide()
                         $('#message').html('Tour de votre adversaire')
 
 
                         //rafraichir le plateau pour voir ce que mon adversaire fait
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         $('#overlay-actions').show()
-                    } else {
+                    } else if(data == 'Pas adversaire'){
+                        $('#overlay-wait').show()
+                        $('#message').html('En attente d\'un adversaire ...')
+                    }else{
+                        $('#overlay-wait').hide()
                         $('#message').html('C\'est mon tour...')
 
 
@@ -85,9 +72,11 @@
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                             setTimeout(function(){
                                 $('#overlay-actions').hide()
-                            },1800)
+                                $('#popup-choix-offre').show()
+                                $('#popup-choix-echange').show()
+                            },1300)
 
-                        },1500)
+                        },1000)
 
 
                         //pour être sur, mettre à jour le plateau, dès que je récupère true

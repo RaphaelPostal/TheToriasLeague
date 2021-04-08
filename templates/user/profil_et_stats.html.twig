@@ -22,7 +22,7 @@
             <p>Nom : {{ user.lastname }}</p>
             <p>Prénom : {{ user.firstname }}</p>
             <p>Pseudo : {{ user.pseudo }}</p>
-            <p><img src="{{ asset('img/cartes/'~user.photo) }}" alt="avatar" style="width: 100px"></p>
+            <p><img src="{{ asset('img/avatars/'~user.photo) }}" alt="avatar" style="width: 100px"></p>
             <p>Inscription : {{ user.inscription|format_datetime('short', 'none', locale='fr') }}</p>
             <p>Dernière connexion : {{ user.derniereConnexion|format_datetime('short', locale='fr') }}</p>
             <p>Classement elo : {{ user.elo }}</p>
