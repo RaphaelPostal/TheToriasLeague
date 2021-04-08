@@ -189,7 +189,13 @@
             {% else %}
                 <img id="offre-disable" class="action_sud" src="{{ asset('img/actions/offre_nb.png') }}">
         {% endif %}
+
+        {% if moi.actions.ECHANGE.CartesChoisiesMoi.Paire1 == [] and moi.actions.ECHANGE.CartesChoisiesMoi.Paire2 == []%}
             <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
+            {% else %}
+                <img id="echange-disable" class="action_sud" src="{{ asset('img/actions/echange_nb.png') }}">
+        {% endif %}
+
             <button id="valider" style="display: none">Valider action</button>
             <button id="valider-offre" style="display: none">Faire l'offre</button>
         <button id="valider-echange" style="display: none">Faire l'échange</button>
@@ -248,7 +254,7 @@
             {% endif %}
         {% endif %}
 
-    {% if adversaire.actions.ECHANGE.CartesChoisiesMoi != [] %}
+    {% if adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1 != [] or adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2 != [] %}
         {% if adversaire.actions.ECHANGE.CartesChoisiesAdversaire == [] %}
             <div class="overlay-big">
                 <div id="popup-choix-echange">

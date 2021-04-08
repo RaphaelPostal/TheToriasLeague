@@ -605,7 +605,7 @@ class GameController extends AbstractController
                     array_push($actions['ECHANGE']['CartesChoisiesAdversaire'], $PaireChoisie);
 
 
-                    unset($actions['ECHANGE']['CartesChoisiesMoi'][$IndexPaireChoisie]);
+                    $actions['ECHANGE']['CartesChoisiesMoi'][$IndexPaireChoisie]=[];
 
                     $round->setUser2Action($actions); //je mets à jour le tableau dans bdd
                     if($IndexPaireChoisie == 'Paire1'){
@@ -665,7 +665,8 @@ class GameController extends AbstractController
                     $round->setUser2ActionEnCours(null);
                     $game->getUser1()->setDejaPioche(0);
                 }elseif($joueur === 2){
-                    $actions = $round->getUser2Action(); //un tableau...
+
+                    $actions = $round->getUser1Action(); //un tableau...
                     if($request->request->get('PaireChoisie')=='paire1'){
 
                         $PaireChoisie = $actions['ECHANGE']['CartesChoisiesMoi']['Paire1'];
@@ -678,9 +679,9 @@ class GameController extends AbstractController
                     array_push($actions['ECHANGE']['CartesChoisiesAdversaire'], $PaireChoisie);
 
 
-                    unset($actions['ECHANGE']['CartesChoisiesMoi'][$IndexPaireChoisie]);
+                    $actions['ECHANGE']['CartesChoisiesMoi'][$IndexPaireChoisie]=[];
 
-                    $round->setUser2Action($actions); //je mets à jour le tableau dans bdd
+                    $round->setUser1Action($actions); //je mets à jour le tableau dans bdd
                     if($IndexPaireChoisie == 'Paire1'){
                         $cartesRestantes = $actions['ECHANGE']['CartesChoisiesMoi']['Paire2'];
                     }elseif ($IndexPaireChoisie == 'Paire2'){
@@ -691,9 +692,30 @@ class GameController extends AbstractController
                     $user2BoardCards = $round->getUser2BoardCards();
                     $user1BoardCards = $round->getUser1BoardCards();
 
-                    //REPARTITION POUR LE JOUEUR 2 avec les 2 cartes restantes
+                    //REPARTITION POUR LE JOUEUR 1 avec les 2 cartes restantes
                     foreach($cartesRestantes as $carte){
 
+                        if($carte == 1 || $carte == 2){
+                            array_push($user1BoardCards['KRULMO'], $carte);
+                        }elseif ($carte == 3 || $carte == 4){
+                            array_push($user1BoardCards['GANORMO'], $carte);
+                        }elseif($carte == 5 || $carte == 6){
+                            array_push($user1BoardCards['RASDAR'], $carte);
+                        }elseif($carte == 7 || $carte == 8 || $carte == 9){
+                            array_push($user1BoardCards['ARCADIA'], $carte);
+                        }elseif ($carte == 10 || $carte == 11 || $carte == 12){
+                            array_push($user1BoardCards['ASTRALIA'], $carte);
+                        }elseif($carte == 13 || $carte == 14 || $carte == 15 || $carte == 16){
+                            array_push($user1BoardCards['THARUK'], $carte);
+                        }elseif($carte == 17 || $carte == 18 || $carte == 19 || $carte == 20 || $carte == 21){
+                            array_push($user1BoardCards['SOFIA'], $carte);
+                        }
+
+
+                    }
+
+                    //REPARTITION POUR LE JOUEUR 2 avec sa paire choisie
+                    foreach ($PaireChoisie as $carte){
                         if($carte == 1 || $carte == 2){
                             array_push($user2BoardCards['KRULMO'], $carte);
                         }elseif ($carte == 3 || $carte == 4){
@@ -709,34 +731,13 @@ class GameController extends AbstractController
                         }elseif($carte == 17 || $carte == 18 || $carte == 19 || $carte == 20 || $carte == 21){
                             array_push($user2BoardCards['SOFIA'], $carte);
                         }
-
-
-                    }
-
-                    //REPARTITION POUR LE JOUEUR 1 avec sa paire choisie
-                    foreach ($PaireChoisie as $carte){
-                        if($carte == 1 || $carte == 2){
-                            array_push($user1BoardCards['KRULMO'], $carteChoisie);
-                        }elseif ($carteChoisie == 3 || $carteChoisie == 4){
-                            array_push($user1BoardCards['GANORMO'], $carteChoisie);
-                        }elseif($carteChoisie == 5 || $carteChoisie == 6){
-                            array_push($user1BoardCards['RASDAR'], $carteChoisie);
-                        }elseif($carteChoisie == 7 || $carteChoisie == 8 || $carteChoisie == 9){
-                            array_push($user1BoardCards['ARCADIA'], $carteChoisie);
-                        }elseif ($carteChoisie == 10 || $carteChoisie == 11 || $carteChoisie == 12){
-                            array_push($user1BoardCards['ASTRALIA'], $carteChoisie);
-                        }elseif($carteChoisie == 13 || $carteChoisie == 14 || $carteChoisie == 15 || $carteChoisie == 16){
-                            array_push($user1BoardCards['THARUK'], $carteChoisie);
-                        }elseif($carteChoisie == 17 || $carteChoisie == 18 || $carteChoisie == 19 || $carteChoisie == 20 || $carteChoisie == 21){
-                            array_push($user1BoardCards['SOFIA'], $carteChoisie);
-                        }
                     }
 
 
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
-                    $round->setUser2ActionEnCours(null);
-                    $game->getUser1()->setDejaPioche(0);
+                    $round->setUser1ActionEnCours(null);
+                    $game->getUser2()->setDejaPioche(0);
                 }
                 break;
 
