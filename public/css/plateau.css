@@ -242,6 +242,16 @@ background-color: gray;
     background-color: rgba(0, 0, 0, 0.8);
 }
 
+#popup-choix-echange{
+    border-radius: 10px;
+    border: 8px solid gold;
+    position: fixed;
+    top: 30vh;
+    left: 30vw;
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
 
 
 #emplacementSud1{

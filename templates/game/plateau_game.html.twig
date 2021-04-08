@@ -208,7 +208,7 @@
 
         {% for card in moi.handCards %}
             <div id="emplacementSud{{ loop.index }}">
-            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">{{ card }}
+            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">
 
                 <input type="radio" name="carte_secret" value="{{ card }}"
                        style="display: none"
@@ -247,6 +247,34 @@
                 </div>
             {% endif %}
         {% endif %}
+
+    {% if adversaire.actions.ECHANGE.CartesChoisiesMoi != [] %}
+        {% if adversaire.actions.ECHANGE.CartesChoisiesAdversaire == [] %}
+            <div class="overlay-big">
+                <div id="popup-choix-echange">
+                    <h4 style="color:gold">Echange : choisissez une paire</h4>
+
+                    <!-- PAIRE 1-->
+                    {%for card in adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1%}
+                    <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">
+
+                    {% endfor %}
+                    <input type="radio" name="choix_adv_echange" value="paire1"
+                           class="choixAdvEchange" id="echange1">
+
+                    <!-- PAIRE 2-->
+                    {%for card in adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2%}
+                        <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">
+
+                    {% endfor %}
+                    <input type="radio" name="choix_adv_echange" value="paire2"
+                           class="choixAdvEchange" id="echange2"><br><br>
+
+                    <button id="choisir-paire" style="display: none">Choisir cette paire</button>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
 
 
 

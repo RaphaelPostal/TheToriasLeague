@@ -4,6 +4,7 @@
 {% endblock %}
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/plateau.css') }}">
+    {{ dump(round) }}
     <div id="message">...</div>
         <div id="conteneur">
         <div id="plateau">
@@ -347,7 +348,14 @@
             $('#choisir').show()
         })
 
-        //FIN OFFRE COTE ADVERSAIRE
+
+
+    //ECHANGE COTE ADVERSAIRE
+    $(document).on('click', '#popup-choix-echange input', function(){
+        $('#choisir-paire').show()
+    })
+
+
 
 
 
@@ -392,32 +400,43 @@
             console.log('nb de click: '+click_echange)
 
             if(click_echange == 1){
+                $(this).css('background-color', 'orange')
                 numE_1 = $(this).val()
 
             }
             console.log(numE_1)
             if(click_echange == 2){
+
                 if(numE_1==0){
                     numE_1 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_2==0){
                     numE_2 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_3==0){
                     numE_3 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }else{
                     numE_4 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }
 
             }
 
             if(click_echange == 3){
+
                 if(numE_1==0){
                     numE_1 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_2==0){
                     numE_2 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_3==0){
                     numE_3 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }else{
                     numE_4 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }
 
             }
@@ -426,18 +445,23 @@
 
                 if(numE_1==0){
                     numE_1 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_2==0){
                     numE_2 = $(this).val()
+                    $(this).css('background-color', 'orange')
                 }else if(numE_3==0){
                     numE_3 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }else{
                     numE_4 = $(this).val()
+                    $(this).css('background-color', 'green')
                 }
 
 
             }
         }else{
             //Gérer quand on déselectionne un carte
+            $(this).css('background', 'none')
 
             if(click_echange==2){
                 if($(this).val()==numE_3){
@@ -530,8 +554,6 @@
                 }
                     break;
 
-                case 'echange':
-                    break;
             }
             $.ajax({
                 url: "{{ path('action_game', {game: game.id}) }}",
@@ -606,6 +628,49 @@
 
         })
 
+
+    $(document).on('click', '#valider-echange', function() {
+        click_echange = 0;
+        donneesAction = {
+
+            action: 'echange',
+            carte1: $('input[name="carte_echange_'+numE_1+'"]:checked').val(),
+            carte2: $('input[name="carte_echange_'+numE_2+'"]:checked').val(),
+            carte3: $('input[name="carte_echange_'+numE_3+'"]:checked').val(),
+            carte4: $('input[name="carte_echange_'+numE_4+'"]:checked').val()
+        }
+
+        $.ajax({
+            url: "{{ path('action_game', {game: game.id}) }}",
+            data: donneesAction,
+            method: 'POST',
+            success: function(data) {
+                console.log(donneesAction)
+                //on refresh le plateau
+                if (data == true) {
+                    console.log(donneesAction)
+                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                }
+                //et on change le tour
+                $.ajax({
+                    url: "  {{ path('set_tour', {game: game.id}) }}",
+                    method: 'POST',
+                    success: function(data) {
+                        console.log('le tour à changé pour echange');
+                    },
+                    error: function(){
+                    }
+                })
+
+                boucle = setInterval(refreshGame, 3000);
+            },
+            error: function(){
+            }
+        })
+
+
+    })
+
         //CHOIX POUR OFFRE ET ECHANGE
 
 
@@ -641,6 +706,39 @@
 
 
         })
+
+    $(document).on('click', '#choisir-paire', function() {
+        //placer sur plateau moi carte choisie et ajax plateau adv 2 cartes restantes
+
+        donneesAction = {
+            action: 'echange_adv',
+            PaireChoisie : $('input[name="choix_adv_echange"]:checked').val(),
+        }
+
+        $.ajax({
+            url: "{{ path('action_game', {game: game.id}) }}",
+            data: donneesAction,
+            method: 'POST',
+            success: function(data) {
+                //on refresh le plateau
+                if (data == true) {
+                    console.log(donneesAction)
+
+                    //on pioche pour être BIEN SUR d'avoir une nouvelle carte ???
+
+                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+
+                    refreshGame();
+
+                }
+
+            },
+            error: function(){
+            }
+        })
+
+
+    })
 
 
 
