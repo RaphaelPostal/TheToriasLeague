@@ -206,14 +206,21 @@ class GameController extends AbstractController
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
         }
+                if($round->getPioche()!= [] ){
+                    return $this->render('game/plateau_game.html.twig', [
+                        'game' => $game,
+                        'round' => $game->getRounds()[0],
+                        'cards' => $tCards,
+                        'moi' => $moi,
+                        'adversaire' => $adversaire
+                    ]);
+                }else{
+                    return $this->render('game/resultats.html.twig', [
+                        'game' => $game,
 
-                return $this->render('game/plateau_game.html.twig', [
-                    'game' => $game,
-                    'round' => $game->getRounds()[0],
-                    'cards' => $tCards,
-                    'moi' => $moi,
-                    'adversaire' => $adversaire
-                ]);
+                    ]);
+                }
+
 
 
 
@@ -859,14 +866,18 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/resultats/{game}", name="resultats_game")
+     * @Route("/resultatsGame/{game}", name="resultats_game")
      */
     public function resultats(
         EntityManagerInterface $entityManager,
         Game $game,
         Round $round
     ): Response {
+        return $this->render('game/plateau_resultats.html.twig', [
+            'game' => $game,
+            'round' => $game->getRounds()[0],
 
-        return $this->render('game/resultats.html.twig');
+        ]);
+
     }
 }
