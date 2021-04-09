@@ -206,18 +206,18 @@ class GameController extends AbstractController
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
         }
-                if($round->getPioche()!= [] ){
+                if( $round->getPioche() == [] && $round->getUser1HandCards() == [] && $round->getUser2HandCards() == [] && $round->getUser1ActionEnCours() == null && $round->getUser2ActionEnCours()==null){
+                    return $this->render('game/resultats.html.twig', [
+                        'game' => $game,
+
+                    ]);
+                }else{
                     return $this->render('game/plateau_game.html.twig', [
                         'game' => $game,
                         'round' => $game->getRounds()[0],
                         'cards' => $tCards,
                         'moi' => $moi,
                         'adversaire' => $adversaire
-                    ]);
-                }else{
-                    return $this->render('game/resultats.html.twig', [
-                        'game' => $game,
-
                     ]);
                 }
 
@@ -797,7 +797,9 @@ class GameController extends AbstractController
     public function getTour(
         Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager, Round $round
     ): Response {
-
+        if($round->getPioche() == [] && $round->getUser1HandCards() == [] && $round->getUser2HandCards() == []){
+            return $this->json('Fin de partie');
+        }
         if($game->getUser2() != null){
 
                 if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
