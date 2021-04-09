@@ -10,8 +10,12 @@
     </div>
     <div id="message">...</div>
         <div id="conteneur">
+        {{ dump(round.User1HandCards) }}
         <div id="plateau">
+
             {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
+
+
         </div>
 
 

@@ -113,8 +113,9 @@
 
     </div>
 
-
+    {% if round.pioche!= [] %}
     <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}"></div>
+    {% endif %}
 
     <div id="nbs-cartes-sud">
         <div class="nb-carte-sud" id="nb1">

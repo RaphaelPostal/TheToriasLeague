@@ -177,8 +177,9 @@ class GameController extends AbstractController
      * @param Game $game
      * @route("/refresh/{game}", name="refresh_plateau_game")
      */
-    public function refreshPlateauGame(CardRepository $cardRepository, Game $game)
+    public function refreshPlateauGame(CardRepository $cardRepository, Game $game, Round $round)
     {
+
         $cards = $cardRepository->findAll();
         $tCards = [];
         foreach ($cards as $card) {
@@ -205,14 +206,23 @@ class GameController extends AbstractController
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
         }
+            if($round->getPioche()!= []){
+                return $this->render('game/plateau_game.html.twig', [
+                    'game' => $game,
+                    'round' => $game->getRounds()[0],
+                    'cards' => $tCards,
+                    'moi' => $moi,
+                    'adversaire' => $adversaire
+                ]);
+            }else{
+                return $this->redirectToRoute('resultats_game', [
+                    'game' => $game->getId()
 
-        return $this->render('game/plateau_game.html.twig', [
-            'game' => $game,
-            'round' => $game->getRounds()[0],
-            'cards' => $tCards,
-            'moi' => $moi,
-            'adversaire' => $adversaire
-        ]);
+                ]);
+            }
+
+
+
     }
 
 
@@ -239,7 +249,8 @@ class GameController extends AbstractController
         }
 
             $pioche = $round->getPioche();
-        var_dump($pioche);
+
+        //var_dump($pioche);
         //tester s'il a pas déjà pioché
         if($user->getDejaPioche()==0){
 
@@ -782,25 +793,31 @@ class GameController extends AbstractController
      * @Route("/get-tout-game/{game}", name="get_tour")
      */
     public function getTour(
-        Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager
+        Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager, Round $round
     ): Response {
+
         if($game->getUser2() != null){
-            if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
-                $user = $this->getUser();
 
-                /*$user->setDejaPioche(0);
-                $entityManager->persist($user);
-                $entityManager->flush();*/
-                return $this->json(true);
-            }
+                if ($this->getUser()->getId() === $game->getUser1()->getId() && $game->getQuiJoue() === 1) {
+                    $user = $this->getUser();
 
-            if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
-                /*$user = $this->getUser();
-                $user->setDejaPioche(0);
-                $entityManager->persist($user);
-                $entityManager->flush();*/
-                return $this->json(true);
-            }
+                    /*$user->setDejaPioche(0);
+                    $entityManager->persist($user);
+                    $entityManager->flush();*/
+                    return $this->json(true);
+                }
+
+                if ($this->getUser()->getId() === $game->getUser2()->getId() && $game->getQuiJoue() === 2) {
+                    /*$user = $this->getUser();
+                    $user->setDejaPioche(0);
+                    $entityManager->persist($user);
+                    $entityManager->flush();*/
+                    return $this->json(true);
+                }
+
+                return $this->redirectToRoute('user_profil');
+
+
         }else{
             return $this->json('Pas adversaire');
         }
@@ -844,5 +861,17 @@ class GameController extends AbstractController
         $entityManager->persist($game);
         $entityManager->flush();
         return $this->json(true);
+    }
+
+    /**
+     * @Route("/resultats/{game}", name="resultats_game")
+     */
+    public function resultats(
+        EntityManagerInterface $entityManager,
+        Game $game,
+        Round $round
+    ): Response {
+
+        $this->render('game/resultats.html.twig');
     }
 }

@@ -36,12 +36,12 @@ class Round
     /**
      * @ORM\Column(type="array")
      */
-    private $user1_board_cards = [];
+    private $User1BoardCards = [];
 
     /**
      * @ORM\Column(type="array")
      */
-    private $user2_board_cards = [];
+    private $User2BoardCards = [];
 
     /**
      * @ORM\Column(type="array")
@@ -51,32 +51,32 @@ class Round
     /**
      * @ORM\Column(type="integer")
      */
-    private $removed_card;
+    private $removedCard;
 
     /**
      * @ORM\Column(type="array")
      */
-    private $user1_action = [];
+    private $User1Action = [];
 
     /**
      * @ORM\Column(type="array")
      */
-    private $user2_action = [];
+    private $User2Action = [];
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $round_number;
+    private $RoundNumber;
 
     /**
      * @ORM\Column(type="array")
      */
-    private $user1_hand_cards = [];
+    private $User1HandCards = [];
 
     /**
      * @ORM\Column(type="array")
      */
-    private $user2_hand_cards = [];
+    private $User2HandCards = [];
 
     /**
      * @ORM\Column(type="array")
@@ -86,12 +86,12 @@ class Round
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $user1_action_en_cours;
+    private $User1ActionEnCours;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $user2_action_en_cours;
+    private $User2ActionEnCours;
 
     public function getId(): ?int
     {
@@ -136,24 +136,24 @@ class Round
 
     public function getUser1BoardCards(): ?array
     {
-        return $this->user1_board_cards;
+        return $this->User1BoardCards;
     }
 
-    public function setUser1BoardCards(array $user1_board_cards): self
+    public function setUser1BoardCards(array $User1BoardCards): self
     {
-        $this->user1_board_cards = $user1_board_cards;
+        $this->User1BoardCards = $User1BoardCards;
 
         return $this;
     }
 
     public function getUser2BoardCards(): ?array
     {
-        return $this->user2_board_cards;
+        return $this->User2BoardCards;
     }
 
-    public function setUser2BoardCards(array $user2_board_cards): self
+    public function setUser2BoardCards(array $User2BoardCards): self
     {
-        $this->user2_board_cards = $user2_board_cards;
+        $this->User2BoardCards = $User2BoardCards;
 
         return $this;
     }
@@ -172,72 +172,72 @@ class Round
 
     public function getRemovedCard(): ?int
     {
-        return $this->removed_card;
+        return $this->removedCard;
     }
 
-    public function setRemovedCard(int $removed_card): self
+    public function setRemovedCard(int $removedCard): self
     {
-        $this->removed_card = $removed_card;
+        $this->removedCard = $removedCard;
 
         return $this;
     }
 
     public function getUser1Action(): ?array
     {
-        return $this->user1_action;
+        return $this->User1Action;
     }
 
-    public function setUser1Action(array $user1_action): self
+    public function setUser1Action(array $User1Action): self
     {
-        $this->user1_action = $user1_action;
+        $this->User1Action = $User1Action;
 
         return $this;
     }
 
     public function getUser2Action(): ?array
     {
-        return $this->user2_action;
+        return $this->User2Action;
     }
 
-    public function setUser2Action(array $user2_action): self
+    public function setUser2Action(array $User2Action): self
     {
-        $this->user2_action = $user2_action;
+        $this->User2Action = $User2Action;
 
         return $this;
     }
 
     public function getRoundNumber(): ?int
     {
-        return $this->round_number;
+        return $this->RoundNumber;
     }
 
-    public function setRoundNumber(int $round_number): self
+    public function setRoundNumber(int $RoundNumber): self
     {
-        $this->round_number = $round_number;
+        $this->RoundNumber = $RoundNumber;
 
         return $this;
     }
 
     public function getUser1HandCards(): ?array
     {
-        return $this->user1_hand_cards;
+        return $this->User1HandCards;
     }
 
-    public function setUser1HandCards(array $user1_hand_cards): self
+    public function setUser1HandCards(array $User1HandCards): self
     {
-        $this->user1_hand_cards = $user1_hand_cards;
+        $this->User1HandCards = $User1HandCards;
 
         return $this;
     }
 
     public function getUser2HandCards(): ?array
     {
-        return $this->user2_hand_cards;
+        return $this->User2HandCards;
     }
 
-    public function setUser2HandCards(array $user2_hand_cards): self
+    public function setUser2HandCards(array $User2HandCards): self
     {
-        $this->user2_hand_cards = $user2_hand_cards;
+        $this->User2HandCards = $User2HandCards;
 
         return $this;
     }
@@ -256,24 +256,24 @@ class Round
 
     public function getUser1ActionEnCours(): ?string
     {
-        return $this->user1_action_en_cours;
+        return $this->User1ActionEnCours;
     }
 
-    public function setUser1ActionEnCours(?string $user1_action_en_cours): self
+    public function setUser1ActionEnCours(?string $User1ActionEnCours): self
     {
-        $this->user1_action_en_cours = $user1_action_en_cours;
+        $this->User1ActionEnCours = $User1ActionEnCours;
 
         return $this;
     }
 
     public function getUser2ActionEnCours(): ?string
     {
-        return $this->user2_action_en_cours;
+        return $this->User2ActionEnCours;
     }
 
-    public function setUser2ActionEnCours(?string $user2_action_en_cours): self
+    public function setUser2ActionEnCours(?string $User2ActionEnCours): self
     {
-        $this->user2_action_en_cours = $user2_action_en_cours;
+        $this->User2ActionEnCours = $User2ActionEnCours;
 
         return $this;
     }
