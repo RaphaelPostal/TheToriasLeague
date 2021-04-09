@@ -206,7 +206,7 @@ class GameController extends AbstractController
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
         }
-            if($round->getPioche()!= []){
+
                 return $this->render('game/plateau_game.html.twig', [
                     'game' => $game,
                     'round' => $game->getRounds()[0],
@@ -214,12 +214,7 @@ class GameController extends AbstractController
                     'moi' => $moi,
                     'adversaire' => $adversaire
                 ]);
-            }else{
-                return $this->redirectToRoute('resultats_game', [
-                    'game' => $game->getId()
 
-                ]);
-            }
 
 
 
@@ -815,7 +810,7 @@ class GameController extends AbstractController
                     return $this->json(true);
                 }
 
-                return $this->redirectToRoute('user_profil');
+
 
 
         }else{
@@ -872,6 +867,6 @@ class GameController extends AbstractController
         Round $round
     ): Response {
 
-        $this->render('game/resultats.html.twig');
+        return $this->render('game/resultats.html.twig');
     }
 }

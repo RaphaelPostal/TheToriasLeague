@@ -10,10 +10,14 @@
     </div>
     <div id="message">...</div>
         <div id="conteneur">
-        {{ dump(round.User1HandCards) }}
+        {{ dump(round.User2Action) }}
         <div id="plateau">
+            {% if round.pioche == [] and round.User2Action.SECRET != false and round.User2Action.DEPOT == []  and round.User2Action.OFFRE.CartesChoisiesAdversaire != [] and round.User2Action.OFFRE.CartesChoisiesAdversaire != []%}
+                {{ render(controller('App\\Controller\\GameController::resultats', {game:game.id})) }}
+                {% else %}
+                    {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
+            {% endif %}
 
-            {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
 
 
         </div>
