@@ -7,31 +7,52 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
-    <form method="post" action="{{ path('verify_inscription') }}" style="margin-left: 5%" enctype="multipart/form-data">
-        <h1 class="h3 mb-3 font-weight-normal">Inscription</h1>
-        Prénom <input type="text" name="prenom" required><br><br>
-        Nom <input type="text" name="nom" required><br><br>
-        Email <input type="email" name="email" required><br><br>
-        Pseudo <input type="text" name="pseudo" required><br><br>
-        Date de naissance <input type="date" name="birthday" required><br><br>
-        Mot de passe <input type="password" name="mdp" required><br><br>
-        <span id="lien-avatars" style="cursor: pointer; font-weight: bold">Avatar</span>
-        <div id="avatars">
-            <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="" style="width: 100px">
-            <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="" style="width: 100px">
-            <br><br>
-            <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
-        </div>
-        <br>
 
-        <input type="checkbox" name="checkbox" required><label for="checkbox">&nbsp;J'accepte les termes et les conditions générales d'utilisation de ce site.</label><br><br>
-        <input type="submit" value="S'inscrire">
-        <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
-    </form>
-    {% if erreur  %}
-        <p>{{ erreur }}</p>
-    {% endif %}
+    <div id="inscription">
+        <div id="form_inscription">
+            <h1>| INSCRIPTION</h1>
+            <form id="formulaire" method="POST" action="{{ path('verify_inscription') }}">
+                <div>
+                    <input type="text" name="prenom" id="form_prenom" placeholder="Prénom" required>
+                    <input type="text" name="nom" id="form_nom" placeholder="Nom" required>
+
+                </div>
+                <div>
+                    <label for="birth">Date de naissance :</label>
+                    <input type="date" name="birthday" id="form_birth" required>
+                </div>
+                <div>
+                    <input type="email" name="email" id="form_email" placeholder="Adresse e-mail" required>
+                    <input type="text" name="pseudo" id="form_pseudo" placeholder="Pseudo" required>
+                </div>
+                <div>
+                    <input type="password" name="mdp" id="form_password" placeholder="Mot de passe" required>
+                    <input type="password" name="conf_password" id="form_conf_password" placeholder="Confirmation du mot de passe">
+
+                </div>
+
+                <span id="lien-avatars" style="cursor: pointer; font-weight: bold">Avatar</span>
+                <div id="avatars">
+                    <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/avatars/astralia.png') }}" alt="" style="width: 100px">
+                    <br><br>
+                    <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
+                </div>
+                <div id="div-conditions">
+                    <input type="checkbox" name="checkbox" required><label for="checkbox">&nbsp;J'accepte les termes et les conditions générales d'utilisation de ce site.</label>
+                </div>
+
+                <input type="submit" id="valid_form_inscriptions" value="INSCRIPTION">
+                <input type="hidden" id="recaptchaResponse" name="recaptcha-response">
+            </form>
+            {% if erreur  %}
+                <p>{{ erreur }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+
 {% endblock %}
 
 {% block javascripts %}

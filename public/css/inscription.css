@@ -1,0 +1,67 @@
+#inscription{
+    width: 100%;
+    background-image: url('../img/feuillage_1.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+}
+
+#form_inscription{
+    background-color: white;
+    width: 75%;
+    height: 500px;
+    padding: 35px;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    border-radius: 50px;
+}
+#form_inscription h1{
+    color: gold;
+}
+
+#formulaire{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formulaire div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+#form_nom, #form_birth, #form_prenom, #form_conf_password, #form_password, #form_pseudo, #form_email{
+    border: solid 2px #595959;
+    border-radius: 25px;
+    width: 45%;
+    height: 40px;
+    margin: 10px;
+}
+
+#valid_form_inscriptions{
+    align-items: center;
+    width: 25%;
+    background-color: #595959;
+    color: gold;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+/*Modifs raph*/
+#div-conditions{
+    display: inline !important;
+}

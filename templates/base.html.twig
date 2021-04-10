@@ -2,14 +2,18 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+        <title>{% block title %}Accueil{% endblock %}</title>
+        <meta name="description" content="Site de jeu The Toria's League. Jeu de cartes en ligne dans un univers médiéval et d'aventures">
+        <link rel="icon" type="image/x-icon" href="img/pion.ico">
         {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
 
                 <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-                <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
                 <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+                <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+
+                <link rel="stylesheet" href="{{ asset('css/inscription.css') }}">
 
 
 
@@ -31,7 +35,8 @@
         <div id="nav">
             <nav role="navigation">
                 <div id="nav_left">
-                    <img src="{{ asset('img/logo_jeu.png') }}">
+                    <a href="{{ path('default') }}"><img src="{{ asset('img/logo_jeu.png') }}"></a>
+
                     <a href="{{ path('default') }}">ACCUEIL</a>
                     <a>|</a>
                     <a href="{{ path('inscription') }}">INSCRIPTION</a>
@@ -49,7 +54,7 @@
                     {% if app.user %}
                         <div id="avatar">
                             <a href="{{ path('user_profil') }}">
-                                <img src="{{ asset('img/avatars/'~app.user.photo) }}" alt="votre avatar">
+                                <!--<img src="{{ asset('img/avatars/'~app.user.photo) }}" alt="votre avatar">-->
                             </a>
 
                         </div>
@@ -59,7 +64,7 @@
             </nav>
         </div>
     </header>
-    <br><br>
+
 
 
 

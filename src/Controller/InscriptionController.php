@@ -41,7 +41,16 @@ class InscriptionController extends AbstractController
                                     $new_user->setBirthday(new \DateTime($_POST['birthday']));
                                     $new_user->setEmail($_POST['email']);
                                     $new_user->setPseudo($_POST['pseudo']);
-                                    $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
+                                    if($_POST['mdp'] == $_POST['conf_password']){
+                                        $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
+                                    }else{
+                                        
+                                        return $this->render('inscription/index.html.twig', [
+                                            'erreur'=>'Les mots de passe sont différents !'
+
+                                        ]);
+                                    }
+
                                     $new_user->setRoles(["ROLE_JOUEUR"]);
                                     $new_user->setElo(1000);
                                     if(isset($_POST['photo'])){
