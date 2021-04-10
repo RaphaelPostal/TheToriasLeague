@@ -948,9 +948,16 @@ class GameController extends AbstractController
      */
     public function resultats(
         EntityManagerInterface $entityManager,
+        CardRepository $cardRepository,
         Game $game,
         Round $round
     ): Response {
+
+        $cards = $cardRepository->findAll();
+        $tCards = [];
+        foreach ($cards as $card) {
+            $tCards[$card->getId()] = $card;
+        }
 
         $num1 = $game->getRoundEnCours();
         $num2 = $num1-=1;
@@ -959,9 +966,31 @@ class GameController extends AbstractController
         $round->setEnded(new \DateTime());
         $entityManager->persist($round);
         $entityManager->flush();
+
+        //recupération des données
+        if ($this->getUser()->getId() === $game->getUser1()->getId()) {
+            $moi['handCards'] = $game->getRounds()[$num2]->getUser1HandCards();
+            $moi['actions'] = $game->getRounds()[$num2]->getUser1Action();
+            $moi['board'] = $game->getRounds()[$num2]->getUser1BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$num2]->getUser2HandCards();
+            $adversaire['actions'] = $game->getRounds()[$num2]->getUser2Action();
+            $adversaire['board'] = $game->getRounds()[$num2]->getUser2BoardCards();
+
+        } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
+
+            $moi['handCards'] = $game->getRounds()[$num2]->getUser2HandCards();
+            $moi['actions'] = $game->getRounds()[$num2]->getUser2Action();
+            $moi['board'] = $game->getRounds()[$num2]->getUser2BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$num2]->getUser1HandCards();
+            $adversaire['actions'] = $game->getRounds()[$num2]->getUser1Action();
+            $adversaire['board'] = $game->getRounds()[$num2]->getUser1BoardCards();
+        }
         return $this->render('game/plateau_resultats.html.twig', [
             'game' => $game,
             'round' => $game->getRounds()[$num2],
+            'cards' => $tCards,
+            'moi' => $moi,
+            'adversaire' => $adversaire
 
         ]);
 

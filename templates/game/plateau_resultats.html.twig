@@ -1,2 +1,286 @@
 
-Les cartes avec les jetons animés
+<div id="actions-nord">
+    <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
+    <img class="action_nord" src="{{ asset('img/actions/depot_rouge.png') }}">
+    <img class="action_nord" src="{{ asset('img/actions/offre_rouge.png') }}">
+    <img class="action_nord" src="{{ asset('img/actions/echange_rouge.png') }}">
+</div>
+<div id="deck-nord">
+
+    {% for card in adversaire.handCards %}
+        <img class="carte-objet" src="{{ asset('img/cartes/hidden.png') }}">
+    {% endfor %}
+
+</div>
+
+
+
+<div id="nbs-cartes-nord">
+    <div class="nb-carte-nord" id="nb1">
+        <div class="indics">
+            {% for carte in adversaire.board.KRULMO %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb2">
+        <div class="indics">
+            {% for carte in adversaire.board.GANORMO %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb3">
+        <div class="indics">
+            {% for carte in adversaire.board.RASDAR %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb4">
+        <div class="indics">
+            {% for carte in adversaire.board.ARCADIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb5">
+        <div class="indics">
+            {% for carte in adversaire.board.ASTRALIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb6">
+        <div class="indics">
+            {% for carte in adversaire.board.THARUK %}
+                <div class="indic"></div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="nb-carte-nord" id="nb7">
+        <div class="indics">
+            {% for carte in adversaire.board.SOFIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div id="cartes-persos">
+    <div id="emp1" class="emp">
+        <img class="pion" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/krulmo.png') }}">
+    </div>
+
+
+    <div id="emp2" class="emp">
+        <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/ganormo.png') }}">
+    </div>
+
+
+    <div id="emp3" class="emp">
+        <img class="pion" id="pion3" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/rasdar.png') }}">
+    </div>
+
+
+    <div id="emp4" class="emp">
+        <img class="pion" id="pion4" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/arcadia.png') }}">
+    </div>
+
+
+    <div id="emp5" class="emp">
+        <img class="pion" id="pion5" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/astralia.png') }}">
+    </div>
+
+
+    <div id="emp6" class="emp">
+        <img class="pion" id="pion6" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/tharuk.png') }}">
+    </div>
+
+
+    <div id="emp7" class="emp">
+        <img class="pion" id="pion7" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+        <img class="carte-perso" src="{{ asset('img/cartes/sofia.png') }}">
+    </div>
+
+
+</div>
+
+{% if round.pioche!= [] %}
+    <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}"></div>
+{% endif %}
+
+<div id="nbs-cartes-sud">
+    <div class="nb-carte-sud" id="nb1">
+        <div class="indics">
+            {% for carte in moi.board.KRULMO %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb2">
+        <div class="indics">
+            {% for carte in moi.board.GANORMO %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb3">
+        <div class="indics">
+            {% for carte in moi.board.RASDAR%}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb4">
+        <div class="indics">
+            {% for carte in moi.board.ARCADIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb5">
+        <div class="indics">
+            {% for carte in moi.board.ASTRALIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb6">
+        <div class="indics">
+            {% for carte in moi.board.THARUK %}
+                <div class="indic"></div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <div class="nb-carte-sud" id="nb7">
+        <div class="indics">
+            {% for carte in moi.board.SOFIA %}
+                <div class="indic"></div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+<div id="actions-sud">
+    <span id="mon-action"></span>
+    {% if moi.actions.SECRET == false %}
+        <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
+    {% else %}
+        <img id="secret-disable" class="action_sud" src="{{ asset('img/actions/secret_nb.png') }}">
+    {% endif %}
+
+    {% if moi.actions.DEPOT == false %}
+        <img id="depot" class="action_sud" src="{{ asset('img/actions/depot_bleu.png') }}">
+    {% else %}
+        <img id="depot-disable" class="action_sud" src="{{ asset('img/actions/depot_nb.png') }}">
+    {% endif %}
+
+    {% if moi.actions.OFFRE.CartesChoisiesMoi == [] %}
+        <img id="offre" class="action_sud" src="{{ asset('img/actions/offre_bleu.png') }}">
+    {% else %}
+        <img id="offre-disable" class="action_sud" src="{{ asset('img/actions/offre_nb.png') }}">
+    {% endif %}
+
+    {% if moi.actions.ECHANGE.CartesChoisiesMoi.Paire1 == [] and moi.actions.ECHANGE.CartesChoisiesMoi.Paire2 == []%}
+        <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
+    {% else %}
+        <img id="echange-disable" class="action_sud" src="{{ asset('img/actions/echange_nb.png') }}">
+    {% endif %}
+
+    <button id="valider" style="display: none">Cacher la carte</button>
+    <button id="valider-depot" style="display: none">Enlever ces cartes</button>
+    <button id="valider-offre" style="display: none">Faire l'offre</button>
+    <button id="valider-echange" style="display: none">Faire l'échange</button>
+
+
+
+
+    <div id="overlay-actions">
+    </div>
+
+
+
+</div>
+
+<div id="deck-sud">
+
+    {% for card in moi.handCards %}
+        <div id="emplacementSud{{ loop.index }}">
+            <img class="carte-objet" src="{{ asset('img/cartes/'~cards[card].picture) }}">
+
+            <input type="radio" name="carte_secret" value="{{ card }}"
+                   style="display: none"
+                   class="choixSecret" id="secret{{ loop.index }}">
+
+            <input type="checkbox" name="carte_depot_{{ card }}" value="{{ card }}"
+                   style="display: none"
+                   class="choixDepot" id="depot{{ loop.index }}">
+
+            <input type="checkbox" name="carte_offre_{{ card }}" value="{{ card }}"
+                   style="display: none"
+                   class="choixOffre" id="offre{{ loop.index }}">
+
+            <input type="checkbox" name="carte_echange_{{ card }}" value="{{ card }}"
+                   style="display: none"
+                   class="choixEchange" id="echange{{ loop.index }}">
+        </div>
+    {% endfor %}
+</div>
+
+
+{% if adversaire.actions.OFFRE.CartesChoisiesMoi != [] %}
+    {% if adversaire.actions.OFFRE.CartesChoisiesAdversaire == [] %}
+        <div class="overlay-big">
+            <div id="popup-choix-offre" style="display: none">
+                <h4 style="color:gold">Offre : choisissez une carte</h4>
+
+                {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
+                <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">{{ card }}
+            <input type="radio" name="choix_adv_offre" value="{{ card }}"
+                   class="choixAdvOffre" id="offre{{ loop.index }}">
+
+                {% endfor %}<br><br>
+                <button id="choisir" style="display: none">Choisir cette carte</button>
+            </div>
+        </div>
+    {% endif %}
+{% endif %}
+
+    {% if adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1 != [] or adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2 != [] %}
+        {% if adversaire.actions.ECHANGE.CartesChoisiesAdversaire == [] %}
+            <div class="overlay-big">
+                <div id="popup-choix-echange" style="display: none">
+                    <h4 style="color:gold">Echange : choisissez une paire</h4>
+
+                    <!-- PAIRE 1-->
+                    {%for card in adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1%}
+                        <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">
+
+                    {% endfor %}
+                    <input type="radio" name="choix_adv_echange" value="paire1"
+                           class="choixAdvEchange" id="echange1">
+
+                    <!-- PAIRE 2-->
+                    {%for card in adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2%}
+                        <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">
+
+                    {% endfor %}
+                    <input type="radio" name="choix_adv_echange" value="paire2"
+                           class="choixAdvEchange" id="echange2"><br><br>
+
+                    <button id="choisir-paire" style="display: none">Choisir cette paire</button>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
