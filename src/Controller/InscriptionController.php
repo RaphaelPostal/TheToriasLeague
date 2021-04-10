@@ -44,7 +44,7 @@ class InscriptionController extends AbstractController
                                     if($_POST['mdp'] == $_POST['conf_password']){
                                         $new_user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
                                     }else{
-                                        
+
                                         return $this->render('inscription/index.html.twig', [
                                             'erreur'=>'Les mots de passe sont différents !'
 
