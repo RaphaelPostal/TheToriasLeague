@@ -92,10 +92,7 @@ class User implements UserInterface
      */
     private $derniereConnexion;
 
-    /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $dejaPioche;
+
 
     public function __construct()
     {
@@ -377,15 +374,4 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getDejaPioche(): ?int
-    {
-        return $this->dejaPioche;
-    }
-
-    public function setDejaPioche(?int $dejaPioche): self
-    {
-        $this->dejaPioche = $dejaPioche;
-
-        return $this;
-    }
 }

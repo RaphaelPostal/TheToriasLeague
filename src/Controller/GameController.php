@@ -46,16 +46,19 @@ class GameController extends AbstractController
         $user2 = $userRepository->find($request->request->get('user2'));
 
         //les 2 joueurs n'ont pas pioché
-        $user1->setDejaPioche(0);
+        /*$user1->setDejaPioche(0);
+
         if($user2 != null){
-            $user2->setDejaPioche(0);
-        }
+            /*$user2->setDejaPioche(0);
+        }*/
 
 
         if ($user1 !== $user2) {
             $game = new Game();
             $game->setUser1($user1);
             $game->setUser2($user2);
+            $game->setUser1DejaPioche(0);
+            $game->setUser2DejaPioche(0);
             $entityManager->persist($user1, $user2);
             $game->setCreated(new \DateTime('now'));
             $game->setRoundEnCours(1);
@@ -270,7 +273,22 @@ class GameController extends AbstractController
 
         //var_dump($pioche);
         //tester s'il a pas déjà pioché
-        if($user->getDejaPioche()==0){
+        //DEBUT MOULINETTE
+        if($joueur == 1){
+            if($game->getUser1DejaPioche() == 0){
+                $dejaPioche = false;
+            }elseif($game->getUser1DejaPioche() == 1){
+                $dejaPioche = true;
+            }
+        }elseif($joueur == 2){
+            if($game->getUser2DejaPioche() == 0){
+                $dejaPioche = false;
+            }elseif($game->getUser2DejaPioche() == 1){
+                $dejaPioche = true;
+            }
+        }//FIN MOULINETTE
+
+        if($dejaPioche === false){
 
             if ($joueur === 1) {
                 //tester si l'autre joueur fait l'action echange ou offre
@@ -313,8 +331,12 @@ class GameController extends AbstractController
                 }
 
             }
+            if($joueur==1){
+                $game->setUser1DejaPioche(1);
+            }elseif ($joueur==2){
+                $game->setUser2DejaPioche(1);
+            }
 
-            $user->setDejaPioche(1);
             $entityManager->persist($round, $user);
             $entityManager->flush();
             $data=["your_turn"=>true];
@@ -418,7 +440,8 @@ class GameController extends AbstractController
 
                 if ($joueur === 1) {
                     $round->setUser1ActionEnCours('OFFRE');
-                    $game->getUser2()->setDejaPioche(1);
+                    /*$game->getUser2()->setDejaPioche(1);*/
+                    $game->setUser2DejaPioche(1);
                     $actions = $round->getUser1Action(); //un tableau...
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte1);
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte2);
@@ -437,7 +460,8 @@ class GameController extends AbstractController
                 }elseif ($joueur === 2){
 
                     $round->setUser2ActionEnCours('OFFRE');
-                    $game->getUser1()->setDejaPioche(1);
+                    /*$game->getUser1()->setDejaPioche(1);*/
+                    $game->setUser1DejaPioche(1);
                     $actions = $round->getUser2Action(); //un tableau...
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte1);
                     array_push($actions['OFFRE']['CartesChoisiesMoi'], $carte2);
@@ -517,7 +541,8 @@ class GameController extends AbstractController
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
                     $round->setUser2ActionEnCours(null);
-                    $game->getUser1()->setDejaPioche(0);
+                    /*$game->getUser1()->setDejaPioche(0);*/
+                    $game->setUser1DejaPioche(0);
 
 
                 }elseif ($joueur === 2){
@@ -579,7 +604,8 @@ class GameController extends AbstractController
                     $round->setUser1BoardCards($user1BoardCards); //les 2 cartes restantes
                     $round->setUser2BoardCards($user2BoardCards); //la carte choisie
                     $round->setUser1ActionEnCours(null);
-                    $game->getUser2()->setDejaPioche(0);
+                    /*$game->getUser2()->setDejaPioche(0);*/
+                    $game->setUser2DejaPioche(0);
 
 
                 }
@@ -593,7 +619,8 @@ class GameController extends AbstractController
 
                 if ($joueur === 1) {
                     $round->setUser1ActionEnCours('ECHANGE');
-                    $game->getUser2()->setDejaPioche(1);
+                    /*$game->getUser2()->setDejaPioche(1);*/
+                    $game->setUser2DejaPioche(1);
                     $actions = $round->getUser1Action(); //un tableau...
                     array_push($actions['ECHANGE']['CartesChoisiesMoi']['Paire1'], $carte1);
                     array_push($actions['ECHANGE']['CartesChoisiesMoi']['Paire1'], $carte2);
@@ -615,7 +642,8 @@ class GameController extends AbstractController
                 }elseif ($joueur === 2){
 
                     $round->setUser2ActionEnCours('ECHANGE');
-                    $game->getUser1()->setDejaPioche(1);
+                    /*$game->getUser1()->setDejaPioche(1);*/
+                    $game->setUser1DejaPioche(1);
                     $actions = $round->getUser2Action(); //un tableau...
                     array_push($actions['ECHANGE']['CartesChoisiesMoi']['Paire1'], $carte1);
                     array_push($actions['ECHANGE']['CartesChoisiesMoi']['Paire1'], $carte2);
@@ -714,7 +742,8 @@ class GameController extends AbstractController
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
                     $round->setUser2ActionEnCours(null);
-                    $game->getUser1()->setDejaPioche(0);
+                    /*$game->getUser1()->setDejaPioche(0);*/
+                    $game->setUser1DejaPioche(0);
                 }elseif($joueur === 2){
 
                     $actions = $round->getUser1Action(); //un tableau...
@@ -788,7 +817,8 @@ class GameController extends AbstractController
                     $round->setUser2BoardCards($user2BoardCards); //les 2 cartes restantes
                     $round->setUser1BoardCards($user1BoardCards); //la carte choisie
                     $round->setUser1ActionEnCours(null);
-                    $game->getUser2()->setDejaPioche(0);
+                    /*$game->getUser2()->setDejaPioche(0);*/
+                    $game->setUser2DejaPioche(0);
                 }
                 break;
 
@@ -813,7 +843,8 @@ class GameController extends AbstractController
             return $this->redirectToRoute('user_profil');
         }else{
             $user2 = $this->getUser();
-            $user2->setDejaPioche(0);
+            /*$user2->setDejaPioche(0);*/
+            $game->setUser2DejaPioche(0);
             $game -> setUser2($user2);
             $entityManager->persist($user2);
             $entityManager->flush();
@@ -888,7 +919,8 @@ class GameController extends AbstractController
             $user2 = $game->getUser2();
             //SI J'AI VALIDE L'OFFRE, L'ADVERSAIRE PEUT JOUER MAIS PAS PIOCHER
             if($round->getUser1ActionEnCours() != 'OFFRE' && $round->getUser1ActionEnCours() != 'ECHANGE'){
-                $user2->setDejaPioche(0);
+                /*$user2->setDejaPioche(0);*/
+                $game->setUser2DejaPioche(0);
             }
 
             $entityManager->persist($user2);
@@ -898,7 +930,8 @@ class GameController extends AbstractController
             $user1 = $game->getUser1();
             //SI J'AI VALIDE L'OFFRE, L'ADVERSAIRE PEUT JOUER MAIS PAS PIOCHER
             if($round->getUser2ActionEnCours() != 'OFFRE' && $round->getUser2ActionEnCours() != 'ECHANGE'){
-                $user1->setDejaPioche(0);
+                /*$user1->setDejaPioche(0);*/
+                $game->setUser1DejaPioche(0);
             }
 
             $entityManager->persist($user1);
@@ -948,8 +981,10 @@ class GameController extends AbstractController
 
 
         //les 2 joueurs n'ont pas pioché
-        $game->getUser1()->setDejaPioche(0);
-        $game->getUser2()->setDejaPioche(0);
+        /*$game->getUser1()->setDejaPioche(0);
+        $game->getUser2()->setDejaPioche(0);*/
+        $game->setUser1DejaPioche(0);
+        $game->setUser2DejaPioche(0);
 
         $game->setQuiJoue(1);
 

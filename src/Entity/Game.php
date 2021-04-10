@@ -59,6 +59,16 @@ class Game
      */
     private $roundEnCours;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $user1_deja_pioche;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $user2_deja_pioche;
+
     public function __construct()
     {
         $this->rounds = new ArrayCollection();
@@ -216,6 +226,30 @@ class Game
     public function setRoundEnCours(?int $roundEnCours): self
     {
         $this->roundEnCours = $roundEnCours;
+
+        return $this;
+    }
+
+    public function getUser1DejaPioche(): ?int
+    {
+        return $this->user1_deja_pioche;
+    }
+
+    public function setUser1DejaPioche(?int $user1_deja_pioche): self
+    {
+        $this->user1_deja_pioche = $user1_deja_pioche;
+
+        return $this;
+    }
+
+    public function getUser2DejaPioche(): ?int
+    {
+        return $this->user2_deja_pioche;
+    }
+
+    public function setUser2DejaPioche(?int $user2_deja_pioche): self
+    {
+        $this->user2_deja_pioche = $user2_deja_pioche;
 
         return $this;
     }
