@@ -54,6 +54,11 @@ class Game
      */
     private $quiJoue = 1;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $roundEnCours;
+
     public function __construct()
     {
         $this->rounds = new ArrayCollection();
@@ -199,6 +204,18 @@ class Game
     public function setQuiJoue(int $quiJoue): self
     {
         $this->quiJoue = $quiJoue;
+
+        return $this;
+    }
+
+    public function getRoundEnCours(): ?int
+    {
+        return $this->roundEnCours;
+    }
+
+    public function setRoundEnCours(?int $roundEnCours): self
+    {
+        $this->roundEnCours = $roundEnCours;
 
         return $this;
     }

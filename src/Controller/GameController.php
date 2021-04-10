@@ -58,6 +58,7 @@ class GameController extends AbstractController
             $game->setUser2($user2);
             $entityManager->persist($user1, $user2);
             $game->setCreated(new \DateTime('now'));
+            $game->setRoundEnCours(1);
 
             $entityManager->persist($game);
 
@@ -161,6 +162,10 @@ class GameController extends AbstractController
     ): Response {
         if ($this->getUser()->getId() === $game->getUser1()->getId() || $this->getUser()->getId() === $game->getUser2()->getId()){
 
+            $num1 = $game->getRoundEnCours();
+            $num2 = $num1-=1;
+            $round = $game->getRounds()[$num2];
+
             return $this->render('game/show_game.html.twig', [
                 'game' => $game,
                 'round' => $round
@@ -185,33 +190,31 @@ class GameController extends AbstractController
         foreach ($cards as $card) {
             $tCards[$card->getId()] = $card;
         }
-        if($round->getRoundNumber()==1){
-            $numero = 0;
-        }else if($round->getRoundNumber()==2){
-            $numero= 1;
-        }else if($round->getRoundNumber()==3){
-            $numero= 2;
-        }
+
+        $num1 = $game->getRoundEnCours();
+        $num2 = $num1-=1;
+        $round = $game->getRounds()[$num2];
+
         var_dump($round);
         var_dump($round->getRoundNumber());
 
 
         if ($this->getUser()->getId() === $game->getUser1()->getId()) {
-            $moi['handCards'] = $game->getRounds()[$numero]->getUser1HandCards();
-            $moi['actions'] = $game->getRounds()[$numero]->getUser1Action();
-            $moi['board'] = $game->getRounds()[$numero]->getUser1BoardCards();
-            $adversaire['handCards'] = $game->getRounds()[$numero]->getUser2HandCards();
-            $adversaire['actions'] = $game->getRounds()[$numero]->getUser2Action();
-            $adversaire['board'] = $game->getRounds()[$numero]->getUser2BoardCards();
+            $moi['handCards'] = $game->getRounds()[$num2]->getUser1HandCards();
+            $moi['actions'] = $game->getRounds()[$num2]->getUser1Action();
+            $moi['board'] = $game->getRounds()[$num2]->getUser1BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$num2]->getUser2HandCards();
+            $adversaire['actions'] = $game->getRounds()[$num2]->getUser2Action();
+            $adversaire['board'] = $game->getRounds()[$num2]->getUser2BoardCards();
 
         } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
 
-            $moi['handCards'] = $game->getRounds()[$numero]->getUser2HandCards();
-            $moi['actions'] = $game->getRounds()[$numero]->getUser2Action();
-            $moi['board'] = $game->getRounds()[$numero]->getUser2BoardCards();
-            $adversaire['handCards'] = $game->getRounds()[$numero]->getUser1HandCards();
-            $adversaire['actions'] = $game->getRounds()[$numero]->getUser1Action();
-            $adversaire['board'] = $game->getRounds()[$numero]->getUser1BoardCards();
+            $moi['handCards'] = $game->getRounds()[$num2]->getUser2HandCards();
+            $moi['actions'] = $game->getRounds()[$num2]->getUser2Action();
+            $moi['board'] = $game->getRounds()[$num2]->getUser2BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$num2]->getUser1HandCards();
+            $adversaire['actions'] = $game->getRounds()[$num2]->getUser1Action();
+            $adversaire['board'] = $game->getRounds()[$num2]->getUser1BoardCards();
         } else {
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
@@ -224,7 +227,7 @@ class GameController extends AbstractController
                 }else{
                     return $this->render('game/plateau_game.html.twig', [
                         'game' => $game,
-                        'round' => $game->getRounds()[$numero],
+                        'round' => $game->getRounds()[$num2],
                         'cards' => $tCards,
                         'moi' => $moi,
                         'adversaire' => $adversaire
@@ -249,7 +252,9 @@ class GameController extends AbstractController
 
         $user = $this->getUser();
 
-        $round = $game->getRounds()[0]; //a gérer selon le round en cours
+        $num1 = $game->getRoundEnCours();
+        $num2 = $num1-=1;
+        $round = $game->getRounds()[$num2]; //a gérer selon le round en cours
 
         if ($game->getUser1()->getId() === $user->getId())
         {
@@ -922,9 +927,11 @@ class GameController extends AbstractController
             if($game->getRounds()[1] == null){
                 //s'il n' y a pas eu de 2e manche
                 $round->setRoundNumber(2);
+                $game->setRoundEnCours(2);
             }elseif ($game->getRounds()[1] != null){
                 //s'il y a eu une 2e manche
                 $round->setRoundNumber(3);
+                $game->setRoundEnCours(3);
             }
 
 
@@ -1004,6 +1011,7 @@ class GameController extends AbstractController
             ]);
 
             $entityManager->persist($round);
+            $entityManager->persist($game);
             $entityManager->flush();
 
             return $this->redirectToRoute('show_game', [
