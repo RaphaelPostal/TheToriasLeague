@@ -174,7 +174,7 @@
 
     <div id="actions-sud">
         <span id="mon-action"></span>
-            {% if moi.actions.SECRET == false %}
+            {% if moi.actions.SECRET == false and round.ended == null%}
             <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
                 {% else %}
                     <img id="secret-disable" class="action_sud" src="{{ asset('img/actions/secret_nb.png') }}">

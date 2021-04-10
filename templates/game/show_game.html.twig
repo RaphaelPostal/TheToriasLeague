@@ -57,7 +57,7 @@
                         //rafraichir le plateau pour voir ce que mon adversaire fait
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         $('#overlay-actions').show()
-                    } else if(data == 'Pas adversaire'){
+                    }else if(data == 'Pas adversaire'){
                         $('#overlay-wait').show()
                         $('#message').html('En attente d\'un adversaire ...')
                     }else{

@@ -963,6 +963,60 @@ class GameController extends AbstractController
         $num2 = $num1-=1;
         $round = $game->getRounds()[$num2];
 
+        $actions_j1 = $round->getUser1Action();
+        $board_j1 = $round->getUser1BoardCards();
+        $actions_j2 = $round->getUser2Action();
+        $board_j2 = $round->getUser2BoardCards();
+
+
+
+        if($actions_j1['SECRET'] != [] && $actions_j2['SECRET'] != []){
+            $carte_secret_j1 = $actions_j1['SECRET'][0];
+            $carte_secret_j2 = $actions_j2['SECRET'][0];
+            if($carte_secret_j1 == 1 || $carte_secret_j1 == 2){
+                array_push($board_j1['KRULMO'], $carte_secret_j1);
+            }elseif ($carte_secret_j1 == 3 || $carte_secret_j1 == 4){
+                array_push($board_j1['GANORMO'], $carte_secret_j1);
+            }elseif($carte_secret_j1 == 5 || $carte_secret_j1 == 6){
+                array_push($board_j1['RASDAR'], $carte_secret_j1);
+            }elseif($carte_secret_j1 == 7 || $carte_secret_j1 == 8 || $carte_secret_j1 == 9){
+                array_push($board_j1['ARCADIA'], $carte_secret_j1);
+            }elseif ($carte_secret_j1 == 10 || $carte_secret_j1 == 11 || $carte_secret_j1 == 12){
+                array_push($board_j1['ASTRALIA'], $carte_secret_j1);
+            }elseif($carte_secret_j1 == 13 || $carte_secret_j1 == 14 || $carte_secret_j1 == 15 || $carte_secret_j1 == 16){
+                array_push($board_j1['THARUK'], $carte_secret_j1);
+            }elseif($carte_secret_j1 == 17 || $carte_secret_j1 == 18 || $carte_secret_j1 == 19 || $carte_secret_j1 == 20 || $carte_secret_j1 == 21){
+                array_push($board_j1['SOFIA'], $carte_secret_j1);
+            }
+
+            unset($actions_j1['SECRET'][0]);
+
+            if($carte_secret_j2 == 1 || $carte_secret_j2 == 2){
+                array_push($board_j2['KRULMO'], $carte_secret_j2);
+            }elseif ($carte_secret_j2 == 3 || $carte_secret_j2 == 4){
+                array_push($board_j2['GANORMO'], $carte_secret_j2);
+            }elseif($carte_secret_j2 == 5 || $carte_secret_j2 == 6){
+                array_push($board_j2['RASDAR'], $carte_secret_j2);
+            }elseif($carte_secret_j2 == 7 || $carte_secret_j2 == 8 || $carte_secret_j2 == 9){
+                array_push($board_j2['ARCADIA'], $carte_secret_j2);
+            }elseif ($carte_secret_j2 == 10 || $carte_secret_j2 == 11 || $carte_secret_j2 == 12){
+                array_push($board_j2['ASTRALIA'], $carte_secret_j2);
+            }elseif($carte_secret_j2 == 13 || $carte_secret_j2 == 14 || $carte_secret_j2 == 15 || $carte_secret_j2 == 16){
+                array_push($board_j2['THARUK'], $carte_secret_j2);
+            }elseif($carte_secret_j2 == 17 || $carte_secret_j2 == 18 || $carte_secret_j2 == 19 || $carte_secret_j2 == 20 || $carte_secret_j2 == 21){
+                array_push($board_j2['SOFIA'], $carte_secret_j2);
+            }
+
+            unset($actions_j2['SECRET'][0]);
+        }
+
+
+        $round->setUser1BoardCards($board_j1);
+        $round->setUser1Action($actions_j1);
+        $round->setUser2BoardCards($board_j2);
+        $round->setUser2Action($actions_j2);
+
+
         $round->setEnded(new \DateTime());
         $entityManager->persist($round);
         $entityManager->flush();
