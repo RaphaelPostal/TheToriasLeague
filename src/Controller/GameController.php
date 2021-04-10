@@ -196,8 +196,8 @@ class GameController extends AbstractController
         $num2 = $num1-=1;
         $round = $game->getRounds()[$num2];
 
-        var_dump($round);
-        var_dump($round->getRoundNumber());
+        /*var_dump($round);
+        var_dump($round->getRoundNumber());*/
 
 
         if ($this->getUser()->getId() === $game->getUser1()->getId()) {
@@ -273,18 +273,30 @@ class GameController extends AbstractController
         if($user->getDejaPioche()==0){
 
             if ($joueur === 1) {
+                //tester si l'autre joueur fait l'action echange ou offre
+                if($round->getUser2ActionEnCours()==null){
+                    $main = $round->getUser1HandCards();
 
 
-                $main = $round->getUser1HandCards();
+                    $id_carte_tiree= array_pop($pioche);
+
+                    $carte_tiree = $cardRepository->find($id_carte_tiree);
+                    $main[]= $carte_tiree->getId();
+                    $round->setUser1HandCards($main);
+                    $round->setPioche($pioche);
+
+                }else{
+                    return $this->redirectToRoute('show_game', [
+                        'game' => $game->getId()
+
+                    ]);
+                }
 
 
-                $id_carte_tiree= array_pop($pioche);
 
-                $carte_tiree = $cardRepository->find($id_carte_tiree);
-                $main[]= $carte_tiree->getId();
-                $round->setUser1HandCards($main);
-                $round->setPioche($pioche);
             }elseif ($joueur === 2){
+
+                if($round->getUser1ActionEnCours()==null){
 
                 $main = $round->getUser2HandCards();
                 $id_carte_tiree= array_pop($pioche);
@@ -293,6 +305,12 @@ class GameController extends AbstractController
                 $main[]= $carte_tiree->getId();
                 $round->setUser2HandCards($main);
                 $round->setPioche($pioche);
+                }else{
+                    return $this->redirectToRoute('show_game', [
+                        'game' => $game->getId()
+
+                    ]);
+                }
 
             }
 
@@ -900,12 +918,17 @@ class GameController extends AbstractController
         Game $game,
         Round $round
     ): Response {
+
+        $num1 = $game->getRoundEnCours();
+        $num2 = $num1-=1;
+        $round = $game->getRounds()[$num2];
+
         $round->setEnded(new \DateTime());
         $entityManager->persist($round);
         $entityManager->flush();
         return $this->render('game/plateau_resultats.html.twig', [
             'game' => $game,
-            'round' => $game->getRounds()[0],
+            'round' => $game->getRounds()[$num2],
 
         ]);
 
@@ -942,11 +965,20 @@ class GameController extends AbstractController
             }elseif ($game->getRounds()[1] != null){
                 if($game->getRounds()[1]->getEnded() != null){
                     //s'il y a eu une 2e manche et qu'elle est finie
-                    $round = new Round();
-                    $round->setGame($game);
-                    $round->setCreated(new \DateTime('now'));
-                    $round->setRoundNumber(3);
-                    $game->setRoundEnCours(3);
+                    if($game->getRounds()[2] == null){
+                        //s'il n'existe pas déjà un 3e round
+                        $round = new Round();
+                        $round->setGame($game);
+                        $round->setCreated(new \DateTime('now'));
+                        $round->setRoundNumber(3);
+                        $game->setRoundEnCours(3);
+                    }else{
+                        return $this->redirectToRoute('show_game', [
+                            'game' => $game->getId()
+
+                        ]);
+                    }
+
                 }else{
 
                     return $this->redirectToRoute('show_game', [
