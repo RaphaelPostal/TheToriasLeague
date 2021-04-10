@@ -1,0 +1,97 @@
+#home{
+    width: 100%;
+    background-image: url('../img/illu_accueil_jeu2.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#home_connexion{
+    width: 30%;
+    height: 250px;
+    background-color: white;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 9%;
+}
+
+#home_connexion button{
+    background-color: #595959;
+    border: none;
+    margin: 15px;
+    color: gold;
+    font-size: 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
+
+#home_prez{
+    width: 100%;
+    height: auto;
+    background-image: url('../img/feuillage_1.png');
+    background-size: 100%;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#prez{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+#prez h1{
+    color: gold;
+}
+#prez p{
+    color: white;
+}
+
+#home_info{
+    width: 50%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#home_info img{
+    width: 50px;
+}
+#home_info p{
+    color: gold;
+}
+#home_info div{
+    display: flex;
+    align-items: center;
+    width: 20%;
+    justify-content: space-between;
+}
+
+#home_video{
+    width: 100%;
+    height: auto;
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/*Modifs raph*/
+
+#home a{
+    color: gold;
+    text-decoration: none;
+}

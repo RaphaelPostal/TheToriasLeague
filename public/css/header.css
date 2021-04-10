@@ -1,0 +1,50 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+header{
+    margin: 0;
+    padding: 0;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    align-items: center;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    z-index: 4;
+}
+
+#nav_left img {
+    width: 115px;
+}
+#nav_left{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    width: 35%;
+}
+#nav_left a{
+    color: white;
+    text-decoration: none;
+}
+#nav_left a:hover {
+    text-decoration: underline;
+}
+
+#nav_right{
+    display: flex;
+    width: 5%;
+    justify-content: space-between;
+}
+#nav_right #avatar , #nav-right img{
+
+    width: 45px;
+    height: 45px;
+
+}

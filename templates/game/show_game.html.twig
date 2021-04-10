@@ -538,6 +538,9 @@
         //VALIDATION DES ACTIONS
         //VALIDATION SECRET
         $(document).on('click', '#valider', function(){
+            click_echange= 0;
+            click_offre=0;
+            click_depot=0;
             switch (action) {
                 case 'secret':
                     donneesAction = {
@@ -589,6 +592,10 @@
     //VALIDATION DEPOT
     $(document).on('click', '#valider-depot', function(){
 
+        click_echange= 0;
+        click_offre=0;
+        click_depot=0;
+
             donneesAction = {
 
                 action: 'depot',
@@ -634,7 +641,10 @@
 
             //VALIDATION OFFRE
             $(document).on('click', '#valider-offre', function() {
-                click_offre = 0;
+
+                click_echange= 0;
+                click_offre=0;
+                click_depot=0;
                 donneesAction = {
 
                     action: 'offre',
@@ -677,7 +687,10 @@
 
     //VALIDATION ECHANGE
     $(document).on('click', '#valider-echange', function() {
-        click_echange = 0;
+        click_echange= 0;
+        click_offre=0;
+        click_depot=0;
+
         donneesAction = {
 
             action: 'echange',

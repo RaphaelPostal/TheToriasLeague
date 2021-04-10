@@ -7,7 +7,9 @@
            and uncomment the following Encore helpers to start using Symfony UX #}
         {% block stylesheets %}
 
-                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+                <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
+                <link rel="stylesheet" href="{{ asset('css/accueil.css') }}">
+                <link rel="stylesheet" href="{{ asset('css/header.css') }}">
 
 
 
@@ -25,38 +27,47 @@
     </head>
     <body>
 
-    <nav class="navbar navbar-expand-sm navbar-dark bg-dark navigation">
-        <a class="navbar-brand" href="{{ path('default') }}"><span class="oi oi-pulse"></span>The Toria's League</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuResponsive">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+    <header>
+        <div id="nav">
+            <nav role="navigation">
+                <div id="nav_left">
+                    <img src="{{ asset('img/logo_jeu.png') }}">
+                    <a href="{{ path('default') }}">ACCUEIL</a>
+                    <a>|</a>
+                    <a href="{{ path('inscription') }}">INSCRIPTION</a>
+                    {% if app.user == false %}
+                        <a>|</a>
+                        <a class="nav-link" href="{{ path('app_login') }}">CONNEXION</a>
+                    {% endif %}
+                    {% if app.user %}
+                        <a>|</a>
+                        <a class="nav-link" href="{{ path('deconnexion') }}">DÉCONNEXION</a>
+                    {% endif %}
+                </div>
+                <div id="nav_right">
+                    <!--<a href="#">Pseudo</a>-->
+                    {% if app.user %}
+                        <div id="avatar">
+                            <a href="{{ path('user_profil') }}">
+                                <img src="{{ asset('img/avatars/'~app.user.photo) }}" alt="votre avatar">
+                            </a>
 
-        <div class="collapse navbar-collapse" id="menuResponsive">
-            <ul class="navbar-nav">
-                {#  {{ dump(app.request.attributes.get('_route')) }} #}
-                <li><a class="nav-link" href="{{ path('inscription') }}">Inscription</a></li>
-                {% if app.user == false %}
-                    <li><a class="nav-link" href="{{ path('app_login') }}">Connexion</a></li>
-                {% endif %}
-                {% if app.user %}
+                        </div>
+                    {% endif %}
 
-                    <li><a class="nav-link" href="{{ path('deconnexion') }}">Déconnexion</a></li>
-                    <li><a class="nav-link" href="{{ path('user_profil') }}">Profil</a></li>
-                {% endif %}
-
-
-
-
-
-
-            </ul>
-
+                </div>
+            </nav>
         </div>
-    </nav>
+    </header>
     <br><br>
+
+
+
         {% block body %}
 
 
     {% endblock %}
+
+
     </body>
 </html>
