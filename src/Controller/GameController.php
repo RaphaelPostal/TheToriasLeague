@@ -59,6 +59,7 @@ class GameController extends AbstractController
             $entityManager->persist($user1, $user2);
             $game->setCreated(new \DateTime('now'));
             $game->setRoundEnCours(1);
+            $game->setQuiJoue(1);
 
             $entityManager->persist($game);
 
@@ -321,7 +322,11 @@ class GameController extends AbstractController
 
         $action = $request->request->get('action');
         $user = $this->getUser();
-        $round = $game->getRounds()[0]; //a gérer selon le round en cours
+
+        $num1 = $game->getRoundEnCours();
+        $num2 = $num1-=1;
+        $round = $game->getRounds()[$num2]; //a gérer selon le round en cours
+
 
         if ($game->getUser1()->getId() === $user->getId())
         {
@@ -812,6 +817,11 @@ class GameController extends AbstractController
     public function getTour(
         Game $game, UserRepository $userRepository, EntityManagerInterface $entityManager, Round $round
     ): Response {
+
+        $num1 = $game->getRoundEnCours();
+        $num2 = $num1-=1;
+        $round = $game->getRounds()[$num2];
+        /*var_dump($round);*/
         if($round->getPioche() == [] && $round->getUser1HandCards() == [] && $round->getUser2HandCards() == []){
             return $this->json('Fin de partie');
         }
@@ -918,20 +928,33 @@ class GameController extends AbstractController
         $game->getUser1()->setDejaPioche(0);
         $game->getUser2()->setDejaPioche(0);
 
+        $game->setQuiJoue(1);
 
 
-            $round = new Round();
-            $round->setGame($game);
-            $round->setCreated(new \DateTime('now'));
 
             if($game->getRounds()[1] == null){
                 //s'il n' y a pas eu de 2e manche
+                $round = new Round();
+                $round->setGame($game);
+                $round->setCreated(new \DateTime('now'));
                 $round->setRoundNumber(2);
                 $game->setRoundEnCours(2);
             }elseif ($game->getRounds()[1] != null){
-                //s'il y a eu une 2e manche
-                $round->setRoundNumber(3);
-                $game->setRoundEnCours(3);
+                if($game->getRounds()[1]->getEnded() != null){
+                    //s'il y a eu une 2e manche et qu'elle est finie
+                    $round = new Round();
+                    $round->setGame($game);
+                    $round->setCreated(new \DateTime('now'));
+                    $round->setRoundNumber(3);
+                    $game->setRoundEnCours(3);
+                }else{
+
+                    return $this->redirectToRoute('show_game', [
+                        'game' => $game->getId()
+
+                    ]);
+                }
+
             }
 
 
