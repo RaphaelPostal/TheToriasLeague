@@ -185,23 +185,33 @@ class GameController extends AbstractController
         foreach ($cards as $card) {
             $tCards[$card->getId()] = $card;
         }
+        if($round->getRoundNumber()==1){
+            $numero = 0;
+        }else if($round->getRoundNumber()==2){
+            $numero= 1;
+        }else if($round->getRoundNumber()==3){
+            $numero= 2;
+        }
+        var_dump($round);
+        var_dump($round->getRoundNumber());
+
 
         if ($this->getUser()->getId() === $game->getUser1()->getId()) {
-            $moi['handCards'] = $game->getRounds()[0]->getUser1HandCards();
-            $moi['actions'] = $game->getRounds()[0]->getUser1Action();
-            $moi['board'] = $game->getRounds()[0]->getUser1BoardCards();
-            $adversaire['handCards'] = $game->getRounds()[0]->getUser2HandCards();
-            $adversaire['actions'] = $game->getRounds()[0]->getUser2Action();
-            $adversaire['board'] = $game->getRounds()[0]->getUser2BoardCards();
+            $moi['handCards'] = $game->getRounds()[$numero]->getUser1HandCards();
+            $moi['actions'] = $game->getRounds()[$numero]->getUser1Action();
+            $moi['board'] = $game->getRounds()[$numero]->getUser1BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$numero]->getUser2HandCards();
+            $adversaire['actions'] = $game->getRounds()[$numero]->getUser2Action();
+            $adversaire['board'] = $game->getRounds()[$numero]->getUser2BoardCards();
 
         } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
 
-            $moi['handCards'] = $game->getRounds()[0]->getUser2HandCards();
-            $moi['actions'] = $game->getRounds()[0]->getUser2Action();
-            $moi['board'] = $game->getRounds()[0]->getUser2BoardCards();
-            $adversaire['handCards'] = $game->getRounds()[0]->getUser1HandCards();
-            $adversaire['actions'] = $game->getRounds()[0]->getUser1Action();
-            $adversaire['board'] = $game->getRounds()[0]->getUser1BoardCards();
+            $moi['handCards'] = $game->getRounds()[$numero]->getUser2HandCards();
+            $moi['actions'] = $game->getRounds()[$numero]->getUser2Action();
+            $moi['board'] = $game->getRounds()[$numero]->getUser2BoardCards();
+            $adversaire['handCards'] = $game->getRounds()[$numero]->getUser1HandCards();
+            $adversaire['actions'] = $game->getRounds()[$numero]->getUser1Action();
+            $adversaire['board'] = $game->getRounds()[$numero]->getUser1BoardCards();
         } else {
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
@@ -214,7 +224,7 @@ class GameController extends AbstractController
                 }else{
                     return $this->render('game/plateau_game.html.twig', [
                         'game' => $game,
-                        'round' => $game->getRounds()[0],
+                        'round' => $game->getRounds()[$numero],
                         'cards' => $tCards,
                         'moi' => $moi,
                         'adversaire' => $adversaire
@@ -875,11 +885,132 @@ class GameController extends AbstractController
         Game $game,
         Round $round
     ): Response {
+        $round->setEnded(new \DateTime());
+        $entityManager->persist($round);
+        $entityManager->flush();
         return $this->render('game/plateau_resultats.html.twig', [
             'game' => $game,
             'round' => $game->getRounds()[0],
 
         ]);
+
+    }
+
+
+    /**
+     * @Route("/nextRound/{game}", name="next_round")
+     */
+    public function nextRound(
+        Game $game,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        UserRepository $userRepository,
+        CardRepository $cardRepository
+    ): Response {
+
+
+        //les 2 joueurs n'ont pas pioché
+        $game->getUser1()->setDejaPioche(0);
+        $game->getUser2()->setDejaPioche(0);
+
+
+
+            $round = new Round();
+            $round->setGame($game);
+            $round->setCreated(new \DateTime('now'));
+
+            if($game->getRounds()[1] == null){
+                //s'il n' y a pas eu de 2e manche
+                $round->setRoundNumber(2);
+            }elseif ($game->getRounds()[1] != null){
+                //s'il y a eu une 2e manche
+                $round->setRoundNumber(3);
+            }
+
+
+
+            $cards = $cardRepository->findAll();
+            $tCards = [];
+            foreach ($cards as $card) {
+                $tCards[$card->getId()] = $card;
+            }
+            shuffle($tCards);
+            $carte = array_pop($tCards);
+            $round->setRemovedCard($carte->getId());
+
+            $tMainJ1 = [];
+            $tMainJ2 = [];
+            for ($i = 0; $i < 6; $i++) {
+                //on distribue 6 cartes aux deux joueurs
+                $carte = array_pop($tCards);
+                $tMainJ1[] = $carte->getId();
+                $carte = array_pop($tCards);
+                $tMainJ2[] = $carte->getId();
+            }
+            $round->setUser1HandCards($tMainJ1);
+            $round->setUser2HandCards($tMainJ2);
+
+            $tPioche = [];
+
+            foreach ($tCards as $card) {
+                $carte = array_pop($tCards);
+                $tPioche[] = $carte->getId();
+            }
+            $round->setPioche($tPioche);
+            $round->setUser1Action([
+                'SECRET' => false,
+                'DEPOT' => [],
+                'OFFRE' => ["CartesChoisiesMoi"=>[], "CartesChoisiesAdversaire"=>[]],
+                'ECHANGE' => ["CartesChoisiesMoi"=>["Paire1"=>[], "Paire2"=>[]], "CartesChoisiesAdversaire"=>[]]
+            ]);
+
+            $round->setUser2Action([
+                'SECRET' => false,
+                'DEPOT' => [],
+                'OFFRE' => ["CartesChoisiesMoi"=>[], "CartesChoisiesAdversaire"=>[]],
+                'ECHANGE' => ["CartesChoisiesMoi"=>["Paire1"=>[], "Paire2"=>[]], "CartesChoisiesAdversaire"=>[]]
+            ]);
+
+            $round->setBoard([
+                'EMPL1' => ['N'],
+                'EMPL2' => ['N'],
+                'EMPL3' => ['N'],
+                'EMPL4' => ['N'],
+                'EMPL5' => ['N'],
+                'EMPL6' => ['N'],
+                'EMPL7' => ['N']
+            ]);
+
+            $round->setUser1BoardCards([
+                'KRULMO' => [],
+                'GANORMO' => [],
+                'RASDAR' => [],
+                'ARCADIA' => [],
+                'ASTRALIA' => [],
+                'THARUK' => [],
+                'SOFIA' => [],
+
+            ]);
+
+            $round->setUser2BoardCards([
+                'KRULMO' => [],
+                'GANORMO' => [],
+                'RASDAR' => [],
+                'ARCADIA' => [],
+                'ASTRALIA' => [],
+                'THARUK' => [],
+                'SOFIA' => [],
+
+            ]);
+
+            $entityManager->persist($round);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('show_game', [
+                'game' => $game->getId()
+
+            ]);
+
 
     }
 }

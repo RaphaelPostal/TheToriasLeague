@@ -743,10 +743,13 @@
                         console.log(donneesAction)
 
                         //on pioche pour être BIEN SUR d'avoir une nouvelle carte ???
+                        //TEST TIMEOUT
+                        setTimeout(function(){
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
 
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            refreshGame();
+                        }, 1000)
 
-                        refreshGame();
 
                     }
 
@@ -776,10 +779,13 @@
                     console.log(donneesAction)
 
                     //on pioche pour être BIEN SUR d'avoir une nouvelle carte ???
+                    //TEST TIMEOUT
+                    setTimeout(function(){
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
 
-                    $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        refreshGame();
+                    }, 1000)
 
-                    refreshGame();
 
                 }
 
