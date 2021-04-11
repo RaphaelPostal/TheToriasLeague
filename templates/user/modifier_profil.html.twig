@@ -19,13 +19,16 @@
             <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
         </div>
         <br>
-        Mot de passe : <input type="password" name="mdp"><br>
+        Nouveau mot de passe : <input type="password" name="mdp"><br>
+        Confirmer nouveau mot de passe : <input type="password" name="mdp_conf"><br>
         <input type="submit" value="Enregistrer les modifications">
 
     </form>
 
 
-
+{% if erreur is defined %}
+    <p>{{ erreur }}</p>
+{% endif %}
 
 
 {% endblock %}

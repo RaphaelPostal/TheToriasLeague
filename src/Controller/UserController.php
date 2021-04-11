@@ -22,7 +22,7 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="user_profil")
      */
-    public function index(EntityManagerInterface $entityManager, GameRepository $gameRepository): Response
+    public function index(EntityManagerInterface $entityManager, GameRepository $gameRepository, UserRepository $userRepository): Response
     {
 
 
@@ -43,13 +43,33 @@ class UserController extends AbstractController
 
         }
 
+        $amis = $this->getUser()->getAmis();
+        $tab_amis = [];
+
+        foreach ($amis as $index){
+            $em = $this->getDoctrine()->getManager(); //on appelle Doctrine
+            $query = $em->createQuery( //creation de la requête
+                'SELECT u
+    FROM App\Entity\User u
+    WHERE u.id = :id
+    '
+            )->setParameter('id', $index);
+
+            $un_ami = $query->getResult();
+            array_push($tab_amis, $un_ami[0]);
+
+        }
+
+
+
 
 
         $empty_games = $gameRepository->findEmptyGames();
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
             'empty_games' => $empty_games,
-            'current_games' => $current_games
+            'current_games' => $current_games,
+            'amis' => $tab_amis
         ]);
     }
 
@@ -139,8 +159,17 @@ class UserController extends AbstractController
         if(isset($_POST['photo'])){
             $user->setPhoto($_POST['photo'].'.png');
         }
-        if(isset($_POST['mdp']) && $_POST['mdp']!=''){
-            $user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
+        if(isset($_POST['mdp']) && $_POST['mdp']!='' ){
+            if($_POST['mdp'] == $_POST['mdp_conf']){
+                $user->setPassword(password_hash($_POST['mdp'], PASSWORD_ARGON2I));
+            }else{
+
+                return $this->render('user/modifier_profil.html.twig', [
+                    'user'=>$user,
+                    'erreur' => 'Les deux mots de passe sont différents !'
+                ]);
+            }
+
         }
 
         $entityManager->persist($user);
