@@ -24,6 +24,8 @@ class UserController extends AbstractController
      */
     public function index(EntityManagerInterface $entityManager, GameRepository $gameRepository): Response
     {
+
+
         $games1 = $this->getUser()->getGames1()->getIterator();
         $games2 = $this->getUser()->getGames2()->getIterator();
         $current_games = [];
@@ -146,6 +148,42 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('profil_et_stats');
         
+    }
+
+    /**
+     * @Route ("/ajout-ami/{id}", name="ajout_ami")
+     */
+
+
+    public function ajoutAmi(UserRepository $userRepository, EntityManagerInterface $entityManager, $id){
+        $new_ami = $userRepository->find($id);
+        $user= $this->getUser();
+
+
+        $amis = $user->getAmis();
+
+        if(array_search($id, $amis) === false){
+            array_push($amis, $new_ami->getId());
+            $user->setAmis($amis);
+
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+        }else{
+            return $this->render('user/resultats_recherche.html.twig',[
+                'message' => 'Vous avez déjà ajouté '.$new_ami->getPseudo().' en ami !',
+                'amis'=>$amis,
+            ]);
+        }
+
+
+
+
+
+        return $this->render('user/resultats_recherche.html.twig',[
+            'message' => 'Vous avez ajouté '.$new_ami->getPseudo().' en ami !',
+            'amis'=>$amis,
+        ]);
     }
 
     /**

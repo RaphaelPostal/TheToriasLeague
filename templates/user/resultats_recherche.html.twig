@@ -8,21 +8,59 @@
         body{
             background-image: url("{{ asset('img/feuillage_1.png') }}");
         }
+
+        h3{
+            text-align: center;
+            color: gold;
+            font-size: 25px;
+        }
+
+        h4{
+            text-align: center;
+
+        }
         #results-recherche li{
             list-style-type: none;
             font-size: 18px;
             color: white;
             font-family: sans-serif;
         }
+
+        table{
+            width: 60%;
+            margin-left: 25% ;
+            margin-top: 50px;
+
+        }
+
+        #content{
+            margin-top: 100px;
+        }
+
+        .friend{
+            width: 40%;
+        }
     </style>
 
-    <h3>Résultats de la recherche</h3>
+    <div id="content">
+        <h3>Résultats de la recherche</h3>
+        {% if users is defined %}
+        <div id="results-recherche">
+            <table>
+                <tr><th>Pseudo</th><th>Classement</th><th>Email</th></tr>
+                {% for user in users %}
+                        <tr><td>{{ user.pseudo }}</td> <td>{{ user.elo }} elo</td><td class="friend"> {{ user.email }} | <a href="{{ path('ajout_ami', {id: user.id}) }}">Ajouter en ami</a></td></tr>
+                {% endfor %}
+            </table>
 
-    <div id="results-recherche">
-        {% for user in users %}
-            <li>{{ user.pseudo }} | {{ user.elo }} elo | {{ user.email }} <a href="">Demande d'ami</a></li>
-        {% endfor %}
+
+        </div>
+        {% endif %}
     </div>
+
+    {% if message is defined and amis is defined%}
+        <h4>{{ message }}</h4>
+    {% endif %}
 
 
 {% endblock %}

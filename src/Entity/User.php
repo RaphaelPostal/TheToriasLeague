@@ -92,6 +92,11 @@ class User implements UserInterface
      */
     private $derniereConnexion;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $amis = [];
+
 
 
     public function __construct()
@@ -370,6 +375,18 @@ class User implements UserInterface
     public function setDerniereConnexion(?\DateTimeInterface $derniereConnexion): self
     {
         $this->derniereConnexion = $derniereConnexion;
+
+        return $this;
+    }
+
+    public function getAmis(): ?array
+    {
+        return $this->amis;
+    }
+
+    public function setAmis(?array $amis): self
+    {
+        $this->amis = $amis;
 
         return $this;
     }

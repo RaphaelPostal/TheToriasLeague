@@ -21,17 +21,19 @@ class SearchController extends AbstractController
             $query = $em->createQuery( //creation de la requête
                 'SELECT u
     FROM App\Entity\User u
-    WHERE u.pseudo = :pseudo
+    WHERE u.pseudo LIKE :pseudo
     '
-            )->setParameter('pseudo', $_GET['searchPseudo']);
+            )->setParameter('pseudo', '%'.$_GET['searchPseudo'].'%');
+            
 
             $users = $query->getResult();
         }else{
-            $users = [];
+            return $this->redirectToRoute('user_profil');
         }
 
 
         return $this->render('user/resultats_recherche.html.twig', [
+
             'users'=>$users,
         ]);
     }
