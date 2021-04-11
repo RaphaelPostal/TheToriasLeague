@@ -28,13 +28,21 @@
     <h2><a href="{{ path('new_game') }}">Créer une partie !</a></h2>
     <h2><a href="{{ path('profil_et_stats') }}">Informations personnelles</a></h2>
 
+    <h3>invitations</h3>
+    <ul>
+        {% for game in invits %}
+            <li>{{ game.user1.pseudo }} | <a href="{{ path('show_game', {game : game.id}) }}">Rejoindre</a></li>
+        {% endfor %}
+    </ul>
+
     <p>Défier un ami:
-    <form action="{{ path('search') }}" method="GET">
-    <select name="ami" id="ami">
-        {% for ami in amis%}
+    <form action="{{ path('create_game') }}" method="POST">
+    <select name="user2" id="user2">
+        {% for ami in amis %}
             <option value="{{ ami.id }}">{{ ami.display }}</option>
         {% endfor %}
     </select>
+    <input type="submit" value="Défier">
     </form>
 
     <p>Rechercher un joueur:

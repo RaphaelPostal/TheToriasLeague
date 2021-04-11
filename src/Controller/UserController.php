@@ -36,13 +36,19 @@ class UserController extends AbstractController
 
         }
 
+        $parties_invite = [];
+
         foreach ($games2 as $game){
-            if($game->getEnded() == null){
+            if($game->getEnded() == null && $game->getRoundEnCours()==1 && count($game->getRounds()[0]->getUser2HandCards())==6 && $game->getRounds()[0]->getUser2Action()['SECRET'] == false){
+                array_push($parties_invite, $game);
+            }elseif($game->getEnded() == null){
                 array_push($current_games, $game);
             }
 
         }
 
+
+        // RECUP DES AMIS
         $amis = $this->getUser()->getAmis();
         $tab_amis = [];
 
@@ -59,9 +65,7 @@ class UserController extends AbstractController
             array_push($tab_amis, $un_ami[0]);
 
         }
-
-
-
+        //FIN AMIS
 
 
         $empty_games = $gameRepository->findEmptyGames();
@@ -69,7 +73,8 @@ class UserController extends AbstractController
             'user' => $this->getUser(),
             'empty_games' => $empty_games,
             'current_games' => $current_games,
-            'amis' => $tab_amis
+            'amis' => $tab_amis,
+            'invits' => $parties_invite
         ]);
     }
 
