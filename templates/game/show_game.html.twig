@@ -97,34 +97,15 @@
                         $('#message').html('Fin de la manche')
 
 
-                        //Piocher une carte
-                        setTimeout(function(){
-                            $.ajax({
-                                url: "{{ path('pioche', {game: game.id}) }}",
-                            })
-
-                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                            setTimeout(function(){
-                                $('#overlay-actions').hide()
-                                $('#popup-choix-offre').show()
-                                $('#popup-choix-echange').show()
-                            },1300)
-
-                        },1000)
-
 
                         //pour être sur, mettre à jour le plateau, dès que je récupère true
 
 
 
-                        clearInterval(boucle)
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+
                         $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         //obligé de recharger à balle et encore ça marche pas tout le temps
-                        console.log('ça tourne plus et c\'est la fin de la manche')
+                        console.log('fin de la manche')
 
                     }
                 },
