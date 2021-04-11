@@ -93,9 +93,31 @@
                         $('#finDeTour').show()
 
                     }else{
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#overlay-wait').hide()
+                        $('#message').html('Fin de la manche')
+
+
+                        //Piocher une carte
+                        setTimeout(function(){
+                            $.ajax({
+                                url: "{{ path('pioche', {game: game.id}) }}",
+                            })
+
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            setTimeout(function(){
+                                $('#overlay-actions').hide()
+                                $('#popup-choix-offre').show()
+                                $('#popup-choix-echange').show()
+                            },1300)
+
+                        },1000)
+
+
+                        //pour être sur, mettre à jour le plateau, dès que je récupère true
+
+
 
                         clearInterval(boucle)
                         console.log('ça tourne plus et c\'est la fin de la manche')
