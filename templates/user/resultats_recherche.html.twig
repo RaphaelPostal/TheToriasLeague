@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rechercher un joueur{% endblock %}
+
+{% block body %}
+
+    <style type="text/css">
+        body{
+            background-image: url("{{ asset('img/feuillage_1.png') }}");
+        }
+        #results-recherche li{
+            list-style-type: none;
+            font-size: 18px;
+            color: white;
+            font-family: sans-serif;
+        }
+    </style>
+
+    <h3>Résultats de la recherche</h3>
+
+    <div id="results-recherche">
+        {% for user in users %}
+            <li>{{ user.pseudo }} | {{ user.elo }} elo | {{ user.email }} <a href="">Demande d'ami</a></li>
+        {% endfor %}
+    </div>
+
+
+{% endblock %}

@@ -29,4 +29,13 @@
     <h2><a href="{{ path('profil_et_stats') }}">Informations personnelles</a></h2>
 
 
+
+    <p>Rechercher un joueur:
+        <form action="{{ path('search') }}" method="GET">
+        <input type="text" name="searchPseudo" required/>
+            <input type="submit" value="chercher">
+        </form>
+
+
+
 {% endblock %}

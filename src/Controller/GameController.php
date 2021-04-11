@@ -946,7 +946,7 @@ class GameController extends AbstractController
     /**
      * @Route("/resultatsGame/{game}", name="resultats_game")
      */
-    public function resultats(
+    public function refreshResultats(
         EntityManagerInterface $entityManager,
         CardRepository $cardRepository,
         Game $game,
