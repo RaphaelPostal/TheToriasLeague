@@ -120,6 +120,9 @@
 
 
                         clearInterval(boucle)
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                         console.log('ça tourne plus et c\'est la fin de la manche')
 
                     }
