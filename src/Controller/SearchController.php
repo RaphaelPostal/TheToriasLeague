@@ -24,7 +24,7 @@ class SearchController extends AbstractController
     WHERE u.pseudo LIKE :pseudo
     '
             )->setParameter('pseudo', '%'.$_GET['searchPseudo'].'%');
-            
+
 
             $users = $query->getResult();
         }else{

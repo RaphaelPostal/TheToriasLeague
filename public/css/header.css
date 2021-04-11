@@ -13,7 +13,7 @@ nav {
     position: fixed;
     top: 0;
     align-items: center;
-    height: 60px;
+    height: 70px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     z-index: 4;
@@ -27,7 +27,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    width: 35%;
+    width: 40%;
 }
 #nav_left a{
     color: white;
@@ -39,12 +39,15 @@ nav {
 
 #nav_right{
     display: flex;
-    width: 5%;
-    justify-content: space-between;
+    width: 10%;
+    justify-content: space-around;
+    align-items: center;
 }
-#nav_right #avatar , #nav-right img{
-
-    width: 45px;
-    height: 45px;
-
+#nav_right a{
+    color: white;
+    text-decoration: none;
+}
+#nav_right img{
+    width: 75px;
+    height: 75px;
 }
