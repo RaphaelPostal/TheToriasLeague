@@ -285,6 +285,10 @@
         {% endif %}
     {% endif %}
 
+    {% if round.User1Handcards == [] and round.User2Handcards == [] and round.pioche == [] and round.User1ActionEnCours == null and round.User2ActionEnCours == null %}
+        <a href="{{ path('refresh_plateau_game') }}">Voir les résultats</a>
+    {% endif %}
+
 
 
 
