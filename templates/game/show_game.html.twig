@@ -60,7 +60,7 @@
                     }else if(data == 'Pas adversaire'){
                         $('#overlay-wait').show()
                         $('#message').html('En attente d\'un adversaire ...')
-                    }else{
+                    }else if(data == true){
                         $('#overlay-wait').hide()
                         $('#message').html('C\'est mon tour...')
 
@@ -91,6 +91,14 @@
                         console.log('ça tourne plus')
 
                         $('#finDeTour').show()
+
+                    }else{
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                        $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+
+                        clearInterval(boucle)
+                        console.log('ça tourne plus et c\'est la fin de la manche')
 
                     }
                 },
