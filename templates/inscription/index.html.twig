@@ -36,6 +36,10 @@
                     <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="" style="width: 100px">
                     <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="" style="width: 100px">
                     <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/avatars/astralia.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="rasdar" id="rasdar"><img id="img-rasdar" src="{{ asset('img/avatars/rasdar.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="krulmo" id="krulmo"><img id="img-krulmo" src="{{ asset('img/avatars/krulmo.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="ganormo" id="ganormo"><img id="img-ganormo" src="{{ asset('img/avatars/ganormo.png') }}" alt="" style="width: 100px">
+                    <input type="radio" name="photo" value="arcadia" id="arcadia"><img id="img-arcadia" src="{{ asset('img/avatars/arcadia.png') }}" alt="" style="width: 100px">
                     <br><br>
                     <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
                 </div>
@@ -104,6 +108,27 @@
                 document.getElementById('astralia').checked=true;
                 $('#avatars img').css('transform', 'scale(1)')
                 $('#img-astralia').css('transform', 'scale(1.2)')
+            })
+
+            $('#img-krulmo').click(function(){
+
+                document.getElementById('krulmo').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-krulmo').css('transform', 'scale(1.2)')
+            })
+
+            $('#img-rasdar').click(function(){
+
+                document.getElementById('rasdar').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-rasdar').css('transform', 'scale(1.2)')
+            })
+
+            $('#img-arcadia').click(function(){
+
+                document.getElementById('arcadia').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-arcadia').css('transform', 'scale(1.2)')
             })
 
 
