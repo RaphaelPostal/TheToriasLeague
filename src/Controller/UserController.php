@@ -67,6 +67,31 @@ class UserController extends AbstractController
         }
         //FIN AMIS
 
+        //DEMANDES D'AMIS
+        $em = $this->getDoctrine()->getManager(); //on appelle Doctrine
+        $query = $em->createQuery( //creation de la requête
+            'SELECT u
+    FROM App\Entity\User u
+    '
+        );
+
+        $users = $query->getResult();
+
+        $id = $this->getUser()->getId();
+        $mes_amis = $this->getUser()->getAmis();
+        $demandes_amis = [];
+        foreach ($users as $user){
+
+            if (array_search($id, $user->getAmis()) !== false && array_search($user->getId(), $mes_amis) === false){//si je suis dans ses amis et qu'il n'est pas dans mes amis
+                array_push($demandes_amis, $user);
+
+            }
+        }
+
+
+
+        //
+
 
         $empty_games = $gameRepository->findEmptyGames();
         return $this->render('user/index.html.twig', [
@@ -74,7 +99,8 @@ class UserController extends AbstractController
             'empty_games' => $empty_games,
             'current_games' => $current_games,
             'amis' => $tab_amis,
-            'invits' => $parties_invite
+            'parties_invits' => $parties_invite,
+            'demandes_amis'=>$demandes_amis
         ]);
     }
 
@@ -210,15 +236,12 @@ class UserController extends AbstractController
             ]);
         }
 
-
-
-
-
         return $this->render('user/resultats_recherche.html.twig',[
             'message' => 'Vous avez ajouté '.$new_ami->getPseudo().' en ami !',
             'amis'=>$amis,
         ]);
     }
+
 
     /**
      * @Route("/deconnexion", name="deconnexion")

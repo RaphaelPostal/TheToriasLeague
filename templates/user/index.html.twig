@@ -30,7 +30,7 @@
 
     <h3>invitations</h3>
     <ul>
-        {% for game in invits %}
+        {% for game in parties_invits %}
             <li>{{ game.user1.pseudo }} | <a href="{{ path('show_game', {game : game.id}) }}">Rejoindre</a></li>
         {% endfor %}
     </ul>
@@ -39,7 +39,7 @@
     <form action="{{ path('create_game') }}" method="POST">
     <select name="user2" id="user2">
         {% for ami in amis %}
-            <option value="{{ ami.id }}">{{ ami.display }}</option>
+            <option value="{{ ami.id }}">{{ ami.pseudo }}</option>
         {% endfor %}
     </select>
     <input type="submit" value="Défier">
@@ -50,6 +50,11 @@
         <input type="text" name="searchPseudo" required/>
             <input type="submit" value="chercher">
         </form>
+
+    Demandes d'ami
+    {% for demande in demandes_amis %}
+        {{ demande.pseudo }} | <a href="{{ path('ajout_ami', {id: demande.id}) }}">Accepter la demande</a>
+    {% endfor %}
 
 
 
