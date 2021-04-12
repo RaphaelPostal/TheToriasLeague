@@ -37,10 +37,21 @@ class UserController extends AbstractController
         }
 
         $parties_invite = [];
+        $mes_amis = $this->getUser()->getAmis();
+
+
 
         foreach ($games2 as $game){
+            $il_est_dans_mes_amis = false;
+            $id_opponent = $game->getUser1()->getId();
+            if(array_search($id_opponent, $mes_amis) !== false){
+                $il_est_dans_mes_amis = true;
+            }
             if($game->getEnded() == null && $game->getRoundEnCours()==1 && count($game->getRounds()[0]->getUser2HandCards())==6 && $game->getRounds()[0]->getUser2Action()['SECRET'] == false){
-                array_push($parties_invite, $game);
+                if($il_est_dans_mes_amis ===true){
+                    array_push($parties_invite, $game);
+                }
+
             }elseif($game->getEnded() == null){
                 array_push($current_games, $game);
             }

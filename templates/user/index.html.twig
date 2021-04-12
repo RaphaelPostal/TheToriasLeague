@@ -28,7 +28,7 @@
     <h2><a href="{{ path('new_game') }}">Créer une partie !</a></h2>
     <h2><a href="{{ path('profil_et_stats') }}">Informations personnelles</a></h2>
 
-    <h3>invitations</h3>
+    <h3>invitations de mes amis</h3>
     <ul>
         {% for game in parties_invits %}
             <li>{{ game.user1.pseudo }} | <a href="{{ path('show_game', {game : game.id}) }}">Rejoindre</a></li>
@@ -51,9 +51,9 @@
             <input type="submit" value="chercher">
         </form>
 
-    Demandes d'ami
+    Ils m'ont ajouté en amis : <br>
     {% for demande in demandes_amis %}
-        {{ demande.pseudo }} | <a href="{{ path('ajout_ami', {id: demande.id}) }}">Accepter la demande</a>
+        {{ demande.pseudo }} | <a href="{{ path('ajout_ami', {id: demande.id}) }}">Ajouter en ami</a>
     {% endfor %}
 
 
