@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Accueil{% endblock %}</title>
+    <meta name="description" content="Site de jeu The Toria's League. Jeu de cartes en ligne dans un univers médiéval et d'aventures">
+    <link rel="icon" type="image/x-icon" href="img/pion.ico">
+    {# Run `composer require symfony/webpack-encore-bundle`
+           and uncomment the following Encore helpers to start using Symfony UX #}
+    {% block stylesheets %}
+
+    {% endblock %}
+    <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"></script>
+    {% block javascripts %}
+
+
+
+
+    {% endblock %}
+</head>
+<body>
+
+                    <div id="avatar"><a href="{{ path('user_profil') }}"><img src="{{ asset('img/avatars/'~app.user.photo) }}"></a></div>
+
+
+{% block body %}
+
+
+{% endblock %}
+
+
+</body>
+</html>

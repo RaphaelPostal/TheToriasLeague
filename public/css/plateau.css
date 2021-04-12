@@ -7,7 +7,7 @@ body{
 
 #conteneur{
 background-color: gray;
-
+position: relative;
 }
 /*PLATEAU DE JEU*/
 #plateau{
@@ -344,6 +344,21 @@ input[type=radio]:checked{
     text-align: center;
     margin-top: 100px;
 }
+
+#message{
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+    top: 60px;
+    left: 45%;
+    font-size: 20px;
+    color: gold;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3000;
+
+}
+
+
 
 @keyframes pop {
     0%{

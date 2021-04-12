@@ -1,9 +1,29 @@
 
     <div id="actions-nord">
-        <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
-        <img class="action_nord" src="{{ asset('img/actions/depot_rouge.png') }}">
-        <img class="action_nord" src="{{ asset('img/actions/offre_rouge.png') }}">
-        <img class="action_nord" src="{{ asset('img/actions/echange_rouge.png') }}">
+
+        {% if adversaire.actions.SECRET == false and round.ended == null%}
+            <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
+        {% else %}
+            <img class="action_nord" src="{{ asset('img/actions/secret_nb.png') }}">
+        {% endif %}
+
+        {% if adversaire.actions.DEPOT == false %}
+            <img class="action_nord" src="{{ asset('img/actions/depot_rouge.png') }}">
+        {% else %}
+            <img class="action_nord" src="{{ asset('img/actions/depot_nb.png') }}">
+        {% endif %}
+
+        {% if adversaire.actions.OFFRE.CartesChoisiesMoi == [] %}
+            <img class="action_nord" src="{{ asset('img/actions/offre_rouge.png') }}">
+        {% else %}
+            <img class="action_nord" src="{{ asset('img/actions/offre_nb.png') }}">
+        {% endif %}
+
+        {% if adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire1 == [] and adversaire.actions.ECHANGE.CartesChoisiesMoi.Paire2 == []%}
+            <img class="action_nord" src="{{ asset('img/actions/echange_rouge.png') }}">
+        {% else %}
+            <img class="action_nord" src="{{ asset('img/actions/echange_nb.png') }}">
+        {% endif %}
     </div>
     <div id="deck-nord">
 

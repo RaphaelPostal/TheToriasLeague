@@ -16,7 +16,7 @@ nav {
     height: 70px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    z-index: 4;
+    z-index: 4000;
 }
 
 #nav_left img {

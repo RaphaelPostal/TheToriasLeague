@@ -1,16 +1,16 @@
-{% extends 'base.html.twig' %}
-{% block title %}
-    Jeu
-{% endblock %}
+{% extends 'base-game.html.twig' %}
+
+
 {% block body %}
 
-    <link rel="stylesheet" href="{{ asset('css/plateau.css') }}">
+    {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/plateau.css') }}">{% endblock %}
     <h3>Manche n° {{ game.RoundEncours }}</h3>
     <div id="overlay-wait" style="display: none">
-        <h3>En attente d'un adversaire</h3>
+        
     </div>
-    <div id="message">...</div>
+
         <div id="conteneur">
+            <div id="message">...</div>
 
         <div id="plateau">
 
@@ -62,7 +62,7 @@
                         $('#message').html('En attente d\'un adversaire ...')
                     }else if(data == true){
                         $('#overlay-wait').hide()
-                        $('#message').html('C\'est mon tour...')
+                        $('#message').html('À vous de jouer !')
 
 
                         //Piocher une carte
@@ -384,11 +384,21 @@
             $('#choisir').show()
         })
 
+    $(document).on('click', '#choisir', function(){
+        $('#choisir').hide()
+
+    })
+
 
 
     //ECHANGE COTE ADVERSAIRE
     $(document).on('click', '#popup-choix-echange input', function(){
         $('#choisir-paire').show()
+    })
+
+    $(document).on('click', '#choisir-paire', function(){
+        $('#choisir-paire').hide()
+
     })
 
 
