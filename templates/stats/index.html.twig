@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin - Statistiques{% endblock %}
+
+{% block javascripts %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.1/chart.min.js"></script>
+
+{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/statistiques.css') }}">
+    <div id="statistiques">
+        <h1>Des stats</h1>
+
+        <canvas id="graph1">
+
+        </canvas>
+
+    </div>
+
+    <script>
+        var context = document.getElementById('graph1').getContext('2d')
+        var data= {
+            labels: ['Victoire Mercenaire', 'Victoire Points de Force'],
+            datasets: [
+                {
+                data: [10, 20],
+                backgroundColor : [
+                    '#FF0000',
+                    '#00FF00'
+                ]
+            },
+
+            ]
+        };
+        var options= [];
+        var config = {
+            type : 'pie',
+            data: data,
+            options: options,
+
+        }
+        var graph1 = new Chart(context, config)
+
+    </script>
+
+{% endblock %}
+
+
