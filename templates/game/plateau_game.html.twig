@@ -1,5 +1,7 @@
-
-    <div id="actions-nord">
+{% if adversaire.infos != [] %}
+    <div id="opponent"><img src="{{ asset('img/avatars/'~adversaire.infos.photo) }}" alt="pic adversaire"><span>{{ adversaire.infos.pseudo }}  |  {{ adversaire.infos.elo }}</span></div>
+{% endif %}
+<div id="actions-nord">
 
         {% if adversaire.actions.SECRET == false and round.ended == null%}
             <img class="action_nord" src="{{ asset('img/actions/secret_rouge.png') }}">
@@ -133,9 +135,14 @@
 
     </div>
 
-    {% if round.pioche!= [] %}
-    <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}"></div>
-    {% endif %}
+
+    <div id="pioche" style="position: relative">{% if round.pioche!= [] %}<img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}">{% endif %}
+        <button class="bouton-action" id="valider" style="display: none">Cacher la carte</button>
+        <button class="bouton-action" id="valider-depot" style="display: none">Enlever ces cartes</button>
+        <button class="bouton-action" id="valider-offre" style="display: none">Faire l'offre</button>
+        <button class="bouton-action" id="valider-echange" style="display: none">Faire l'échange</button>
+    </div>
+
 
     <div id="nbs-cartes-sud">
         <div class="nb-carte-sud" id="nb1">
@@ -191,9 +198,9 @@
     </div>
 
 
-
+<span id="mon-action"></span>
     <div id="actions-sud">
-        <span id="mon-action"></span>
+
             {% if moi.actions.SECRET == false and round.ended == null%}
             <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
                 {% else %}
@@ -218,10 +225,7 @@
                 <img id="echange-disable" class="action_sud disable" src="{{ asset('img/actions/echange_nb.png') }}">
         {% endif %}
 
-            <button class="bouton-action" id="valider" style="display: none">Cacher la carte</button>
-        <button class="bouton-action" id="valider-depot" style="display: none">Enlever ces cartes</button>
-            <button class="bouton-action" id="valider-offre" style="display: none">Faire l'offre</button>
-        <button class="bouton-action" id="valider-echange" style="display: none">Faire l'échange</button>
+
 
 
 

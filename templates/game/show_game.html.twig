@@ -10,7 +10,10 @@
     </div>
 
         <div id="conteneur">
-            <div id="message"><h3>Manche n° {{ game.RoundEncours }}</h3><p id="message-tour">...</p></div>
+
+
+
+            <div id="message"><h3>MANCHE {{ game.RoundEncours }}</h3><p id="message-tour">...</p></div>
 
         <div id="plateau">
 
@@ -51,7 +54,7 @@
                     console.log(data)
                     if (data == false) {
                         $('#overlay-wait').hide()
-                        $('#message-tour').html('Tour de votre adversaire')
+                        $('#message-tour').html('TOUR DE VOTRE ADVERSAIRE')
 
 
                         //rafraichir le plateau pour voir ce que mon adversaire fait
@@ -59,10 +62,10 @@
                         $('#overlay-actions').show()
                     }else if(data == 'Pas adversaire'){
                         $('#overlay-wait').show()
-                        $('#message-tour').html('En attente d\'un adversaire ...')
+                        $('#message-tour').html('EN ATTENTE D\'UN ADVERSAIRE ...')
                     }else if(data == true){
                         $('#overlay-wait').hide()
-                        $('#message-tour').html('À vous de jouer !')
+                        $('#message-tour').html('A VOUS DE JOUER !')
 
 
                         //Piocher une carte
@@ -149,6 +152,9 @@
         var selection_offre = false
         var selection_echange = false
 
+    $(document).on('click', '.bouton-action', function(){
+        $(this).hide()
+    })
     /*SECRET*/
         $(document).on('click', '#secret', function(){
 
@@ -198,7 +204,7 @@
             if(selection_depot == false){
 
                 $(this).css('transform', 'scale(1.1)')
-                $('#mon-action').html('DÉPÔT')
+                $('#mon-action').html('DEPOT')
 
             }else{
                 $(this).css('transform', 'scale(1)')
@@ -422,7 +428,7 @@
         if(selection_echange == false){
 
             $(this).css('transform', 'scale(1.1)')
-            $('#mon-action').html('ÉCHANGE')
+            $('#mon-action').html('ECHANGE')
 
         }else{
             $(this).css('transform', 'scale(1)')

@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "aventura";
+    src: url('../typo/Aventura-Bold.otf');
+}
+
 #inscription{
     width: 100%;
     background-image: url('../img/feuillage_1.png');
@@ -8,12 +13,13 @@
     align-items: center;
     justify-content: center;
     height: auto;
+    font-family: 'Arial', sans-serif;
 }
 
 #form_inscription{
     background-color: white;
     width: 75%;
-    height: 500px;
+    height: auto;
     padding: 35px;
     margin-top: 150px;
     margin-bottom: 150px;
@@ -21,23 +27,21 @@
 }
 #form_inscription h1{
     color: gold;
+    font-family: 'aventura';
 }
 
 #formulaire{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
-#formulaire div{
+#formulaire .formulaire_div{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
-
-
 #form_nom, #form_birth, #form_prenom, #form_conf_password, #form_password, #form_pseudo, #form_email{
     border: solid 2px #595959;
     border-radius: 25px;
@@ -59,9 +63,48 @@
     border: none;
     border-radius: 25px;
     font-size: 20px;
+    font-family: 'aventura';
+    cursor: pointer;
 }
 
-/*Modifs raph*/
+#lien-avatars{
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: gold;
+    font-family: 'aventura';
+}
+#avatars{
+    display: flex;
+    align-items: center;
+    width: 80%;
+    justify-content: space-around;
+    margin-right: auto;
+    margin-left: auto;
+    border: solid 2px gold;
+    border-radius: 15px;
+    padding: 15px;
+}
+
 #div-conditions{
-    display: inline !important;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#error_inscription{
+    text-align: center;
+    color: #f4d329;
+    text-decoration: underline;
+}
+/*MODIFS PAR RAPH*/
+#avatars img{
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+#avatars img:hover{
+    transform: scale(1.05);
 }

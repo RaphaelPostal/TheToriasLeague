@@ -177,9 +177,11 @@ class GameController extends AbstractController
             $num2 = $num1-=1;
             $round = $game->getRounds()[$num2];
 
+
             return $this->render('game/show_game.html.twig', [
                 'game' => $game,
-                'round' => $round
+                'round' => $round,
+
             ]);
         }else{
             return $this->redirectToRoute('user_profil');
@@ -217,6 +219,16 @@ class GameController extends AbstractController
             $adversaire['handCards'] = $game->getRounds()[$num2]->getUser2HandCards();
             $adversaire['actions'] = $game->getRounds()[$num2]->getUser2Action();
             $adversaire['board'] = $game->getRounds()[$num2]->getUser2BoardCards();
+            if($game->getUser2()!==null){
+                $adversaire['infos']=[];
+                $adversaire['infos']['pseudo'] = $game->getUser2()->getPseudo();
+                $adversaire['infos']['photo'] = $game->getUser2()->getPhoto();
+                $adversaire['infos']['elo'] = $game->getUser2()->getElo();
+            }else{
+                $adversaire['infos'] = [];
+
+            }
+
 
         } elseif ($this->getUser()->getId() === $game->getUser2()->getId()) {
 
@@ -226,6 +238,16 @@ class GameController extends AbstractController
             $adversaire['handCards'] = $game->getRounds()[$num2]->getUser1HandCards();
             $adversaire['actions'] = $game->getRounds()[$num2]->getUser1Action();
             $adversaire['board'] = $game->getRounds()[$num2]->getUser1BoardCards();
+            if($game->getUser1() !== null){
+                $adversaire['infos']=[];
+                $adversaire['infos']['pseudo'] = $game->getUser1()->getPseudo();
+                $adversaire['infos']['photo'] = $game->getUser1()->getPhoto();
+                $adversaire['infos']['elo'] = $game->getUser1()->getElo();
+            }else{
+                $adversaire['infos']= [];
+
+            }
+
         } else {
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
