@@ -45,11 +45,14 @@ class GameController extends AbstractController
 
 
         $opponent= $request->request->get('user2');
-        if(isset($user2)){
-            $user2 = $userRepository->find($request->request->get('user2'));
+
+        if(isset($opponent)){
+            $user2 = $userRepository->find($opponent);
         }else{
             $user2 = null;
         }
+
+
 
 
         //les 2 joueurs n'ont pas pioché
