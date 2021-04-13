@@ -2,11 +2,10 @@ body{
     margin: 0;
     padding: 0;
 
-
 }
 
 #conteneur{
-background-color: gray;
+/*background-color: gray;*/
 position: relative;
 }
 /*PLATEAU DE JEU*/
@@ -75,6 +74,16 @@ position: relative;
 .action_sud, .action_nord{
     width: 100%;
     border-radius: 5%;
+
+}
+
+.action_sud:not(.disable){
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action_sud:not(.disable):hover{
+    transform: scale(1.1);
 }
 
 
@@ -349,7 +358,7 @@ input[type=radio]:checked{
     position: absolute;
     padding: 10px;
     border-radius: 10px;
-    top: 60px;
+    top: 45px;
     left: 45%;
     font-size: 20px;
     color: gold;
@@ -358,6 +367,45 @@ input[type=radio]:checked{
 
 }
 
+#message h3{
+    text-align: center;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+#message #message-tour{
+    margin: 0;
+}
+
+#avatar {
+    position: absolute;
+    top: 0px;
+    right: 30px;
+    z-index: 5000;
+}
+ #avatar img{
+     width: 70px;
+ }
+ body{
+     overflow-y: hidden;
+     overflow-x: hidden;
+    background-image: url("../../public/img/plateau.png");
+     background-size: cover;
+
+ }
+
+.bouton-action{
+    position: absolute;
+    bottom: 11vh;
+    right: 5vw;
+    background-color: #ffc107;
+    color: white;
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
+    transform: scale(1.3);
+}
 
 
 @keyframes pop {

@@ -4,13 +4,13 @@
 {% block body %}
 
     {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/plateau.css') }}">{% endblock %}
-    <h3>Manche n° {{ game.RoundEncours }}</h3>
+
     <div id="overlay-wait" style="display: none">
-        
+
     </div>
 
         <div id="conteneur">
-            <div id="message">...</div>
+            <div id="message"><h3>Manche n° {{ game.RoundEncours }}</h3><p id="message-tour">...</p></div>
 
         <div id="plateau">
 
@@ -51,7 +51,7 @@
                     console.log(data)
                     if (data == false) {
                         $('#overlay-wait').hide()
-                        $('#message').html('Tour de votre adversaire')
+                        $('#message-tour').html('Tour de votre adversaire')
 
 
                         //rafraichir le plateau pour voir ce que mon adversaire fait
@@ -59,10 +59,10 @@
                         $('#overlay-actions').show()
                     }else if(data == 'Pas adversaire'){
                         $('#overlay-wait').show()
-                        $('#message').html('En attente d\'un adversaire ...')
+                        $('#message-tour').html('En attente d\'un adversaire ...')
                     }else if(data == true){
                         $('#overlay-wait').hide()
-                        $('#message').html('À vous de jouer !')
+                        $('#message-tour').html('À vous de jouer !')
 
 
                         //Piocher une carte
@@ -160,6 +160,7 @@
              selection_depot = false
              selection_offre = false
              selection_echange = false
+            $('.bouton-action').hide()
             if(selection_secret == false){
 
                 $(this).css('transform', 'scale(1.1)')
@@ -192,6 +193,7 @@
             selection_secret = false
             selection_offre = false
             selection_echange = false
+            $('.bouton-action').hide()
 
             if(selection_depot == false){
 
@@ -273,6 +275,7 @@
             selection_secret = false
             selection_depot = false
             selection_echange = false
+            $('.bouton-action').hide()
 
             if(selection_offre == false){
 
@@ -414,6 +417,7 @@
         selection_secret = false
         selection_depot = false
         selection_offre = false
+        $('.bouton-action').hide()
 
         if(selection_echange == false){
 
