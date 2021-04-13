@@ -174,29 +174,21 @@
 
 <div id="actions-sud">
     <span id="mon-action"></span>
-    {% if moi.actions.SECRET == false and round.ended == null%}
-        <img id="secret" class="action_sud" src="{{ asset('img/actions/secret_bleu.png') }}">
-    {% else %}
-        <img id="secret-disable" class="action_sud" src="{{ asset('img/actions/secret_nb.png') }}">
-    {% endif %}
 
-    {% if moi.actions.DEPOT == false %}
-        <img id="depot" class="action_sud" src="{{ asset('img/actions/depot_bleu.png') }}">
-    {% else %}
-        <img id="depot-disable" class="action_sud" src="{{ asset('img/actions/depot_nb.png') }}">
-    {% endif %}
+        <img id="secret-disable" class="action_sud disable" src="{{ asset('img/actions/secret_nb.png') }}">
 
-    {% if moi.actions.OFFRE.CartesChoisiesMoi == [] %}
-        <img id="offre" class="action_sud" src="{{ asset('img/actions/offre_bleu.png') }}">
-    {% else %}
-        <img id="offre-disable" class="action_sud" src="{{ asset('img/actions/offre_nb.png') }}">
-    {% endif %}
 
-    {% if moi.actions.ECHANGE.CartesChoisiesMoi.Paire1 == [] and moi.actions.ECHANGE.CartesChoisiesMoi.Paire2 == []%}
-        <img id="echange" class="action_sud" src="{{ asset('img/actions/echange_bleu.png') }}">
-    {% else %}
-        <img id="echange-disable" class="action_sud" src="{{ asset('img/actions/echange_nb.png') }}">
-    {% endif %}
+
+        <img id="depot-disable" class="action_sud disable" src="{{ asset('img/actions/depot_nb.png') }}">
+
+
+
+        <img id="offre-disable" class="action_sud disable" src="{{ asset('img/actions/offre_nb.png') }}">
+
+
+
+        <img id="echange-disable" class="action_sud disable" src="{{ asset('img/actions/echange_nb.png') }}">
+
 
     <button id="valider" style="display: none">Cacher la carte</button>
     <button id="valider-depot" style="display: none">Enlever ces cartes</button>
