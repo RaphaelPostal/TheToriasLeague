@@ -69,6 +69,11 @@ class Game
      */
     private $user2_deja_pioche;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $typeVictoire;
+
     public function __construct()
     {
         $this->rounds = new ArrayCollection();
@@ -250,6 +255,18 @@ class Game
     public function setUser2DejaPioche(?int $user2_deja_pioche): self
     {
         $this->user2_deja_pioche = $user2_deja_pioche;
+
+        return $this;
+    }
+
+    public function getTypeVictoire(): ?string
+    {
+        return $this->typeVictoire;
+    }
+
+    public function setTypeVictoire(?string $typeVictoire): self
+    {
+        $this->typeVictoire = $typeVictoire;
 
         return $this;
     }

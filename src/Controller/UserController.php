@@ -240,6 +240,16 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            //ENVOI DE MAIL
+            $destinataire=$new_ami->getEmail();
+            $subject='Demande d\'ami - The Toria\'s League';
+            $headers[] = 'MIME-Version: 1.0';
+            $headers[] = 'Content-type: text/html; charset=utf-8';
+            $headers[]='From: iro.games.troyes@gmail.com';
+            $message='<h1>Oyez Oyez ! Une nouvelle demande d\'ami !</h1><p>'.$user->getPseudo().' vous a ajouté en ami. Faites en de même pour pouvoir l\'affronter !</p><br><a href="https://mmi19dO9.mmi-troyes.fr/TheToriasLeague/login">Ajouter en retour</a>';
+            mail($destinataire, $subject, $message, implode("\r\n", $headers));
+            //
+
         }else{
             return $this->render('user/resultats_recherche.html.twig',[
                 'message' => 'Vous avez déjà ajouté '.$new_ami->getPseudo().' en ami !',

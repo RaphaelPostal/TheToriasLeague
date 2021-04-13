@@ -72,7 +72,7 @@ class InscriptionController extends AbstractController
                                     $headers[] = 'MIME-Version: 1.0';
                                     $headers[] = 'Content-type: text/html; charset=utf-8';
                                     $headers[]='From: iro.games.troyes@gmail.com';
-                                    $message='<h1>Félicitations '.$new_user->getFirstName().' !</h1><p>Vous venez de vous inscrire pour l\'aventure de The Toria\'s League ! Devenez un(e) grand(e) chef(fe) sous le pseudo '.$new_user->getPseudo().'</p>';
+                                    $message='<h1>Félicitations '.$new_user->getFirstName().' !</h1><p>Vous venez de vous inscrire pour l\'aventure de The Toria\'s League ! Devenez un(e) grand(e) chef(fe) sous le pseudo '.$new_user->getPseudo().'.</p>';
                                     mail($destinataire, $subject, $message, implode("\r\n", $headers));
                                     //
                                     return $this->render('inscription/valide.html.twig', [
