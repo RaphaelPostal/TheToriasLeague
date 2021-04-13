@@ -26,7 +26,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $targetPath = $request->getSession()->get('_security.main.target_path');
-        if($targetPath == 'http://127.0.0.1/TheToriasLeague/public/admin' || $targetPath == 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/admin'){
+        if($targetPath == 'http://127.0.0.1/TheToriasLeague/public/admin/accueil' || $targetPath == 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/admin/accueil'){
             return $this->render('security/admin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
         }else{
             return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
