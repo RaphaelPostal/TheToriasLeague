@@ -114,7 +114,12 @@
 </div>
 
 {% if round.pioche!= [] %}
-    <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}"></div>
+    <div id="pioche"><img class="carte-pioche" src="{{ asset('img/cartes/hidden.png') }}">
+        <button id="valider" style="display: none">Cacher la carte</button>
+        <button id="valider-depot" style="display: none">Enlever ces cartes</button>
+        <button id="valider-offre" style="display: none">Faire l'offre</button>
+        <button id="valider-echange" style="display: none">Faire l'échange</button>
+    </div>
 {% endif %}
 
 <div id="nbs-cartes-sud">
@@ -171,9 +176,9 @@
 </div>
 
 
-
+<span id="mon-action"></span>
 <div id="actions-sud">
-    <span id="mon-action"></span>
+
 
         <img id="secret-disable" class="action_sud disable" src="{{ asset('img/actions/secret_nb.png') }}">
 
@@ -189,19 +194,8 @@
 
         <img id="echange-disable" class="action_sud disable" src="{{ asset('img/actions/echange_nb.png') }}">
 
-
-    <button id="valider" style="display: none">Cacher la carte</button>
-    <button id="valider-depot" style="display: none">Enlever ces cartes</button>
-    <button id="valider-offre" style="display: none">Faire l'offre</button>
-    <button id="valider-echange" style="display: none">Faire l'échange</button>
-
-
-
-
     <div id="overlay-actions">
     </div>
-
-
 
 </div>
 
