@@ -1,3 +1,28 @@
-#statistiques{
+@font-face {
+    font-family: "aventura";
+    src: url('../typo/Aventura-Bold.otf');
+}
+
+body{
+    background-image: url('../img/feuillage_1.png');
+    background-position: -100px;
+}
+h1{
+    color: gold;
+    text-align: center;
+    font-family: aventura;
     margin-top: 100px;
+}
+
+#statistiques-parties{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-around;
+   
+}
+#cont-graph1, #cont-graph2{
+    width: 200px;
 }

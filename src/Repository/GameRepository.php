@@ -33,6 +33,26 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findVictoiresM()
+    {
+        return $this->createQueryBuilder('game')
+            ->where('game.typeVictoire =:type')
+            ->setParameter('type', 'Mercenaire')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    public function findVictoiresP()
+    {
+        return $this->createQueryBuilder('game')
+            ->where('game.typeVictoire =:type')
+            ->setParameter('type', 'Points')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */

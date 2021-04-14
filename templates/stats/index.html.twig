@@ -9,38 +9,73 @@
 
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/statistiques.css') }}">
-    <div id="statistiques">
-        <h1>Des stats</h1>
 
-        <canvas id="graph1">
+        <h1>STATISTIQUES</h1>
+    <div id="statistiques-parties">
+        <div id="cont-graph1">
+            <canvas id="graph1">
 
-        </canvas>
+            </canvas>
+        </div>
+        <div id="cont-graph2">
+            <canvas id="graph2">
+
+            </canvas>
+        </div>
+
 
     </div>
 
     <script>
-        var context = document.getElementById('graph1').getContext('2d')
-        var data= {
-            labels: ['Victoire Mercenaire', 'Victoire Points de Force'],
-            datasets: [
-                {
-                data: [10, 20],
-                backgroundColor : [
-                    '#FF0000',
-                    '#00FF00'
-                ]
-            },
 
-            ]
-        };
-        var options= [];
-        var config = {
+        Chart.defaults.color = '#FFFFFF'
+
+        console.log({{ datas }})
+
+
+
+            var context = document.getElementById('graph1').getContext('2d')
+            var context2 = document.getElementById('graph2').getContext('2d')
+
+            var mesDatas = {{ datas }}
+            var data= {
+                labels: ['Victoire par Mercenaire', 'Victoire par Points de Force'],
+                datasets: [
+                    {
+                        data: mesDatas,//recuperer en json
+                        backgroundColor : [
+                            '#FB0C00',
+                            '#00D500'
+
+                        ],
+                    },
+
+                ]
+            };
+
+
+            var options= [];
+
+
+            var config = {
+                type : 'pie',
+                data: data,
+                options: options,
+
+            }
+
+        var config2 = {
             type : 'pie',
             data: data,
             options: options,
 
         }
-        var graph1 = new Chart(context, config)
+            var graph1 = new Chart(context, config)
+            var graph2 = new Chart(context2, config2)
+
+
+
+
 
     </script>
 

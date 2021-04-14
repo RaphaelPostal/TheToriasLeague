@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\User;
 use App\Entity\Game;
+use App\Repository\GameRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -41,8 +42,16 @@ class DashboardController extends AbstractDashboardController
     /**
      * @Route("/stats", name="back_stats")
      */
-    public function stats(): Response
+    public function stats(GameRepository $gameRepository): Response
     {
-        return $this->render('stats/index.html.twig');
+        $victoiresM = $gameRepository->findVictoiresM();
+        $nb_victoiresM = count($victoiresM);
+        $victoiresP = $gameRepository->findVictoiresP();
+        $nb_victoiresP = count($victoiresP);
+        $datas = [$nb_victoiresM, $nb_victoiresP];
+        $datas2 = json_encode($datas);
+        return $this->render('stats/index.html.twig', [
+            'datas'=>$datas2
+        ]);
     }
 }
