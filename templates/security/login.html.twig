@@ -42,4 +42,16 @@
         Connexion
     </button>
 </form>
+
+    <span>J'ai oublié mon mot de passe</span>
+    <div id="oubli">
+        <form action="{{ path('oubli') }}" method="POST">
+            <input type="email" name="email_oubli" placeholder="Votre Email" required>
+            <input type="submit" value="Envoyer">
+        </form>
+
+        {% if erreur is defined %}
+            <span>{{ erreur }}</span>
+        {% endif %}
+    </div>
 {% endblock %}

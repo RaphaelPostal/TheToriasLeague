@@ -21,7 +21,7 @@ h1{
     flex-direction: row;
     justify-content: center;
     justify-content: space-around;
-   
+
 }
 #cont-graph1, #cont-graph2{
     width: 200px;
