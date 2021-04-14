@@ -34,7 +34,10 @@ class OubliController extends AbstractController
             return $string;
         }
 
-        if($userRepository->findOneBy(['email' => $_POST['email_oubli']]) !== false){
+
+
+        if($userRepository->findOneBy(['email' => $_POST['email_oubli']]) !== null){
+            var_dump($userRepository->findOneBy(['email' => $_POST['email_oubli']]));
             $user = $userRepository->findOneBy(['email' => $_POST['email_oubli']]);
             $new_mdp = random_string(20);
             $user->setPassword(password_hash($new_mdp, PASSWORD_ARGON2I));
