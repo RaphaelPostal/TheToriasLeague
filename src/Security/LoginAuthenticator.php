@@ -71,7 +71,7 @@ class LoginAuthenticator extends AbstractFormLoginAuthenticator implements Passw
 
         if (!$user) {
             // fail authentication with a custom error
-            throw new CustomUserMessageAuthenticationException('Cet utilisateur n\'est pas inscrit.');
+            throw new CustomUserMessageAuthenticationException('Email could not be found.');
         }
 
         return $user;

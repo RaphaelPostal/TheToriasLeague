@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Oubli{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/oubli.css') }}">
+    <div id="oubli">
+
+        <span>J'ai oublié mon mot de passe</span>
+
+        <form action="{{ path('recup') }}" method="POST">
+            <input type="email" name="email_oubli" placeholder="Votre Email" required>
+            <input type="submit" value="Envoyer">
+        </form>
+    {% if erreur is defined %}
+        <span>{{ erreur }}</span>
+        {% endif %}
+
+    </div>
+{% endblock %}
