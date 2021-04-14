@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Bonjour {{ user.firstName }}</h1>
-    <h3>Vos parties en cours</h3>
+    <h3>Parties en attente</h3>
 
     <!-- affichage des parties en attente-->
 
@@ -16,6 +16,7 @@
         {% endfor %}
         </div>
         <div class="row">
+            <h3>Vos parties en cours</h3>
             {% for game in current_games %}
                 <div style="background-color: lightgray; margin: 20px">Créée le {{ game.created|format_datetime('short', locale='fr') }}<br>
                     <a href="{{ path('show_game', {game : game.id}) }}">Reprendre</a>

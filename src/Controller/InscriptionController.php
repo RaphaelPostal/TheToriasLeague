@@ -66,7 +66,7 @@ class InscriptionController extends AbstractController
                                     $entityManager->flush();
 
                                     //ENVOI DE MAIL
-
+                                    /*
                                     $destinataire=$new_user->getEmail();
                                     $subject='Inscription - The Toria\'s League';
                                     $headers[] = 'MIME-Version: 1.0';
@@ -74,7 +74,7 @@ class InscriptionController extends AbstractController
                                     $headers[]='From: iro.games.troyes@gmail.com';
                                     $message='<h1>Félicitations '.$new_user->getFirstName().' !</h1>
                                         <p>Vous venez de vous inscrire pour l\'aventure de The Toria\'s League ! Devenez un(e) grand(e) chef(fe) sous le pseudo '.$new_user->getPseudo().'.</p>';
-                                    mail($destinataire, $subject, $message, implode("\r\n", $headers));
+                                    mail($destinataire, $subject, $message, implode("\r\n", $headers));*/
                                     //
                                     return $this->render('inscription/valide.html.twig', [
                                         'new_user'=>$new_user,

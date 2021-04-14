@@ -13,6 +13,7 @@
             text-align: center;
             color: gold;
             font-size: 25px;
+            font-family: 'aventura';
         }
 
         h4{
@@ -28,7 +29,7 @@
 
         table{
             width: 60%;
-            margin-left: 25% ;
+            margin-left: 20% ;
             margin-top: 50px;
 
         }
@@ -40,16 +41,34 @@
         .friend{
             width: 40%;
         }
+        #titres{
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+        }
+
+        td img{
+            position: relative;
+            width: 60px;
+            left: 15%;
+        }
+        table a{
+            color: white;
+        }
+
+         footer{
+             display: none;
+
+        }
     </style>
 
     <div id="content">
-        <h3>Résultats de la recherche</h3>
+        <h3>RESULTATS DE RECHERCHE</h3>
         {% if users is defined %}
         <div id="results-recherche">
             <table>
-                <tr><th>Pseudo</th><th>Classement</th><th>Email</th></tr>
+                <tr id="titres"><th>Avatar</th><th>Pseudo</th><th>Classement</th><th>Email</th></tr>
                 {% for user in users %}
-                        <tr><td>{{ user.pseudo }}</td> <td>{{ user.elo }} elo</td><td class="friend"> {{ user.email }} | <a href="{{ path('ajout_ami', {id: user.id}) }}">Ajouter en ami</a></td></tr>
+                        <tr><td><img src="{{ asset('img/avatars/'~user.photo) }}" alt="avatar"></td><td>{{ user.pseudo }}</td> <td>{{ user.elo }} elo</td><td class="friend"> {{ user.email }} | <a href="{{ path('ajout_ami', {id: user.id}) }}">Ajouter en ami</a></td></tr>
                 {% endfor %}
             </table>
 

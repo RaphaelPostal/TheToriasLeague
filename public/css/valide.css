@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "aventura";
+    src: url('../typo/Aventura-Bold.otf');
+}
+
+#valide{
+    margin-top: 100px;
+}
+h2{
+    text-align: center;
+    color: gold;
+    font-family: 'aventura';
+    text-transform: uppercase;
+}
+
+h3{
+    text-align: center;
+}
+span{
+    color: gold;
+}
+
+p{
+    text-align: center;
+}
+
+#allez{
+
+    color: white;
+    font-size: 20px;
+}
+#image{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#image img{
+    width: 40%;
+
+}

@@ -31,5 +31,46 @@ footer{
 }
 
 #footer2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+#footer2 p{
+    color: white;
+}
 
+#footer2 span{
+    width: 50%;
+    height: 2px;
+    background-color: white;
+}
+
+#poli, #cgu{
+    background-image: url("../img/feuillage_1.png");
+    background-size: 100%;
+    background-attachment: fixed;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#poli_text, #cgu_text{
+    width: 80%;
+    background-color: rgba(0,0,0,0.5);
+    margin-top: 100px;
+    margin-bottom: 100px;
+    color: white;
+    padding: 25px;
+    border-radius: 20px;
+}
+#poli_text h2, #cgu_text h2{
+    color: gold;
+}
+#poli_text h1, #cgu_text h1{
+    color: gold;
+    font-family: 'aventura';
+    text-align: center;
 }

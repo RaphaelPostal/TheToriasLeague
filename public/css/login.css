@@ -1,0 +1,63 @@
+@font-face {
+    font-family: "aventura";
+    src: url(../typo/Aventura-Bold.otf);
+}
+#connexion{
+    width: 40%;
+    height: 400px;
+    background-color: white;
+    border-radius: 50px;
+    margin-right: 9%;
+
+    display: flex;
+    justify-content: center;
+    font-family: 'Arial', sans-serif;
+
+    position: absolute;
+    bottom: 6vw;
+    right: 50px;
+
+}
+
+#form_connexion{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+}
+#inputEmail, #inputPassword{
+    width: 80%;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 2px #6e6e6e;
+    margin: 5px;
+}
+
+#form_co1, #form_co2{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#form_connexion a{
+    color: #6fe456;
+    font-family: Arial;
+
+}
+
+#btn_connexion{
+    background-color: #6e6e6e;
+    border: none;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 20px;
+    color: gold;
+    font-family: 'aventura';
+    text-decoration: none;
+    font-size: 25px;
+    cursor: pointer;
+}

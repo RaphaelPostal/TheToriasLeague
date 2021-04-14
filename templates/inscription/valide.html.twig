@@ -3,13 +3,18 @@
 
 {% extends 'base.html.twig' %}
 
-{% block title %}Profil{% endblock %}
+{% block title %}Vous êtes inscrit !{% endblock %}
 
 {% block body %}
-    <h1>Merci de votre inscription, {{ new_user.firstname }} !</h1>
-    <h2>Parcourez la contrée de Toria sous le pseudonyme de {{ new_user.pseudo }} !</h2>
-    votre photo : {{ new_user.photo }}
-    <a href="{{ path('app_login') }}">Allez vous connecter !</a>
+    <link rel="stylesheet" href="{{ asset('css/valide.css') }}">
+    <div id="valide">
+        <h2>Merci de votre inscription, {{ new_user.firstname }} !</h2><br><br>
+        <h3>Parcourez la contrée de Toria sous le pseudonyme de <span>{{ new_user.pseudo }} !</span></h3><br><br>
+        <p><a id="allez" href="{{ path('app_login') }}">Allez vous connecter !</a></p>
+        <br>
+        <div id="image"><img src="{{ asset('img/avatars/'~new_user.photo) }}" alt="votre avatar"></div>
+
+    </div>
 
 
 

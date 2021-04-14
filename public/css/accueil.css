@@ -1,3 +1,15 @@
+*{
+    font-family: Arial;
+}
+
+body{
+    background-image: url('../img/feuillage_1.png');
+    background-attachment: fixed;
+}
+@font-face {
+    font-family: "aventura";
+    src: url(../typo/Aventura-Bold.otf);
+}
 
 #home_fond{
     position: relative;
@@ -36,7 +48,7 @@
 #home_prez{
     width: 100%;
     height: auto;
-    background-image: url('../img/feuillage_1.png');
+
     background-size: 100%;
     background-attachment: fixed;
     display: flex;
@@ -55,6 +67,8 @@
 }
 #prez h1{
     color: gold;
+    font-family: 'aventura';
+
 }
 #prez p{
     color: white;
@@ -96,6 +110,8 @@
 #home a{
     color: gold;
     text-decoration: none;
+    font-family: 'aventura';
+
 }
 
 #home, #home_prez{
