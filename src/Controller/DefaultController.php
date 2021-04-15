@@ -20,6 +20,23 @@ class DefaultController extends AbstractController
         ]);
     }
 
+
+    /**
+     * @Route("/cgu", name="cgu")
+     */
+    public function cgu(): Response
+    {
+        return $this->render('default/cgu.html.twig');
+    }
+
+    /**
+     * @Route("/politique", name="politique")
+     */
+    public function politique(): Response
+    {
+        return $this->render('default/politique.html.twig');
+    }
+
     /**
      * @Route("/mail", name="send_mail")
      */
