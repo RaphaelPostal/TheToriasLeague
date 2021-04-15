@@ -5,13 +5,15 @@
 {% block body %}
     <link rel="stylesheet" href="{{ asset('css/oubli.css') }}">
     <div id="oubli">
+        <h1>RECUPERATION DE MOT DE PASSE</h1>
+        <p>Sur cette page, vous avez la possibilité d'envoyer un mot de passe provisoire généré aléatoirement sur votre adresse mail, utilisable pour vous authentifier. Une fois fait, nous vous encourageons à le modifier via votre page profil.</p>
 
-        <span>J'ai oublié mon mot de passe</span>
 
-        <form action="{{ path('recup') }}" method="POST">
-            <input type="email" name="email_oubli" placeholder="Votre Email" required>
-            <input type="submit" value="Envoyer">
-        </form>
+            <form action="{{ path('recup') }}" method="POST">
+                <input type="email" name="email_oubli" placeholder="Votre Email" required>
+                <input type="submit" value="ENVOYER">
+            </form>
+
     {% if erreur is defined %}
         <span>{{ erreur }}</span>
         {% endif %}

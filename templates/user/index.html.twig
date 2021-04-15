@@ -13,13 +13,18 @@
                     <div class="enCours">
                         <div>
                             <p>{{ game.created|format_datetime('short', locale='fr') }}</p>
-                            {% if app.user.id == game.user1.id %}
-                            <p class="enCours_pseudo">{{ game.user2.pseudo }}</p>
-                            <p class="enCours_classement">{{ game.user2.elo }}</p>
-                                {% elseif app.user.id == game.user2.id %}
-                                    <p class="enCours_pseudo">{{ game.user1.pseudo }}</p>
-                                    <p class="enCours_classement">{{ game.user1.elo }}</p>
+                            {% if game.user2 is null %}
+                            <p class="enCours_pseudo">En attenre d'un adversaire</p>
+                                {% else %}
+                                    {% if app.user.id == game.user1.id %}
+                                        <p class="enCours_pseudo">Contre {{ game.user2.pseudo }}</p>
+                                        <p class="enCours_classement">{{ game.user2.elo }}</p>
+                                    {% elseif app.user.id == game.user2.id %}
+                                        <p class="enCours_pseudo">Contre {{ game.user1.pseudo }}</p>
+                                        <p class="enCours_classement">{{ game.user1.elo }}</p>
+                                    {% endif %}
                             {% endif %}
+
                         </div>
                         <p><a class="enCours_reprendre" href="{{ path('show_game', {game : game.id}) }}">Reprendre</a></p>
                     </div>

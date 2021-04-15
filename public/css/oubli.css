@@ -1,3 +1,45 @@
 #oubli{
-    margin-top: 100px;
+    margin-top: 120px;
 }
+
+h1{
+    color: gold;
+    font-family: aventura;
+    text-align: center;
+}
+
+#oubli p{
+    margin: auto;
+    width: 80%;
+    margin-top: 20px;
+}
+
+form{
+    width: 30%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+form input[type="email"]{
+    width: 350px;
+    height: 40px;
+    border-radius: 20px;
+    border: solid 2px #6e6e6e;
+    margin: 5px;
+}
+
+form input[type="submit"]{
+    background-color: #6e6e6e;
+    border: none;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 20px;
+    color: gold;
+    font-family: 'aventura';
+    text-decoration: none;
+    font-size: 25px;
+    cursor: pointer;
+    margin-left: 25%;
+}
+
+
