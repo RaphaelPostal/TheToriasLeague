@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ asset('css/parties.css') }}">
     <section id="parties">
         {% if is_granted('ROLE_ADMIN') %}
-            <span style="color: white; margin-top: 60px">Vous êtes administrateur : </span><br><br><a href="{{ path('accueil_admin') }}" style="color: white; font-family: aventura">ALLER AU BACKOFFICE</a>
+            <h3 style="color: white; margin-top: 60px">Vous êtes administrateur : </h3><br><br><a href="{{ path('accueil_admin') }}" style="color: white; font-family: aventura; font-size: 22px">ALLER AU BACKOFFICE</a>
         {% endif %}
         <div id="parties_en_cours">
             <h1>VOS PARTIES EN COURS</h1>
@@ -17,7 +17,7 @@
                         <div>
                             <p>{{ game.created|format_datetime('short', locale='fr') }}</p>
                             {% if game.user2 is null %}
-                            <p class="enCours_pseudo">En attenre d'un adversaire</p>
+                            <p class="enCours_pseudo">En attente d'un adversaire</p>
                                 {% else %}
                                     {% if app.user.id == game.user1.id %}
                                         <p class="enCours_pseudo">Contre {{ game.user2.pseudo }}</p>

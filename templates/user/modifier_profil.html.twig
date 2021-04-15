@@ -3,31 +3,44 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>Modifier mon profil</h1>
-
-    <form method="POST" action="{{ path('valide_modifs') }}">
-        Nom : <input name="nom" type="text" value="{{ user.lastname }}"><br>
-        Prénom : <input name="prenom" type="text" value="{{ user.firstname }}"><br>
-        Pseudo : <input name="pseudo" type="text" value="{{ user.pseudo }}"><br>
-        Avatar : <img src="{{ asset('img/avatars/'~user.photo) }}" style="width: 50px" alt="votre photo"><br>
-        <span id="lien-avatars" style="cursor: pointer; font-weight: bold">Avatars</span>
-        <div id="avatars">
-            <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="ganormo" id="ganormo"><img id="img-ganormo" src="{{ asset('img/avatars/ganormo.png') }}" alt="" style="width: 40px">
-            <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/avatars/astralia.png') }}" alt="" style="width: 40px"><br><br>
-            <span id="fermer" style="cursor: pointer; font-weight: bold">Valider</span>
+    <link rel="stylesheet" href="{{ asset('css/modif_profil.css') }}">
+    <section id="modifierProfil">
+        <div id="modfier">
+            <h1>| MODIFIER LE PROFIL</h1>
+            <form id="form_modifier" method="POST" action="{{ path('valide_modifs') }}">
+                <div class="form_modifierClass">
+                    <input type="text" name="prenom" id="form_prenom" value="{{ user.firstname }}">
+                    <input type="text" name="nom" id="form_nom"  value="{{ user.lastname }}">
+                </div>
+                <div class="form_modifierClass">
+                    <input type="text" name="pseudo" id="form_pseudo" value="{{ user.pseudo }}">
+                </div>
+                <div class="form_modifierClass">
+                    <div id="avatars">
+                        <h3>Avatars :</h3>
+                        <input type="radio" name="photo" value="tharuk" id="tharuk"><img id="img-tharuk" src="{{ asset('img/avatars/tharuk.png') }}" alt="tharuk" style="width: 100px">
+                        <input type="radio" name="photo" value="sofia" id="sofia"><img id="img-sofia" src="{{ asset('img/avatars/sofia.png') }}" alt="sofia" style="width: 100px">
+                        <input type="radio" name="photo" value="astralia" id="astralia"><img id="img-astralia" src="{{ asset('img/avatars/astralia.png') }}" alt="astralia" style="width: 100px">
+                        <input type="radio" name="photo" value="rasdar" id="rasdar"><img id="img-rasdar" src="{{ asset('img/avatars/rasdar.png') }}" alt="rasdar" style="width: 100px">
+                        <input type="radio" name="photo" value="krulmo" id="krulmo"><img id="img-krulmo" src="{{ asset('img/avatars/krulmo.png') }}" alt="krulmo" style="width: 100px">
+                        <input type="radio" name="photo" value="arcadia" id="arcadia"><img id="img-arcadia" src="{{ asset('img/avatars/arcadia.png') }}" alt="arcadia" style="width: 100px">
+                        <input type="radio" name="photo" value="ganormo" id="ganormo"><img id="img-ganormo" src="{{ asset('img/avatars/ganormo.png') }}" alt="ganormo" style="width: 100px">
+                    </div>
+                </div>
+                <div class="form_modifierClass">
+                    <input type="password" name="mdp" id="form_password" placeholder="Mot de passe">
+                    <input type="password" name="mdp_conf" id="form_conf_password" placeholder="Confirmation du mot de passe">
+                </div>
+                <div class="div-submit">
+                    <input type="submit" value="ENREGISTRER LES MODIFICATIONS" id="btnModifierProfil">
+                </div>
+            </form>
         </div>
-        <br>
-        Nouveau mot de passe : <input type="password" name="mdp"><br>
-        Confirmer nouveau mot de passe : <input type="password" name="mdp_conf"><br>
-        <input type="submit" value="Enregistrer les modifications">
-
-    </form>
+    </section><br>
 
 
 {% if erreur is defined %}
-    <p>{{ erreur }}</p>
+    <p style="color: white; text-align: center; font-size: 20px">{{ erreur }}</p>
 {% endif %}
 
 
@@ -38,18 +51,9 @@
     <script type="text/javascript">
 
         $(document).ready(function(){
-            $('#avatars').hide();
-            $('#lien-avatars').click(function(){
-                $('#avatars').show();
-            })
-
-            $('#fermer').click(function(){
-                $('#avatars').hide();
-            })
-
 
             $('input[type="radio"]').hide()
-            console.log('ho')
+            //console.log('ho')
             $('#img-tharuk').click(function(){
 
                 document.getElementById('tharuk').checked=true;
@@ -76,13 +80,24 @@
                 $('#img-astralia').css('transform', 'scale(1.2)')
             })
 
+            $('#img-arcadia').click(function(){
 
-            /*if($('#tharuk').is(':checked'))
-            {
-                $('#img-tharuk').css('transform', 'scale(1.2)');
-            }else{
-                $('#img-tharuk').css('transform', 'scale(1)');
-            }*/
+                document.getElementById('arcadia').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-arcadia').css('transform', 'scale(1.2)')
+            })
+            $('#img-krulmo').click(function(){
+
+                document.getElementById('krulmo').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-krulmo').css('transform', 'scale(1.2)')
+            })
+            $('#img-rasdar').click(function(){
+
+                document.getElementById('rasdar').checked=true;
+                $('#avatars img').css('transform', 'scale(1)')
+                $('#img-rasdar').css('transform', 'scale(1.2)')
+            })
 
         })
 
