@@ -140,6 +140,27 @@ class UserController extends AbstractController
 
         $parties = $query->getResult();
 
+        /*Calcul du nombre de parties gagnées*/
+        $partiesGagnees = [];
+        $winMercenaire = [];
+        $winPoints = [];
+        $partiesPerdues = [];
+
+        foreach ($parties as $partie){
+            if($partie->getWinner()->getId() == $this->getUser()->getId()){
+                if($partie->getTypeVictoire()=='Mercenaire'){
+                    array_push($winMercenaire, $partie);
+                }else{
+                    array_push($winPoints, $partie);
+                }
+                array_push($partiesGagnees, $partie);
+            }else{
+                array_push($partiesPerdues, $partie);
+            }
+
+        }
+
+
 
     /*calcul adversaires rencontrés*/
         $adversaires = [];
@@ -166,6 +187,10 @@ class UserController extends AbstractController
         return $this->render('user/profil_et_stats.html.twig', [
             'user' => $this->getUser(),
             'parties' => array_reverse($parties),
+            'parties_gagnees'=>$partiesGagnees,
+            'win_mercenaire'=>$winMercenaire,
+            'win_points'=>$winPoints,
+            'parties_perdues'=>$partiesPerdues,
             'adversaires'=>$adversaires
 
 

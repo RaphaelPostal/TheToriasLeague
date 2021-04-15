@@ -1,9 +1,14 @@
+body{
+    background-position: -200px;
+}
+
 #parties{
+    margin-top: 40px;
     width: 100%;
     height: auto;
-    background-image: url("../img/feuillage_1.png");
+
     background-size: 100%;
-    background-attachment: fixed;
+
     display: flex;
     justify-content: center;
     flex-direction: column;

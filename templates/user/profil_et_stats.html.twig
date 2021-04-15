@@ -3,48 +3,114 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>Informations personnelles et statistiques</h1>
-    Vous trouverez ici vos informations personnelles et l'historique de vos parties. <br><br>
-    <!-- affichage des parties en attente-->
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
 
-    <div class="row">
+    <section id="profil">
+        <h1>MON PROFIL</h1>
+        <div id="profil_infos">
+            <div id="profil_stats">
+                <h2>STATISTIQUES</h2>
+                <div id="nbParties">
+                    <span>Nombre de parties terminées : {{ parties|length }}</span>
+                    <span></span>
+                </div>
+                <h2>TABLEAU DES SCORES</h2>
+                <div id="nbVictoires">
+                    <div id="victoires">
+                        <span>Victoires :</span>
+                        <span>{{ parties_gagnees|length }}</span>
+                    </div>
+                    <div id="typeVictoire">
+                        <div id="victoirePoints">
+                            <span>Par points :</span>
+                            <span>{{ win_points|length }}</span>
+                        </div>
+                        <div id="victoireMerce">
+                            <span>Par mercenaires :</span>
+                            <span>{{ win_mercenaire|length }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div id="nbDefaites">
+                    <span>Défaites : {{ parties_perdues|length }}</span>
 
-        <div class="col-6">
-            <p>Nombre de parties terminées : {{ parties|length }}</p>
-            <p>Victoires : </p>
-            <span>Avec mercenaires : </span><span>Avec points : </span>
-            <p>Défaites : </p>
-            <p>Adversaires rencontrés : {{ adversaires|length }}</p>
+                </div>
+                <div id="nbAdv">
+                    <span>Nombre d'adversaires affrontés : {{ adversaires|length }}</span>
+                    <span></span>
+                </div>
+            </div>
+            <div id="profilGrandediv">
+                <div id="profil_infosPerso">
+                    <div id="profil_infosJoueur">
+                        <div id="infos_joueur">
+                            <div id="nomPrenom">
+                                <span>{{ user.firstname }}</span>&nbsp;
+                                <span>{{ user.lastname }}</span>
+                            </div>
+                            <p>{{ user.pseudo }}</p>
+                        </div>
+                        <div id="profilAvatar">
+                            <img src="{{ asset('img/avatars/'~user.photo) }}" alt="votre avatar">
+                        </div>
+                    </div>
 
+                    <div id="profilInscription">
+                        <span>Date d'inscription :</span>
+                        <span>{{ user.inscription|format_datetime('short', 'none', locale='fr') }}</span>
+                    </div>
+                    <div id="profilLast_co">
+                        <span>Dernière connexion :</span>
+                        <span>{{ user.derniereConnexion|format_datetime('short', locale='fr') }}</span>
+                    </div>
+                    <div id="profilClassement">
+                        <span>Classement :</span>
+                        <span>{{ user.elo }} elo</span>
+                    </div>
+                </div>
+                <button id="btnModifierProfil"><a href="{{ path('modifier') }}">MODIFIER</a></button>
+            </div>
 
         </div>
-        <div class="col-6">
-            <p>Nom : {{ user.lastname }}</p>
-            <p>Prénom : {{ user.firstname }}</p>
-            <p>Pseudo : {{ user.pseudo }}</p>
-            <p><img src="{{ asset('img/avatars/'~user.photo) }}" alt="avatar" style="width: 100px"></p>
-            <p>Inscription : {{ user.inscription|format_datetime('short', 'none', locale='fr') }}</p>
-            <p>Dernière connexion : {{ user.derniereConnexion|format_datetime('short', locale='fr') }}</p>
-            <p>Classement elo : {{ user.elo }}</p>
-            <a href="{{ path('modifier') }}">Modifier</a>
+
+        <div id="classement">
+            <div id="tableau_titre">
+                <span id="titre_joueur">Joueur</span>
+                <span id="titre_classement">Classement</span>
+                <span id="titre_resultat">Résultats</span>
+                <span id="titre_victoire">Type de victoire</span>
+                <span id="titre_date">Date</span>
+            </div>
+
+            <div id="tableau_contenu">
+
+                {% for partie in parties %}
+
+                    <div class="tableau_ligne">
+                        {% if user.id == partie.user1.id %}
+                            <span>{{ partie.user2.pseudo }}</span>
+                            <span>{{ partie.user2.elo }}</span>
+                        {% else %}
+                            <span>{{ partie.user1.pseudo }}</span>
+                            <span>{{ partie.user1.elo }}</span>
+                        {% endif%}
+                        {% if partie.winner.id == user.id %}
+                        <span>Vitoire</span>
+                            {% else %}
+                        <span>Défaite</span>
+                        {% endif %}
+
+                        {% if partie.typeVictoire == 'Mercenaire' %}
+                        <span>Mercenaires</span>
+                            {% else %}
+                        <span>Points</span>
+                        {% endif %}
+                        <span>{{ partie.ended|format_datetime('short', 'none', locale='fr') }}</span>
+                    </div>
+                {% endfor %}
+
+            </div>
         </div>
-    </div>
-    <h3>Parties terminées</h3>
-    {% for partie in parties %}
-        <div style="background-color: lightgray" class="row">
-            &nbsp;&nbsp;&nbsp;&nbsp;Contre&nbsp;
-            {%  if user.pseudo == partie.user1.pseudo %}
-                <span>{{ partie.user2.pseudo }}&nbsp;|&nbsp;</span>
-                <span>{{ partie.user2.elo }} elo</span>
-                {% else %}
-                <span>{{ partie.user1.pseudo }}&nbsp;|&nbsp;</span>
-                    <span>{{ partie.user1.elo }} elo</span>
-
-            {% endif %}
-            <span>&nbsp;|&nbsp;le {{ partie.ended|format_datetime('short', 'none', locale='fr') }}</span>
-        </div><br>
-    {% endfor %}
-
-
+    </section>
 
 {% endblock %}

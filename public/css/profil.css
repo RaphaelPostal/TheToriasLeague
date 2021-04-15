@@ -1,0 +1,166 @@
+#profil{
+    width: 100%;
+    height: auto;
+    background-image: url("../img/feuillage_1.png");
+    background-size: 100%;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
+
+#profil h1{
+    color: gold;
+    font-family: aventura;
+    margin-top: 100px;
+    margin-bottom: 0;
+}
+
+#profil_infos{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+#profil_stats{
+    width: 49%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#profil_stats h2{
+    text-decoration: underline;
+    margin: 25px;
+    font-family: aventura;
+}
+
+#profil_stats #nbVictoires, #profil_stats #nbDefaites, #profil_stats #nbParties, #profil_stats #nbAdv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#profilGrandediv{
+    width: 49%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+#profil_infosPerso{
+    width: 100%;
+    height: auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#profil_infosJoueur{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#infos_joueur{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 65%;
+    margin: 25px;
+}
+#nomPrenom{
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+}
+#profilLangue{
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+}
+
+#profilAvatar{
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 25px;
+}
+#profilAvatar img{
+    width: 100%;
+}
+
+#profilInscription, #profilLast_co, #profilClassement{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+}
+
+#btnModifierProfil{
+    background-color: #6fe456;
+    border: none;
+    padding: 20px 30px 20px 30px;
+    margin-top: 15px;
+}
+#btnModifierProfil a{
+    color: white;
+    text-decoration: none;
+    font-family: aventura;
+}
+
+#classement{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px;
+}
+
+#tableau_titre{
+    background-color: black;
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    color: white;
+    margin-bottom: 10px;
+    border-radius: 25px;
+}
+
+#tableau_contenu{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.tableau_ligne{
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    border-radius: 10px;
+}
