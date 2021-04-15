@@ -166,21 +166,25 @@ class UserController extends AbstractController
         $adversaires = [];
         foreach($parties as $partie){
 
-            if($partie->getUser1()->getId() != $this->getUser()->getId()){
-                if(array_search($partie->getUser1()->getPseudo(), $adversaires)==null){
-                    array_push($adversaires, $partie->getUser1()->getPseudo());
+            if($partie->getUser1()->getId() != $this->getUser()->getId()){//je suis le joueur 2
+                if(array_search($partie->getUser1()->getId(), $adversaires)===false){
+                    array_push($adversaires, $partie->getUser1()->getId());
+
+
                 }
 
-            }elseif($partie->getUser2()!=null){
-                if($partie->getUser2()->getId() != $this->getUser()->getId()){
-                    if(array_search($partie->getUser2()->getPseudo(), $adversaires)==null){
-                        array_push($adversaires, $partie->getUser2()->getPseudo());
+            }elseif($partie->getUser2()!==null){
+                if($partie->getUser2()->getId() != $this->getUser()->getId()){//je suis le joueur 1
+                    if(array_search($partie->getUser2()->getId(), $adversaires)===false){
+                        array_push($adversaires, $partie->getUser2()->getId());
                 }
 
             }
 
             }
         }
+
+
 
 
 

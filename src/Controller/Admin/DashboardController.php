@@ -37,6 +37,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Utilisateurs', 'fas fa-users', User::class);
         yield MenuItem::linkToCrud('Parties', 'fas fa-users', Game::class);
         yield MenuItem::linkToRoute('Statistiques', 'fa fa-tag', 'back_stats');
+
     }
 
     /**

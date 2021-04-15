@@ -1,43 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Backoffice - Connexion{% endblock %}
 
 {% block body %}
-<form method="post" style="margin-left: 5%">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <section id="login-admin">
 
-    {% if app.user %}
-        <div class="mb-3">
-            Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+        <div id="home_fond"><img src="img/login_admin.png"></div>
+        <h1 style="position: absolute; top: 250px; left: 100px; font-family: aventura; color: darkslategrey; background-color: whitesmoke; padding: 10px; border-radius: 7px">CONNEXION AU BACKOFFICE</h1>
+        <div id="connexion">
+            <form method="post" id="form_connexion">
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        Vous êtes connecté en tant que {{ app.user.username }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                    </div>
+                {% endif %}
+                <div id="form_co1">
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-4" placeholder="Email" required autofocus>
+                    <input type="password" name="password" id="inputPassword" class="form-control col-4" placeholder="Mot de passe" required>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+                </div>
+                <div id="form_co2">
+                    <button id="btn_connexion" class="btn btn-lg btn-primary" type="submit">
+                        CONNEXION
+                    </button>
+                </div>
+            </form>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Connexion ADMIN : BACK OFFICE</h1>
-
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control col-4" required autofocus >
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control col-4" required><br>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Connexion
-    </button>
-</form>
+    </section>
 {% endblock %}
