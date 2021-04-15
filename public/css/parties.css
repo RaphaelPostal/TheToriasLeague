@@ -1,0 +1,276 @@
+#parties{
+    width: 100%;
+    height: auto;
+    background-image: url("../img/feuillage_1.png");
+    background-size: 100%;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+}
+
+h1{
+    color: gold;
+    font-family: 'aventura';
+}
+
+#parties_en_cours{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#div_enCours{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 25px;
+}
+
+.enCours_span{
+    height: 100px;
+    width: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+.enCours{
+    width: auto;
+    height: auto;
+    margin: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.enCours_reprendre{
+    color: gold;
+    text-decoration: none;
+    padding-top: 55px;
+}
+.enCours_reprendre:hover{
+    text-decoration: underline;
+}
+
+
+#parties_en_attente{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+#div_enAttente{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(0,0,0,0.5);
+    border-radius: 25px;
+}
+
+.enAttente_span{
+    height: 100px;
+    width: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+.enAttente{
+    width: auto;
+    height: auto;
+    margin: 15px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+.enAttente_rejoindre{
+    color: gold;
+    text-decoration: none;
+    padding-top: 55px;
+}
+.enAttente_rejoindre:hover{
+    text-decoration: underline;
+}
+
+
+#nouvelle_partie{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#new{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    height: 500px;
+}
+
+#new1{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+}
+#btn_aleatoire{
+    background-color: gold;
+    padding: 15px 20px 15px 20px;
+    border: none;
+    margin: 15px;
+}
+#btn_aleatoire a{
+    color: white;
+    font-family: aventura;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+#new_liste{
+    background-color: white;
+    width: 80%;
+    padding: 20px;
+}
+#new_liste h3{
+    color: gold;
+    text-decoration: underline;
+}
+.invit{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+.invit_infos{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    border: solid 2px #6fe456;
+    padding: 10px;
+}
+
+.invit_rejoindre{
+    color: black;
+    text-decoration: none;
+    margin: 10px;
+}
+
+#new2{
+    width: 50%;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    height: 80%;
+}
+
+#new2 h2{
+    color: gold;
+    text-decoration: underline;
+    margin: 35px;
+}
+
+#invit_pseudoAmi{
+    width: 85%;
+    height: 35px;
+    border-radius: 20px;
+    border: solid 1px #6e6e6e;
+}
+#invit_search{
+    width: 85%;
+    height: 35px;
+    margin-top: 30px;
+    border-radius: 20px;
+    border: solid 1px #6e6e6e;
+}
+
+#btn_defier, #btn_rechercher{
+    width: 50%;
+    background-color: #6fe456;
+    padding: 15px;
+    border: none;
+    margin-left: 22%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#btn_defier , #btn_rechercher {
+    color: white;
+    text-decoration: none;
+    font-family: aventura;
+}
+
+#btn_profil{
+    background-color: gold;
+    padding: 15px;
+    border: none;
+    margin: 30px;
+}
+#btn_profil a{
+    color: white;
+    text-decoration: none;
+    font-family: aventura;
+    font-size: 30px;
+}
+
+#ami_invit_titre{
+    color: white;
+    background-color: black;
+    text-decoration: underline;
+    padding: 20px 300px 20px 300px;
+    border-radius: 25px;
+}
+
+#liste_demandeAmi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+.demandeAmi{
+    background-color: rgba(0,0,0,0.5);
+    width: 85%;
+    height: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    border-radius: 25px;
+}
+.demandeAmi a{
+    color: #6fe456;
+    text-decoration: none;
+}
+.demandeAmi a:hover{
+    text-decoration: underline;
+}
+
+
+/*MODIFS RAPH*/
+
+#form-defier, #form-chercher{
+    width: 80%;
+}
+

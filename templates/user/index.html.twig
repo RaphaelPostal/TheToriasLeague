@@ -3,62 +3,114 @@
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>Bonjour {{ user.firstName }}</h1>
-    <h3>Parties en attente</h3>
+    <link rel="stylesheet" href="{{ asset('css/parties.css') }}">
+    <section id="parties">
+        <div id="parties_en_cours">
+            <h1>VOS PARTIES EN COURS</h1>
+            <div id="div_enCours">
+                {% for game in current_games %}
 
-    <!-- affichage des parties en attente-->
+                    <div class="enCours">
+                        <div>
+                            <p>{{ game.created|format_datetime('short', locale='fr') }}</p>
+                            {% if app.user.id == game.user1.id %}
+                            <p class="enCours_pseudo">{{ game.user2.pseudo }}</p>
+                            <p class="enCours_classement">{{ game.user2.elo }}</p>
+                                {% elseif app.user.id == game.user2.id %}
+                                    <p class="enCours_pseudo">{{ game.user1.pseudo }}</p>
+                                    <p class="enCours_classement">{{ game.user1.elo }}</p>
+                            {% endif %}
+                        </div>
+                        <p><a class="enCours_reprendre" href="{{ path('show_game', {game : game.id}) }}">Reprendre</a></p>
+                    </div>
+                    <span class="enCours_span"></span>
 
-        <div class="row">
-        {% for game in empty_games|filter(game => game.user1.elo == 1000) %}
-            {% if game.user1.id != user.id%}
-            <span>Partie créée par {{ game.user1.pseudo }} </span><a href="{{ path('join_game', {game : game.id}) }}">&nbsp;Rejoindre</a><br>
-            {% endif %}
-        {% endfor %}
+                {% endfor %}
+
+            </div>
         </div>
-        <div class="row">
-            <h3>Vos parties en cours</h3>
-            {% for game in current_games %}
-                <div style="background-color: lightgray; margin: 20px">Créée le {{ game.created|format_datetime('short', locale='fr') }}<br>
-                    <a href="{{ path('show_game', {game : game.id}) }}">Reprendre</a>
+        <div id="parties_en_attente">
+            <h1>PARTIES EN ATTENTE</h1>
+            <div id="div_enAttente">
+
+
+                    {% for game in empty_games|filter(game => game.user1.elo == 1000) %}
+                        {% if game.user1.id != user.id%}
+
+                            <div class="enAttente">
+                                <div>
+                                    <p class="enAttente_pseudo">{{ game.user1.pseudo }}</p>
+                                    <p class="enAttente_classement">{{ game.user1.elo }}</p>
+                                </div>
+                                <p><a class="enAttente_rejoindre" href="{{ path('join_game', {game : game.id}) }}">Rejoindre</a></p>
+                            </div>
+                        <span class="enAttente_span"></span>
+                        {% endif %}
+                    {% endfor %}
+
+
+            </div>
+        </div>
+        <div id="nouvelle_partie">
+            <h1>NOUVELLE PARTIE</h1> <!-- titre de la partie création et invitation de parties -->
+            <div id="new"> <!-- div contenant la partie gauche et droite -->
+                <div id="new1"> <!-- div gauche -->
+                    <button id="btn_aleatoire"><a href="{{ path('create_game') }}">ALEATOIRE</a></button>
+                    <div id="new_liste">
+                        <h3>Invitations à jouer</h3>
+
+                        {% for game in parties_invits %}
+                            <div class="invit">
+                                <div class="invit_infos">
+                                    <span class="span_invitPseudo">{{ game.user1.pseudo }}</span>
+                                    <span class="span_invitElo">{{ game.user1.elo }}</span>
+                                </div>
+                                <a href="{{ path('show_game', {game : game.id}) }}" class="invit_rejoindre">Rejoindre</a>
+                            </div>
+                        {% endfor %}
+
+
+                    </div>
                 </div>
+                <div id="new2"> <!-- div droite -->
+                    <h2>Défier un ami</h2>
+                    <form action="{{ path('create_game') }}" method="POST" id="form-defier">
+                        <select type="text" id="invit_pseudoAmi" name="user2" placeholder="Sélectionner un ami">
+                            {% for ami in amis %}
+                                <option value="{{ ami.id }}">{{ ami.pseudo }}</option>
+                            {% endfor %}
+                        </select>
 
-            {% endfor %}
+                        <button id="btn_defier" type="submit">DEFIER</button>
+                    </form>
+
+                    <form action="{{ path('search') }}" method="GET" id="form-chercher">
+                        <input type="search" id="invit_search" name="searchPseudo" placeholder="Rechercher un joueur">
+                        <button id="btn_rechercher" type="submit">RECHERCHER</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
 
-    <h2><a href="{{ path('create_game') }}">Créer une partie aléatoire</a></h2>
-    <h2><a href="{{ path('profil_et_stats') }}">Informations personnelles</a></h2>
-
-    <h3>invitations de mes amis</h3>
-    <ul>
-        {% for game in parties_invits %}
-            <li>{{ game.user1.pseudo }} | <a href="{{ path('show_game', {game : game.id}) }}">Rejoindre</a></li>
-        {% endfor %}
-    </ul>
-
-    <p>Défier un ami:
-    <form action="{{ path('create_game') }}" method="POST">
-    <select name="user2" id="user2">
-        {% for ami in amis %}
-            <option value="{{ ami.id }}">{{ ami.pseudo }}</option>
-        {% endfor %}
-    </select>
-    <input type="submit" value="Défier">
-    </form>
-
-    <p>Rechercher un joueur:
-        <form action="{{ path('search') }}" method="GET">
-        <input type="text" name="searchPseudo" required/>
-            <input type="submit" value="chercher">
-        </form>
-
-    Ils m'ont ajouté en amis : <br>
-    {% for demande in demandes_amis %}
-        {{ demande.pseudo }} | <a href="{{ path('ajout_ami', {id: demande.id}) }}">Ajouter en ami</a>
-    {% endfor %}
+        <button id="btn_profil"><a href="{{ path('profil_et_stats') }}">PROFIL ET STATISTIQUES ></a></button>
 
 
+        <h2 id="ami_invit_titre">Ils m'ont ajouté en ami</h2>
+        <div id="liste_demandeAmi">
 
+            {% for demande in demandes_amis %}
+                <div class="demandeAmi">
+                    <p>{{ demande.pseudo }}</p>
+                    <p>{{ demande.email }}</p>
+                    <p>{{ demande.elo }}</p>
+                    <a href="{{ path('ajout_ami', {id: demande.id}) }}">Accepter l'invitation ?</a>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </section>
 
 
 {% endblock %}
