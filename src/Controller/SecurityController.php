@@ -31,7 +31,7 @@ class SecurityController extends AbstractController
             if($targetPath == 'http://127.0.0.1/TheToriasLeague/public/admin/accueil'){
                 $request->getSession()->set('_security.main.target_path', 'http://127.0.0.1/TheToriasLeague/public/profil');
             }elseif($targetPath == 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/admin/accueil'){
-                $request->getSession()->set('_security.main.target_path', 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/login');
+                $request->getSession()->set('_security.main.target_path', 'https://mmi19d09.mmi-troyes.fr/TheToriasLeague/profil');
             }
 
             return $this->render('security/admin.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
