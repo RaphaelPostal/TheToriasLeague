@@ -903,7 +903,7 @@ class GameController extends AbstractController
         $num2 = $num1-=1;
         $round = $game->getRounds()[$num2];
         /*var_dump($round);*/
-        if($round->getPioche() == [] && $round->getUser1HandCards() == [] && $round->getUser2HandCards() == []){
+        if($round->getPioche() == [] && $round->getUser1HandCards() == [] && $round->getUser2HandCards() == [] && $round->getUser1ActionEnCours() == null && $round->getUser2ActionEnCours()==null){
             return $this->json('Fin de partie');
         }
         if($game->getUser2() != null){
