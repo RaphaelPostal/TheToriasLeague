@@ -1150,91 +1150,93 @@ class GameController extends AbstractController
 
         $round->setBoard($plateau);
 
+        $moi['majorites'] = [
+            "KRULMO"=> false,
+            "GANORMO"=> false,
+            "RASDAR"=> false,
+            "ARCADIA"=> false,
+            "ASTRALIA"=> false,
+            "THARUK"=> false,
+            "SOFIA"=> false
+        ];
+
 
         if($this->getUser()->getId() === $game->getUser1()->getId()){//SI JE SUIS J1
 
-            $moi['majorites'] = [
-                "KRULMO"=> false,
-                "GANORMO"=> false,
-                "RASDAR"=> false,
-                "ARCADIA"=> false,
-                "ASTRALIA"=> false,
-                "THARUK"=> false,
-                "SOFIA"=> false
-            ];
+
 
             if($plateau['EMPL1']==1){
-                $moi['majorites']['KRULMO'] = true;
+                $moi['majorites']['KRULMO'] = 'win';
 
             }elseif ($plateau['EMPL1']==2){
 
-                $moi['majorites']['KRULMO']=true;
+                $moi['majorites']['KRULMO']='lose';
             }else{
                 $moi['majorites']['KRULMO'] = 'egal';
 
             }
 
             if($plateau['EMPL2']==1){
-                $moi['majorites']['GANORMO'] = true;
+                $moi['majorites']['GANORMO'] = 'win';
 
             }elseif ($plateau['EMPL2']==2){
 
-                $moi['majorites']['GANORMO']=false;
+                $moi['majorites']['GANORMO']='lose';
             }else{
                 $moi['majorites']['GANORMO'] = 'egal';
 
             }
 
             if($plateau['EMPL3']==1){
-                $moi['majorites']['RASDAR'] = true;
+                $moi['majorites']['RASDAR'] = 'win';
 
             }elseif ($plateau['EMPL3']==2){
 
-                $moi['majorites']['RASDAR']=false;
+                $moi['majorites']['RASDAR']='lose';
             }else{
                 $moi['majorites']['RASDAR'] = 'egal';
 
             }
 
             if($plateau['EMPL4']==1){
-                $moi['majorites']['ARCADIA'] = true;
+                $moi['majorites']['ARCADIA'] = 'win';
 
             }elseif ($plateau['EMPL4']==2){
 
-                $moi['majorites']['ARCADIA']=false;
+                $moi['majorites']['ARCADIA']='lose';
             }else{
                 $moi['majorites']['ARCADIA'] = 'egal';
 
             }
 
             if($plateau['EMPL5']==1){
-                $moi['majorites']['ASTRALIA'] = true;
+                $moi['majorites']['ASTRALIA'] = 'win';
 
             }elseif ($plateau['EMPL5']==2){
 
-                $moi['majorites']['ASTRALIA']=false;
+                $moi['majorites']['ASTRALIA']='lose';
             }else{
                 $moi['majorites']['ASTRALIA'] = 'egal';
 
             }
 
             if($plateau['EMPL6']==1){
-                $moi['majorites']['THARUK'] = true;
+                $moi['majorites']['THARUK'] = 'win';
 
             }elseif ($plateau['EMPL6']==2){
 
-                $moi['majorites']['THARUK']=false;
+                $moi['majorites']['THARUK']='lose';
             }else{
                 $moi['majorites']['THARUK'] = 'egal';
 
             }
 
             if($plateau['EMPL7']==1){
-                $moi['majorites']['SOFIA'] = true;
+                $moi['majorites']['SOFIA'] = 'win';
 
             }elseif ($plateau['EMPL7']==2){
 
-                $moi['majorites']['SOFIA']=false;
+                $moi['majorites']['SOFIA']='lose';
             }else{
                 $moi['majorites']['SOFIA'] = 'egal';
 
@@ -1242,88 +1244,78 @@ class GameController extends AbstractController
 
         }elseif ($this->getUser()->getId() === $game->getUser2()->getId()){
 
-            $moi['majorites'] = [
-                "KRULMO"=> false,
-                "GANORMO"=> false,
-                "RASDAR"=> false,
-                "ARCADIA"=> false,
-                "ASTRALIA"=> false,
-                "THARUK"=> false,
-                "SOFIA"=> false
-            ];
-
             if($plateau['EMPL1']==2){
-                $moi['majorites']['KRULMO'] = true;
+                $moi['majorites']['KRULMO'] = 'win';
 
             }elseif ($plateau['EMPL1']==1){
 
-                $moi['majorites']['KRULMO']=true;
+                $moi['majorites']['KRULMO']='lose';
             }else{
                 $moi['majorites']['KRULMO'] = 'egal';
 
             }
 
             if($plateau['EMPL2']==2){
-                $moi['majorites']['GANORMO'] = true;
+                $moi['majorites']['GANORMO'] = 'win';
 
             }elseif ($plateau['EMPL2']==1){
 
-                $moi['majorites']['GANORMO']=false;
+                $moi['majorites']['GANORMO']='lose';
             }else{
                 $moi['majorites']['GANORMO'] = 'egal';
 
             }
 
             if($plateau['EMPL3']==2){
-                $moi['majorites']['RASDAR'] = true;
+                $moi['majorites']['RASDAR'] = 'win';
 
             }elseif ($plateau['EMPL3']==1){
 
-                $moi['majorites']['RASDAR']=false;
+                $moi['majorites']['RASDAR']='lose';
             }else{
                 $moi['majorites']['RASDAR'] = 'egal';
 
             }
 
             if($plateau['EMPL4']==2){
-                $moi['majorites']['ARCADIA'] = true;
+                $moi['majorites']['ARCADIA'] = 'win';
 
             }elseif ($plateau['EMPL4']==1){
 
-                $moi['majorites']['ARCADIA']=false;
+                $moi['majorites']['ARCADIA']='lose';
             }else{
                 $moi['majorites']['ARCADIA'] = 'egal';
 
             }
 
             if($plateau['EMPL5']==2){
-                $moi['majorites']['ASTRALIA'] = true;
+                $moi['majorites']['ASTRALIA'] = 'win';
 
             }elseif ($plateau['EMPL5']==1){
 
-                $moi['majorites']['ASTRALIA']=false;
+                $moi['majorites']['ASTRALIA']='lose';
             }else{
                 $moi['majorites']['ASTRALIA'] = 'egal';
 
             }
 
             if($plateau['EMPL6']==2){
-                $moi['majorites']['THARUK'] = true;
+                $moi['majorites']['THARUK'] = 'win';
 
             }elseif ($plateau['EMPL6']==1){
 
-                $moi['majorites']['THARUK']=false;
+                $moi['majorites']['THARUK']='lose';
             }else{
                 $moi['majorites']['THARUK'] = 'egal';
 
             }
 
             if($plateau['EMPL7']==2){
-                $moi['majorites']['SOFIA'] = true;
+                $moi['majorites']['SOFIA'] = 'win';
 
             }elseif ($plateau['EMPL7']==1){
 
-                $moi['majorites']['SOFIA']=false;
+                $moi['majorites']['SOFIA']='lose';
             }else{
                 $moi['majorites']['SOFIA'] = 'egal';
 
@@ -1331,7 +1323,8 @@ class GameController extends AbstractController
 
         }
 
-        /////////FIN CALCUL DES MAJORITES
+        ///////// FIN CALCUL DES MAJORITES
+
 
 
         return $this->render('game/plateau_resultats.html.twig', [
@@ -1345,6 +1338,8 @@ class GameController extends AbstractController
         ]);
 
     }
+
+
 
 
     /**
