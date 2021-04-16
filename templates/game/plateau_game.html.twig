@@ -270,7 +270,7 @@
                         <h4 style="color:gold">Offre : choisissez une carte</h4>
 
                     {%for card in adversaire.actions.OFFRE.CartesChoisiesMoi%}
-                        <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">{{ card }}
+                        <img src="{{ asset('img/cartes/'~cards[card].picture) }}" style="width: 90px">
                         <input type="radio" name="choix_adv_offre" value="{{ card }}"
                                class="choixAdvOffre" id="offre{{ loop.index }}">
 

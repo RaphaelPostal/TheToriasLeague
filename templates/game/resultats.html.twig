@@ -1,4 +1,8 @@
-<h3>Résultats</h3>
+<link rel="stylesheet" href="{{ asset('css/resultats.css') }}">
+
 {{ render(controller('App\\Controller\\GameController::refreshResultats', {game:game.id})) }}
-<a href="{{ path('next_round', {game:game.id}) }}" style="color: white">Passer au round suivant</a>
-<a href="{{ path('user_profil') }}" style="color: white">Retour sur votre profil</a>
+{# <a href=" {{ path('next_round', {game:game.id}) }}" style="color: white">Passer au round suivant</a>#}
+
+
+
+

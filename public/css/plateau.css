@@ -311,6 +311,7 @@ input[type=radio] {
     -ms-appearance: none;
     position: relative;
     bottom: 60px;
+
 }
 
 #deck-sud input[type=radio] {
@@ -329,7 +330,7 @@ input[type=radio] {
     -ms-appearance: none;
     position: relative;
     bottom: 40px;
-    right: 5px;
+    left: 0px;
 
 }
 

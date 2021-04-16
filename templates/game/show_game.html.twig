@@ -97,14 +97,11 @@
 
                     }else{//partie test avec data = fin de partie
                         $('#overlay-wait').hide()
-                        $('#message').html('FIN DE LA MANCHE')
+                        $('#message').html('RESULTATS')
 
 
                         //Piocher une carte
                         setTimeout(function(){
-                            $.ajax({
-                                url: "{{ path('pioche', {game: game.id}) }}",
-                            })
 
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
@@ -119,7 +116,6 @@
 
                         clearInterval(boucle)
                         setTimeout(function(){
-                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
                             console.log('fin de la manche')
