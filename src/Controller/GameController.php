@@ -251,6 +251,204 @@ class GameController extends AbstractController
 
             }
 
+            $plateau = $round->getBoard();
+
+            if($this->getUser()->getId() === $game->getUser1()->getId()){//SI JE SUIS J1
+
+
+
+                if($plateau['EMPL1']==1){
+                    $moi['majorites']['KRULMO'] = 'win';
+
+
+
+                }elseif ($plateau['EMPL1']==2){
+
+                    $moi['majorites']['KRULMO']='lose';
+
+                }else{
+                    $moi['majorites']['KRULMO'] = 'egal';
+
+                }
+
+                if($plateau['EMPL2']==1){
+                    $moi['majorites']['GANORMO'] = 'win';
+
+
+                }elseif ($plateau['EMPL2']==2){
+
+                    $moi['majorites']['GANORMO']='lose';
+
+                }else{
+                    $moi['majorites']['GANORMO'] = 'egal';
+
+                }
+
+                if($plateau['EMPL3']==1){
+                    $moi['majorites']['RASDAR'] = 'win';
+
+
+                }elseif ($plateau['EMPL3']==2){
+
+                    $moi['majorites']['RASDAR']='lose';
+
+                }else{
+                    $moi['majorites']['RASDAR'] = 'egal';
+
+                }
+
+                if($plateau['EMPL4']==1){
+                    $moi['majorites']['ARCADIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL4']==2){
+
+                    $moi['majorites']['ARCADIA']='lose';
+
+                }else{
+                    $moi['majorites']['ARCADIA'] = 'egal';
+
+                }
+
+                if($plateau['EMPL5']==1){
+                    $moi['majorites']['ASTRALIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL5']==2){
+
+                    $moi['majorites']['ASTRALIA']='lose';
+
+                }else{
+                    $moi['majorites']['ASTRALIA'] = 'egal';
+
+                }
+
+                if($plateau['EMPL6']==1){
+                    $moi['majorites']['THARUK'] = 'win';
+
+
+                }elseif ($plateau['EMPL6']==2){
+
+                    $moi['majorites']['THARUK']='lose';
+
+                }else{
+                    $moi['majorites']['THARUK'] = 'egal';
+
+                }
+
+                if($plateau['EMPL7']==1){
+                    $moi['majorites']['SOFIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL7']==2){
+
+                    $moi['majorites']['SOFIA']='lose';
+
+                }else{
+                    $moi['majorites']['SOFIA'] = 'egal';
+
+                }
+
+            }elseif ($this->getUser()->getId() === $game->getUser2()->getId()){
+
+                if($plateau['EMPL1']==2){
+                    $moi['majorites']['KRULMO'] = 'win';
+
+
+                }elseif ($plateau['EMPL1']==1){
+
+                    $moi['majorites']['KRULMO']='lose';
+
+                }else{
+                    $moi['majorites']['KRULMO'] = 'egal';
+
+                }
+
+                if($plateau['EMPL2']==2){
+                    $moi['majorites']['GANORMO'] = 'win';
+
+
+                }elseif ($plateau['EMPL2']==1){
+
+                    $moi['majorites']['GANORMO']='lose';
+
+                }else{
+                    $moi['majorites']['GANORMO'] = 'egal';
+
+                }
+
+                if($plateau['EMPL3']==2){
+                    $moi['majorites']['RASDAR'] = 'win';
+
+
+                }elseif ($plateau['EMPL3']==1){
+
+                    $moi['majorites']['RASDAR']='lose';
+
+                }else{
+                    $moi['majorites']['RASDAR'] = 'egal';
+
+                }
+
+                if($plateau['EMPL4']==2){
+                    $moi['majorites']['ARCADIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL4']==1){
+
+                    $moi['majorites']['ARCADIA']='lose';
+
+                }else{
+                    $moi['majorites']['ARCADIA'] = 'egal';
+
+                }
+
+                if($plateau['EMPL5']==2){
+                    $moi['majorites']['ASTRALIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL5']==1){
+
+                    $moi['majorites']['ASTRALIA']='lose';
+
+
+                }else{
+                    $moi['majorites']['ASTRALIA'] = 'egal';
+
+                }
+
+                if($plateau['EMPL6']==2){
+                    $moi['majorites']['THARUK'] = 'win';
+
+
+                }elseif ($plateau['EMPL6']==1){
+
+                    $moi['majorites']['THARUK']='lose';
+
+
+                }else{
+                    $moi['majorites']['THARUK'] = 'egal';
+
+                }
+
+                if($plateau['EMPL7']==2){
+                    $moi['majorites']['SOFIA'] = 'win';
+
+
+                }elseif ($plateau['EMPL7']==1){
+
+                    $moi['majorites']['SOFIA']='lose';
+
+
+                }else{
+                    $moi['majorites']['SOFIA'] = 'egal';
+
+                }
+
+            }
+
+            ///////// FIN CALCUL DES MAJORITES
+
         } else {
             //redirection... je ne suis pas l'un des deux joueurs ???? PAS OBLIGATOIRE ????
             return $this->redirectToRoute('user_profil');
@@ -1160,6 +1358,9 @@ class GameController extends AbstractController
             "SOFIA"=> false
         ];
 
+        $moi['points']=0;
+        $adversaire['points']=0;
+
 
         if($this->getUser()->getId() === $game->getUser1()->getId()){//SI JE SUIS J1
 
@@ -1167,10 +1368,13 @@ class GameController extends AbstractController
 
             if($plateau['EMPL1']==1){
                 $moi['majorites']['KRULMO'] = 'win';
+                $moi['points'] += 2;
+
 
             }elseif ($plateau['EMPL1']==2){
 
                 $moi['majorites']['KRULMO']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['KRULMO'] = 'egal';
 
@@ -1178,10 +1382,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL2']==1){
                 $moi['majorites']['GANORMO'] = 'win';
+                $moi['points'] += 2;
 
             }elseif ($plateau['EMPL2']==2){
 
                 $moi['majorites']['GANORMO']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['GANORMO'] = 'egal';
 
@@ -1189,10 +1395,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL3']==1){
                 $moi['majorites']['RASDAR'] = 'win';
+                $moi['points'] += 2;
 
             }elseif ($plateau['EMPL3']==2){
 
                 $moi['majorites']['RASDAR']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['RASDAR'] = 'egal';
 
@@ -1200,10 +1408,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL4']==1){
                 $moi['majorites']['ARCADIA'] = 'win';
+                $moi['points'] += 3;
 
             }elseif ($plateau['EMPL4']==2){
 
                 $moi['majorites']['ARCADIA']='lose';
+                $adversaire['points'] += 3;
             }else{
                 $moi['majorites']['ARCADIA'] = 'egal';
 
@@ -1211,10 +1421,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL5']==1){
                 $moi['majorites']['ASTRALIA'] = 'win';
+                $moi['points'] += 3;
 
             }elseif ($plateau['EMPL5']==2){
 
                 $moi['majorites']['ASTRALIA']='lose';
+                $adversaire['points'] += 3;
             }else{
                 $moi['majorites']['ASTRALIA'] = 'egal';
 
@@ -1222,10 +1434,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL6']==1){
                 $moi['majorites']['THARUK'] = 'win';
+                $moi['points'] += 4;
 
             }elseif ($plateau['EMPL6']==2){
 
                 $moi['majorites']['THARUK']='lose';
+                $adversaire['points'] += 4;
             }else{
                 $moi['majorites']['THARUK'] = 'egal';
 
@@ -1233,10 +1447,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL7']==1){
                 $moi['majorites']['SOFIA'] = 'win';
+                $moi['points'] += 5;
 
             }elseif ($plateau['EMPL7']==2){
 
                 $moi['majorites']['SOFIA']='lose';
+                $adversaire['points'] += 5;
             }else{
                 $moi['majorites']['SOFIA'] = 'egal';
 
@@ -1246,10 +1462,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL1']==2){
                 $moi['majorites']['KRULMO'] = 'win';
+                $moi['points'] += 2;
 
             }elseif ($plateau['EMPL1']==1){
 
                 $moi['majorites']['KRULMO']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['KRULMO'] = 'egal';
 
@@ -1257,10 +1475,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL2']==2){
                 $moi['majorites']['GANORMO'] = 'win';
+                $moi['points'] += 2;
 
             }elseif ($plateau['EMPL2']==1){
 
                 $moi['majorites']['GANORMO']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['GANORMO'] = 'egal';
 
@@ -1268,10 +1488,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL3']==2){
                 $moi['majorites']['RASDAR'] = 'win';
+                $moi['points'] += 2;
 
             }elseif ($plateau['EMPL3']==1){
 
                 $moi['majorites']['RASDAR']='lose';
+                $adversaire['points'] += 2;
             }else{
                 $moi['majorites']['RASDAR'] = 'egal';
 
@@ -1279,10 +1501,12 @@ class GameController extends AbstractController
 
             if($plateau['EMPL4']==2){
                 $moi['majorites']['ARCADIA'] = 'win';
+                $moi['points'] += 3;
 
             }elseif ($plateau['EMPL4']==1){
 
                 $moi['majorites']['ARCADIA']='lose';
+                $adversaire['points'] += 3;
             }else{
                 $moi['majorites']['ARCADIA'] = 'egal';
 
@@ -1290,10 +1514,13 @@ class GameController extends AbstractController
 
             if($plateau['EMPL5']==2){
                 $moi['majorites']['ASTRALIA'] = 'win';
+                $moi['points'] += 3;
 
             }elseif ($plateau['EMPL5']==1){
 
                 $moi['majorites']['ASTRALIA']='lose';
+                $adversaire['points'] += 3;
+
             }else{
                 $moi['majorites']['ASTRALIA'] = 'egal';
 
@@ -1301,10 +1528,13 @@ class GameController extends AbstractController
 
             if($plateau['EMPL6']==2){
                 $moi['majorites']['THARUK'] = 'win';
+                $moi['points'] += 4;
 
             }elseif ($plateau['EMPL6']==1){
 
                 $moi['majorites']['THARUK']='lose';
+                $adversaire['points'] += 4;
+
             }else{
                 $moi['majorites']['THARUK'] = 'egal';
 
@@ -1312,10 +1542,13 @@ class GameController extends AbstractController
 
             if($plateau['EMPL7']==2){
                 $moi['majorites']['SOFIA'] = 'win';
+                $moi['points'] += 5;
 
             }elseif ($plateau['EMPL7']==1){
 
                 $moi['majorites']['SOFIA']='lose';
+                $adversaire['points'] += 5;
+
             }else{
                 $moi['majorites']['SOFIA'] = 'egal';
 
@@ -1325,7 +1558,8 @@ class GameController extends AbstractController
 
         ///////// FIN CALCUL DES MAJORITES
 
-
+        $entityManager->persist($round);
+        $entityManager->flush();
 
         return $this->render('game/plateau_resultats.html.twig', [
             'game' => $game,
@@ -1371,6 +1605,9 @@ class GameController extends AbstractController
                 $round->setCreated(new \DateTime('now'));
                 $round->setRoundNumber(2);
                 $game->setRoundEnCours(2);
+
+                $ancien_board = $game->getRounds()[0]->getBoard();
+                $round->setBoard($ancien_board);
             }elseif ($game->getRounds()[1] != null){
                 if($game->getRounds()[1]->getEnded() != null){
                     //s'il y a eu une 2e manche et qu'elle est finie
@@ -1381,6 +1618,9 @@ class GameController extends AbstractController
                         $round->setCreated(new \DateTime('now'));
                         $round->setRoundNumber(3);
                         $game->setRoundEnCours(3);
+
+                        $ancien_board = $game->getRounds()[1]->getBoard();
+                        $round->setBoard($ancien_board);
                     }else{
                         return $this->redirectToRoute('show_game', [
                             'game' => $game->getId()
@@ -1442,15 +1682,6 @@ class GameController extends AbstractController
                 'ECHANGE' => ["CartesChoisiesMoi"=>["Paire1"=>[], "Paire2"=>[]], "CartesChoisiesAdversaire"=>[]]
             ]);
 
-            $round->setBoard([
-                'EMPL1' => 'N',
-                'EMPL2' => 'N',
-                'EMPL3' => 'N',
-                'EMPL4' => 'N',
-                'EMPL5' => 'N',
-                'EMPL6' => 'N',
-                'EMPL7' => 'N'
-            ]);
 
             $round->setUser1BoardCards([
                 'KRULMO' => [],

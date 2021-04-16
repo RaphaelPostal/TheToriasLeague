@@ -1,3 +1,4 @@
+
 {% if adversaire.infos != [] %}
     <div id="opponent"><img src="{{ asset('img/avatars/'~adversaire.infos.photo) }}" alt="pic adversaire"><span>{{ adversaire.infos.pseudo }}  |  {{ adversaire.infos.elo }}</span></div>
 {% endif %}
@@ -308,6 +309,9 @@
             </div>
         {% endif %}
     {% endif %}
+
+{{ dump(round.board) }}
+
 
     {% if round.User1Handcards == [] and round.User2Handcards == [] and round.pioche == [] and round.User1ActionEnCours == null and round.User2ActionEnCours == null %}
         <a href="{{ path('refresh_plateau_game') }}">Voir les résultats</a>

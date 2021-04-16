@@ -1,4 +1,9 @@
 {{ dump(moi) }}
+{{ dump(adversaire) }}
+
+
+    <a href=" {{ path('next_round', {game:game.id}) }}" style="color: white">Passer au round suivant</a>
+
 
 <div id="actions-nord">
     <img class="action_nord" src="{{ asset('img/actions/secret_nb.png') }}">
@@ -6,6 +11,7 @@
     <img class="action_nord" src="{{ asset('img/actions/offre_nb.png') }}">
     <img class="action_nord" src="{{ asset('img/actions/echange_nb.png') }}">
 </div>
+
 <div id="deck-nord">
 
     {% for card in adversaire.handCards %}
