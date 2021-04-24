@@ -22,11 +22,15 @@ class GameRepository extends ServiceEntityRepository
 
 
 
-    public function findEmptyGames()
+    public function findEmptyGames($fork1, $fork2)
     {
         return $this->createQueryBuilder('game')
             ->where('game.user2 IS NULL')
+            ->join('game.user1', 'user1')
+            ->andwhere('user1.elo > :fork1 ')
+            ->andwhere('user1.elo < :fork2 ')
             ->orderBy('game.id', 'ASC')
+            ->setParameters(['fork1'=>$fork1, 'fork2'=>$fork2])
             ->setMaxResults(5)
             ->getQuery()
             ->getResult()
@@ -37,7 +41,7 @@ class GameRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('game')
             ->where('game.typeVictoire =:type')
-            ->setParameter('type', 'Mercenaire')
+            ->setParameter('type', 'Mercenaires')
             ->getQuery()
             ->getResult()
             ;

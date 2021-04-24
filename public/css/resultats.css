@@ -7,3 +7,22 @@
     top: 77%;
 
 }
+
+#info-result{
+    text-transform: uppercase;
+    position: absolute;
+    padding: 10px;
+    border-radius: 10px;
+    bottom: 10vh;
+    left: 26%;
+    font-size: 20px;
+    color: gold;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 3000;
+    font-family: 'aventura';
+
+}
+
+#info-result a {
+    text-decoration: underline;
+}

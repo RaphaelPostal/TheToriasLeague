@@ -1,7 +1,21 @@
 
 
+        {% if moi.recrues|length >= 4 %}
+            <div id="info-result">Vous avez gagne avec {{ moi.recrues|length }} mercenaires !</div>
+        {% elseif adversaire.recrues|length >=4 %}
+            <div id="info-result">Vous avez perdu, votre adversaire a {{ adversaire.recrues|length }} mercenaires .</div>
+        {% elseif moi.points >= 11 %}
+            <div id="info-result">Vous avez gagne avec {{ moi.points }} points !</div>
+        {% elseif adversaire.points >= 11 %}
+            <div id="info-result">Votre adversaire a gagné avec {{ adversaire.points }} points .</div>
+            {% elseif round.roundnumber != 3 %}
+                <div id="info-result"><a href=" {{ path('next_round', {game:game.id}) }}" style="color: white">EGALITE : Passer au round suivant ></a></div>
+        {% endif %}
 
-    <a href=" {{ path('next_round', {game:game.id}) }}" style="color: white">Passer au round suivant</a>
+
+
+
+
 
 
 <div id="actions-nord">

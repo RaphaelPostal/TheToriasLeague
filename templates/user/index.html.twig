@@ -43,7 +43,7 @@
             <div id="div_enAttente">
 
 
-                    {% for game in empty_games|filter(game => game.user1.elo == 1000) %}
+                    {% for game in empty_games %}
                         {% if game.user1.id != user.id%}
 
                             <div class="enAttente">

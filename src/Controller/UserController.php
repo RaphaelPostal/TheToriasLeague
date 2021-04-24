@@ -102,9 +102,13 @@ class UserController extends AbstractController
 
 
         //
+        $mon_elo = $this->getUser()->getElo();
+        $fork1 = $mon_elo - 50;
+        $fork2 = $mon_elo + 50;
 
 
-        $empty_games = $gameRepository->findEmptyGames();
+        $empty_games = $gameRepository->findEmptyGames($fork1, $fork2);
+
         return $this->render('user/index.html.twig', [
             'user' => $this->getUser(),
             'empty_games' => $empty_games,
@@ -148,7 +152,7 @@ class UserController extends AbstractController
 
         foreach ($parties as $partie){
             if($partie->getWinner()->getId() == $this->getUser()->getId()){
-                if($partie->getTypeVictoire()=='Mercenaire'){
+                if($partie->getTypeVictoire()=='Mercenaires'){
                     array_push($winMercenaire, $partie);
                 }else{
                     array_push($winPoints, $partie);

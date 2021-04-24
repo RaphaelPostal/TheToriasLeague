@@ -95,12 +95,12 @@
                             <span>{{ partie.user1.elo }}</span>
                         {% endif%}
                         {% if partie.winner.id == user.id %}
-                        <span>Vitoire</span>
+                        <span>Victoire</span>
                             {% else %}
                         <span>Défaite</span>
                         {% endif %}
 
-                        {% if partie.typeVictoire == 'Mercenaire' %}
+                        {% if partie.typeVictoire == 'Mercenaires' %}
                         <span>Mercenaires</span>
                             {% else %}
                         <span>Points</span>
