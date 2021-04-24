@@ -440,7 +440,7 @@ input[type=radio]:checked{
      transform: scale(1.1);
  }
  body{
-     overflow-y: hidden;
+     /*overflow-y: hidden;*/
      overflow-x: hidden;
     background-image: url("../img/plateau.png");
      background-size: cover;
@@ -506,6 +506,14 @@ button{
     font-family: sans-serif;
 }
 
+.pour-adversaire{
+    top: 3%;
+}
+
+.pour-moi{
+    top: 77%;
+
+}
 
 
 @keyframes pop {

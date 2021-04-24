@@ -1,3 +1,4 @@
+{{ dump(moi) }}
 
 {% if adversaire.infos != [] %}
     <div id="opponent"><img src="{{ asset('img/avatars/'~adversaire.infos.photo) }}" alt="pic adversaire"><span>{{ adversaire.infos.pseudo }}  |  {{ adversaire.infos.elo }}</span></div>
@@ -93,43 +94,88 @@
 
     <div id="cartes-persos">
         <div id="emp1" class="emp">
-            <img class="pion" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.KRULMO == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.KRULMO == 'egal'%}
+                <img class="pion" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif  moi.majorites.KRULMO == 'win'%}
+                <img class="pion pour-moi" id="pion1" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
+
+
             <img class="carte-perso" src="{{ asset('img/cartes/krulmo.png') }}">
         </div>
 
 
         <div id="emp2" class="emp">
-            <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.GANORMO == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.GANORMO == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.GANORMO == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
+
             <img class="carte-perso" src="{{ asset('img/cartes/ganormo.png') }}">
         </div>
 
 
         <div id="emp3" class="emp">
-            <img class="pion" id="pion3" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.RASDAR == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.RASDAR == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.RASDAR == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
             <img class="carte-perso" src="{{ asset('img/cartes/rasdar.png') }}">
         </div>
 
 
         <div id="emp4" class="emp">
-            <img class="pion" id="pion4" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.ARCADIA == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.ARCADIA == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.ARCADIA == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
             <img class="carte-perso" src="{{ asset('img/cartes/arcadia.png') }}">
         </div>
 
 
         <div id="emp5" class="emp">
-            <img class="pion" id="pion5" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.ASTRALIA == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.ASTRALIA == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.ASTRALIA == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
             <img class="carte-perso" src="{{ asset('img/cartes/astralia.png') }}">
         </div>
 
 
         <div id="emp6" class="emp">
-            <img class="pion" id="pion6" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.THARUK == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.THARUK == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.THARUK == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
             <img class="carte-perso" src="{{ asset('img/cartes/tharuk.png') }}">
         </div>
 
 
         <div id="emp7" class="emp">
-            <img class="pion" id="pion7" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% if moi.majorites.SOFIA == 'lose'  %}
+                <img class="pion pour-adversaire" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.SOFIA == 'egal' %}
+                <img class="pion" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% elseif moi.majorites.SOFIA == 'win'%}
+                <img class="pion pour-moi" id="pion2" src="{{ asset('img/cartes/pion.png') }}" style="opacity: 0.9">
+            {% endif %}
             <img class="carte-perso" src="{{ asset('img/cartes/sofia.png') }}">
         </div>
 
