@@ -37,6 +37,15 @@ class GameRepository extends ServiceEntityRepository
             ;
     }
 
+    public function findAllEnded()
+    {
+        return $this->createQueryBuilder('game')
+            ->where('game.ended IS NOT NULL')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     public function findVictoiresM()
     {
         return $this->createQueryBuilder('game')

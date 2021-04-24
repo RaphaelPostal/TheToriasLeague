@@ -36,6 +36,19 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function findTop10()
+    {
+
+        return $this->createQueryBuilder('user')
+
+            ->setMaxResults(10)
+            ->orderBy('user.elo', 'DESC')
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

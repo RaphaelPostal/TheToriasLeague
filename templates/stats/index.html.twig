@@ -18,9 +18,15 @@
             </canvas>
         </div>
         <div id="cont-graph2">
-            <canvas id="graph2">
-
-            </canvas>
+            <h3 style="color: white; width:300px">Durée moyenne d'une partie :</h3><p style="color: white; width:300px">{{ duree_moy[0] }} min {{ duree_moy[1] }} sec.</p>
+        </div>
+        <div id="cont-graph3">
+            <h3 style="text-align: center; color: white">Top 10</h3><br>
+            <ul style="color: white; list-style-type: none">
+            {% for user in top10 %}
+                <li>{{ loop.index }} {{ user.pseudo }} | {{ user.elo }}</li><br>
+            {% endfor %}
+            </ul>
         </div>
 
 
@@ -35,7 +41,7 @@
 
 
             var context = document.getElementById('graph1').getContext('2d')
-            var context2 = document.getElementById('graph2').getContext('2d')
+
 
             var mesDatas = {{ datas }}
             var data= {
@@ -44,8 +50,8 @@
                     {
                         data: mesDatas,//recuperer en json
                         backgroundColor : [
-                            '#FB0C00',
-                            '#00D500'
+                            '#F6601F',
+                            '#F6C41F'
 
 
                         ],
@@ -65,14 +71,9 @@
 
             }
 
-        var config2 = {
-            type : 'pie',
-            data: data,
-            options: options,
 
-        }
             var graph1 = new Chart(context, config)
-            var graph2 = new Chart(context2, config2)
+
 
 
 
