@@ -263,7 +263,7 @@ class GameController extends AbstractController
                     ]);
                 }else{
 
-                    var_dump($round->getBoard());
+                    //var_dump($round->getBoard());
                     $plateau = $round->getBoard();
 
                     if($this->getUser()->getId() === $game->getUser1()->getId()){//SI JE SUIS J1
@@ -1280,10 +1280,14 @@ class GameController extends AbstractController
         $plateau = $round->getBoard();
         //KRULMO
         if(count($board_j1['KRULMO']) > count($board_j2['KRULMO'])){
-            $plateau['EMPL1']=1;
+
 
         }elseif(count($board_j1['KRULMO']) == count($board_j2['KRULMO'])){
-            $plateau['EMPL1']='N';
+
+            if($plateau['EMPL1']=='N'){//seulement si l'emplacement est neutre, le pion reste au centre
+                $plateau['EMPL1']='N';
+            }
+
         }else{
             $plateau['EMPL1']=2;
         }
@@ -1293,7 +1297,10 @@ class GameController extends AbstractController
             $plateau['EMPL2']=1;
 
         }elseif(count($board_j1['GANORMO']) == count($board_j2['GANORMO'])){
-            $plateau['EMPL2']='N';
+
+            if($plateau['EMPL2']=='N'){
+                $plateau['EMPL2']='N';
+            }
         }else{
             $plateau['EMPL2']=2;
         }
@@ -1303,7 +1310,9 @@ class GameController extends AbstractController
             $plateau['EMPL3']=1;
 
         }elseif(count($board_j1['RASDAR']) == count($board_j2['RASDAR'])){
-            $plateau['EMPL3']='N';
+            if($plateau['EMPL3']=='N'){
+                $plateau['EMPL3']='N';
+            }
         }else{
             $plateau['EMPL3']=2;
         }
@@ -1313,7 +1322,9 @@ class GameController extends AbstractController
             $plateau['EMPL4']=1;
 
         }elseif(count($board_j1['ARCADIA']) == count($board_j2['ARCADIA'])){
-            $plateau['EMPL4']='N';
+            if($plateau['EMPL4']=='N'){
+                $plateau['EMPL4']='N';
+            }
         }else{
             $plateau['EMPL4']=2;
         }
@@ -1323,7 +1334,9 @@ class GameController extends AbstractController
             $plateau['EMPL5']=1;
 
         }elseif(count($board_j1['ASTRALIA']) == count($board_j2['ASTRALIA'])){
-            $plateau['EMPL5']='N';
+            if($plateau['EMPL5']=='N'){
+                $plateau['EMPL5']='N';
+            }
         }else{
             $plateau['EMPL5']=2;
         }
@@ -1333,7 +1346,9 @@ class GameController extends AbstractController
             $plateau['EMPL6']=1;
 
         }elseif(count($board_j1['THARUK']) == count($board_j2['THARUK'])){
-            $plateau['EMPL6']='N';
+            if($plateau['EMPL6']=='N'){
+                $plateau['EMPL6']='N';
+            }
         }else{
             $plateau['EMPL6']=2;
         }
@@ -1343,7 +1358,9 @@ class GameController extends AbstractController
             $plateau['EMPL7']=1;
 
         }elseif(count($board_j1['SOFIA']) == count($board_j2['SOFIA'])){
-            $plateau['EMPL7']='N';
+            if($plateau['EMPL7']=='N'){
+                $plateau['EMPL7']='N';
+            }
         }else{
             $plateau['EMPL7']=2;
         }
