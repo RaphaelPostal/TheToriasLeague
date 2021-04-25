@@ -523,6 +523,14 @@ button{
     cursor: pointer;
 }
 
+#sound{
+    width:45px;
+    position: absolute;
+    top: -10px;
+    right: 150px;
+    cursor: pointer;
+}
+
 #tchat{
     font-family: Arial;
 }
@@ -543,6 +551,9 @@ button{
     overflow-x: hidden;
     scrollbar-color: none;
     scrollbar-width : none;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px;
+    border-radius: 5px;
 
 
 

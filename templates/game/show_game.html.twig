@@ -4,6 +4,9 @@
 {% block body %}
 
     {% block stylesheets %}<link rel="stylesheet" href="{{ asset('css/plateau.css') }}">{% endblock %}
+    <audio id="ambiance" type="audio/mpeg">
+        <source src="{{ asset('son/music.mp3') }}" >
+    </audio>
 
     <div id="overlay-wait" style="display: none">
 
@@ -13,6 +16,7 @@
 
 
             <img id="bulle" src="{{ asset('img/bulle.svg') }}" alt="Tchat">
+            <img id="sound" src="{{ asset('img/sound-off.png') }}" alt="Son off">
             <div id="message"><h3>MANCHE {{ game.RoundEncours }}</h3><p id="message-tour">...</p></div>
 
         <div id="plateau">
@@ -58,6 +62,7 @@
             $.ajax({
                 url: "{{ path('get_tour', {game: game.id}) }}",
                 success: function(data) {
+
                     console.log(data)
                     if (data == false) {
                         $('#overlay-wait').hide()
@@ -124,9 +129,9 @@
                         clearInterval(boucle)
                         setTimeout(function(){
                             $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
-                            $('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")
+                            {#$('#plateau').load("{{ path('refresh_plateau_game', {game:game.id}) }}")#}
                             console.log('fin de la manche')
-                        }, 1000)
+                        }, 2000)
 
                         //obligé de recharger à balle et encore ça marche pas tout le temps
 
@@ -875,6 +880,7 @@
         },1000)
 
         $(document).ready(function(){
+
             $('#tchat').hide()
                 $('#message-tchat').keydown(function(event){
                     if(event.which==13){
@@ -933,6 +939,20 @@
 
         $(document).on('click', '#bulle', function(){
             $('#tchat').toggle()
+
+
+        })
+        var click_sound = false;
+        $(document).on('click', '#sound', function(){
+            if(click_sound == false){
+                ambiance.play();
+                $('#sound').attr('src', "{{ asset('img/sound-on.png') }}")
+            }else{
+                $('#sound').attr('src', "{{ asset('img/sound-off.png') }}")
+                ambiance.pause()
+            }
+            click_sound = !click_sound
+
         })
 
 
