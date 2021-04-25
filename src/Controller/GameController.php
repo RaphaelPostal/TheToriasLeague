@@ -1648,15 +1648,18 @@ class GameController extends AbstractController
         $eloj1 = $game->getUser1()->getElo();
         $eloj2 = $game->getUser2()->getElo();
 
-        if($game->getEnded() === null && $game->getWinner()->getId() == $game->getUser1()->getId()){
-            $eloj1 += 20;
-            $eloj2 -= 20;
-            $game->setEnded(new \DateTime('now') );
-        }elseif($game->getEnded() === null && $game->getWinner()->getId() == $game->getUser2()->getId()){
-            $eloj1 -= 20;
-            $eloj2 += 20;
-            $game->setEnded(new \DateTime('now') );
+        if($game->getWinner() !== null){
+            if($game->getEnded() === null && $game->getWinner()->getId() == $game->getUser1()->getId()){
+                $eloj1 += 20;
+                $eloj2 -= 20;
+                $game->setEnded(new \DateTime('now') );
+            }elseif($game->getEnded() === null && $game->getWinner()->getId() == $game->getUser2()->getId()){
+                $eloj1 -= 20;
+                $eloj2 += 20;
+                $game->setEnded(new \DateTime('now') );
+            }
         }
+
 
         $game->getUser1()->setElo($eloj1);
         $game->getUser2()->setElo($eloj2);

@@ -20,6 +20,13 @@
             {{ render(controller('App\\Controller\\GameController::refreshPlateauGame', {game:game.id})) }}
 
         </div>
+        <div id="tchat">
+            <div id="affiche">{{ render(controller('App\\Controller\\TchatController::refreshTchat', {game:game.id})) }}</div>
+            <div id="formulaire">
+                <input type="text" id="message-tchat" name="message" placeholder="Votre message">
+                <input type="submit" id="envoyer" value="Envoyer">
+            </div>
+        </div>
 
 
         </div>
@@ -858,6 +865,70 @@
 
 
     })
+    </script>
+
+    <script>
+        setInterval(function(){
+            $('#affiche').load("{{ path('refresh_tchat', {game:game.id}) }}")
+            element = document.getElementById('affiche');
+            element.scrollTop = element.scrollHeight;
+        },1000)
+
+        $(document).ready(function(){
+                $('#message-tchat').keydown(function(event){
+                    if(event.which==13){
+                        donneesMessage = {
+                            'contenu': $('#message-tchat').val(),
+                        }
+
+                        $.ajax({
+                            url: "{{ path('send_message', {game: game.id}) }}",
+                            data: donneesMessage,
+                            method: 'POST',
+                            success: function(data) {
+                                //on refresh le plateau
+                                if (data == true) {
+                                    console.log('message envoyé !')
+                                }
+
+                            },
+                            error: function(){
+                            }
+                        })
+
+
+                        $('#message-tchat').val('').focus();
+                    }
+                })
+
+
+        })
+
+        $(document).on('click', '#envoyer', function() {
+            donneesMessage = {
+                'contenu': $('#message-tchat').val(),
+            }
+
+            $.ajax({
+                url: "{{ path('send_message', {game: game.id}) }}",
+                data: donneesMessage,
+                method: 'POST',
+                success: function(data) {
+                    //on refresh le plateau
+                    if (data == true) {
+                        console.log('message envoyé !')
+                    }
+
+                },
+                error: function(){
+                }
+            })
+
+
+            $('#message-tchat').val('').focus();
+        })
+
+
 
 
 

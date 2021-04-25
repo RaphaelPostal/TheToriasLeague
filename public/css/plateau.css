@@ -515,6 +515,36 @@ button{
 
 }
 
+#formulaire{
+    position: absolute;
+    left: 20px;
+    top: 410px;
+}
+
+#affiche{
+    position: absolute;
+    left: 20px;
+    top: 80px;
+    height: 300px;
+    width: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.message{
+    color: white;
+    background-color:#FF9100 ;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 290px;
+    display: inline-block;
+    margin-bottom: 5px;
+
+
+
+}
+
+
 
 @keyframes pop {
     0%{

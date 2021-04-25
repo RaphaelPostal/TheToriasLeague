@@ -21,10 +21,10 @@
             <h3 style="color: white; width:300px">Durée moyenne d'une partie :</h3><p style="color: white; width:300px">{{ duree_moy[0] }} min {{ duree_moy[1] }} sec.</p>
         </div>
         <div id="cont-graph3">
-            <h3 style="text-align: center; color: white">Top 10</h3><br>
+            <h3 style="text-align: center; color: white">Top 10</h3>
             <ul style="color: white; list-style-type: none">
             {% for user in top10 %}
-                <li>{{ loop.index }} {{ user.pseudo }} | {{ user.elo }}</li><br>
+                <li><strong>{{ loop.index }}.</strong> {{ user.pseudo }} | {{ user.elo }}</li><br>
             {% endfor %}
             </ul>
         </div>
