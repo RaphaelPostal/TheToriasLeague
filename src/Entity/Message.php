@@ -28,6 +28,11 @@ class Message
      */
     private $game;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $sender;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -53,6 +58,18 @@ class Message
     public function setGame(?Game $game): self
     {
         $this->game = $game;
+
+        return $this;
+    }
+
+    public function getSender(): ?string
+    {
+        return $this->sender;
+    }
+
+    public function setSender(string $sender): self
+    {
+        $this->sender = $sender;
 
         return $this;
     }

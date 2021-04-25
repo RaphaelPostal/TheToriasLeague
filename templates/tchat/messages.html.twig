@@ -1,3 +1,8 @@
 {% for message in messages %}
-    <span class="message">{{ message.contenu }}</span><br>
+    {% if message.sender == app.user.pseudo %}
+    <span class="message-moi"><strong>Vous :</strong> {{ message.contenu }}</span><br>
+    {% else %}
+    <span class="message-adv"><strong>{{ message.sender }} :</strong> {{ message.contenu }}</span><br>
+        {% endif %}
+
 {% endfor %}

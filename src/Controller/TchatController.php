@@ -33,6 +33,7 @@ class TchatController extends AbstractController
         $contenu = $request->request->get('contenu');
         $message = new Message();
         $message->setContenu($contenu);
+        $message->setSender($this->getUser()->getPseudo());
         $message->setGame($game);
         $entityManager->persist($message);
         $entityManager->flush();

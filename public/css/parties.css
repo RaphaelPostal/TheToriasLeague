@@ -217,11 +217,13 @@ h1{
     margin-left: 22%;
     margin-top: 20px;
     margin-bottom: 20px;
+
 }
 #btn_defier , #btn_rechercher {
     color: white;
     text-decoration: none;
     font-family: aventura;
+    cursor: pointer;
 }
 
 #btn_profil{

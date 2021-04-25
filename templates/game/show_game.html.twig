@@ -12,7 +12,7 @@
         <div id="conteneur">
 
 
-
+            <img id="bulle" src="{{ asset('img/bulle.svg') }}" alt="Tchat">
             <div id="message"><h3>MANCHE {{ game.RoundEncours }}</h3><p id="message-tour">...</p></div>
 
         <div id="plateau">
@@ -875,6 +875,7 @@
         },1000)
 
         $(document).ready(function(){
+            $('#tchat').hide()
                 $('#message-tchat').keydown(function(event){
                     if(event.which==13){
                         donneesMessage = {
@@ -930,6 +931,9 @@
 
 
 
+        $(document).on('click', '#bulle', function(){
+            $('#tchat').toggle()
+        })
 
 
     </script>
